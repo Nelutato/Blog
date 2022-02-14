@@ -1,0 +1,22 @@
+.bg-own-green
+{
+    background-color: #03CEA4;
+}
+.bg-own-yellow
+{
+    background-color: #EAC435;
+}
+.text-own-yellow
+{
+    color:#EAC435;
+}
+#SortingRecepies
+{
+    border: 2px solid #EAC435;
+
+
+}
+.admin-recepies-image:hover
+{
+    opacity: 40%;
+}
