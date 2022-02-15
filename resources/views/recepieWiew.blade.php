@@ -1,14 +1,14 @@
 @include('layouts/navbar')
 <div class="container-flex" >
 
-    <div class="row  my-2 text-center">
+    <div class="row  m-2 text-center">
             <h2>{{$Recepie['title']}}</h2> <br>
     </div>
 
     <div class="row mx-auto  my-2 justify-content-center">
 
-        <div class="col-md-6  p-2 border-top border-3">
-            <p> ingredients : <br></p>
+        <div class="col-md-3  p-2 border-top border-3">
+            <p> składniki : <br></p>
             <ul>
                 <?php
                     $ingredient = explode(',', $Recepie["ingredients"] ) ;
@@ -18,6 +18,10 @@
                     <li> {{ $ingredient[$i] }} </li><br>
                 @endfor
             </ul>
+        </div>
+        <div class="col-md-3  p-2 border-top border-3 ">
+            stwożone przez: <br>
+            <b> {{ $creatorName }} </b>
         </div>
 
         <div class="col-md-2 my-1">
@@ -34,14 +38,37 @@
     {{--  coment Section  --}}
 
     <div class="row m-3 p-2 border-top justify-content-center">
-        <div class="col-md-6 border ">
-            <form action="" method="post">
-                <label for="comment"> nickname </label>
-                <textarea name="com" class="form-control w-75" id="comment" rows="1">
-                </textarea> <br>
-                <button type="submit" style="btn btn-primary btn-lg m-2 p-1 float-end" >send</button>
+
+        <div class="col-md-4 border p-2">
+
+            <form action="/Recepies/addComent" method="post">
+                @csrf
+                <label for="comment" class="d-flex  my-1"> 
+                    <img src="{{URL('images/honeycomb.ico')}}" 
+                        width="6%" class=" border rounded-circle" >
+                    {{ $userName }} : 
+                </label>
+
+                <textarea name="comment" id="comment"
+                        class="form-control" rows="2">
+                </textarea>
+
+                <i class="bi bi-star my-1"></i>
+                <i class="bi bi-star"></i>
+                <i class="bi bi-star"></i>   
+                <button class="btn btn-success float-end m-1" 
+                        type="submit">
+                        Button
+                </button>
             </form>
+            @if ($errors->any())
+            @foreach ($errors->all() as $error)
+                <br> {{ $error }}
+            @endforeach
+        @endif
         </div>
+
     </div>
     
 </div>
+{{-- {{$coments}} --}}
