@@ -9,7 +9,7 @@ use App\Http\Controllers\ShowRecepie;
 
 class ComentControll extends Controller
 {
-    function addComment(Request $req)
+    function addComment(Request $req, $slug)
     {
         $req -> validate([
             'comment' => "required"
@@ -17,15 +17,9 @@ class ComentControll extends Controller
 
         Coment::create([
             'user_id' => session()->get('loggedUser'),
+            'recepie_id' => $slug,
             'comment' => $req -> input('comment')
         ]);
         return back();
     }
-    // function ShowComent($slug)
-    // {
-    //     $coments = Coment::all();
-    //     // dd($coments);
-    //     session()-> put('coments',$coments);
-    //     return redirect()-> action([ShowRecepie::class, 'showFullRecepie'],['slug' => $slug]);
-    // }
 }

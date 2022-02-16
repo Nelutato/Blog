@@ -51,6 +51,6 @@ Route::post('admin/createPost', [RecepiesController::class , 'createPost']);
 //                      =                           =                   =               =           =
 Route::get('/Recepies/Wiew/{slug}', [ShowRecepie::class , 'showFullRecepie']);
                                     // [ ComentControll::class ,'showComent']);
-Route::post('/Recepies/addComent', [ComentControll::class , 'addComment']);
+Route::post('/Recepies/addComent/{slug}', [ComentControll::class , 'addComment']);
 
 Route::get('/{slug}', [MainSites::class , 'index']);

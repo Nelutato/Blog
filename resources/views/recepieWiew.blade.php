@@ -40,35 +40,41 @@
     <div class="row m-3 p-2 border-top justify-content-center">
 
         <div class="col-md-4 border p-2">
-
-            <form action="/Recepies/addComent" method="post">
+            <form action={{ url('/Recepies/addComent/'.$Recepie['id']) }} method="post">
                 @csrf
-                <label for="comment" class="d-flex  my-1"> 
-                    <img src="{{URL('images/honeycomb.ico')}}" 
-                        width="6%" class=" border rounded-circle" >
-                    {{ $userName }} : 
-                </label>
-
-                <textarea name="comment" id="comment"
-                        class="form-control" rows="2">
-                </textarea>
-
-                <i class="bi bi-star my-1"></i>
-                <i class="bi bi-star"></i>
-                <i class="bi bi-star"></i>   
-                <button class="btn btn-success float-end m-1" 
-                        type="submit">
-                        Button
-                </button>
+                <img src="{{URL('images/honeycomb.ico')}}"  
+                     width="6%" class=" border rounded-circle m-1" >
+                {{ $userName }} : 
+                <textarea name="comment" id="comment"class="form-control" rows="2"> </textarea>
+                <div  class="my-1">
+                    <i class="bi bi-star"></i>
+                    <i class="bi bi-star"></i>
+                    <i class="bi bi-star"></i>   
+                    <button type="submit" class="btn btn-success float-end m-1" >
+                            Button
+                    </button>
+                </div>
             </form>
+
             @if ($errors->any())
-            @foreach ($errors->all() as $error)
-                <br> {{ $error }}
-            @endforeach
-        @endif
+                @foreach ($errors->all() as $error)
+                    <br> {{ $error }}
+                @endforeach
+            @endif
         </div>
 
     </div>
-    
-</div>
-{{$coments}}
+
+    @foreach ($coments as $coment)
+        <div class="row m-2 p-2 justify-content-center ">
+            <div class="col-md-4 mx-auto border p-2">
+                <img src="{{URL('images/honeycomb.ico')}}" 
+                    width="6%" class=" border rounded-circle" >
+                {{ $coment['user_id'] }} :
+
+                <div class="border w-75 my-2">
+                    {{$coment['comment']}}
+                </div>
+            </div>
+        </div>
+    @endforeach
