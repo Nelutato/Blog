@@ -49,8 +49,8 @@ Route::post('admin/createPost', [RecepiesController::class , 'createPost']);
     // Route::post('admin/createPost', [RecepiesController::class , 'StoreImage'])->name('store'); //admin.
 
 //                      =                           =                   =               =           =
-Route::get('/Recepies/Wiew/{slug}', 
-                                    [ ComentControll::class ,'showComent']);
+Route::get('/Recepies/Wiew/{slug}', [ShowRecepie::class , 'showFullRecepie']);
+                                    // [ ComentControll::class ,'showComent']);
 Route::post('/Recepies/addComent', [ComentControll::class , 'addComment']);
 
 Route::get('/{slug}', [MainSites::class , 'index']);

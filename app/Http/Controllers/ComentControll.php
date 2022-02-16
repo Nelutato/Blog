@@ -21,11 +21,11 @@ class ComentControll extends Controller
         ]);
         return back();
     }
-    function ShowComent($slug)
-    {
-        $coments = Coment::all();
-        // dd($coments);
-        session()-> put('coments',$coments);
-        return redirect()-> action([ShowRecepie::class, 'showFullRecepie'],['slug' => $slug]);
-    }
+    // function ShowComent($slug)
+    // {
+    //     $coments = Coment::all();
+    //     // dd($coments);
+    //     session()-> put('coments',$coments);
+    //     return redirect()-> action([ShowRecepie::class, 'showFullRecepie'],['slug' => $slug]);
+    // }
 }

@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Recepie;
 use App\Models\Admin;
 use App\Models\User;
-
+use App\Models\Coment;
 class ShowRecepie extends Controller
 {
     function Show()
@@ -29,10 +29,15 @@ class ShowRecepie extends Controller
             { $userName = $adminName;}
         else
             { $userName = "Niezalogowany"; }
-    
+    // coments
+        $coments = Coment::all();
+
+
+
         return view('recepieWiew', ['Recepie' => $Recepie , 
         'creatorName' =>$adminName,
-        'userName' => $userName
+        'userName' => $userName,
+        'coments' =>$coments
         ]);
     }
 
