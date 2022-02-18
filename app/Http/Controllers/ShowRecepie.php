@@ -7,6 +7,7 @@ use App\Models\Recepie;
 use App\Models\Admin;
 use App\Models\User;
 use App\Models\Coment;
+use App\Http\Controllers\ComentControll;
 class ShowRecepie extends Controller
 {
     function Show()
@@ -19,28 +20,26 @@ class ShowRecepie extends Controller
     {
         $Recepie = Recepie::where('id', '=', $slug)->first();
         $adminName = Admin::where('id', '=',$Recepie['admin_id'])-> first();
-        $adminName= $adminName['username'];
-        
+        $adminName = $adminName['username'];
+        // $coments = Coment::all()->where('recepie_id', '=', $Recepie['id']); 
+
         if( null !== session()-> get('loggedUser') )
         {
             $logedUser = session()->get('loggedUser');
-            $userinfo = User::where('id', '=',$logedUser)->first();
-            $userName = $userinfo['name'];
+            $logedUser = User::where('id', '=',$logedUser)->first();
+            $logedUserName = $logedUser['name'];
         }elseif (null !== session()-> get('logedAdmin')) {
-             $userName = $adminName;
+             $logedUserName = $adminName;
         }else
-        {
-            $userName = "Niezalogowany";
-        }
-    // coments
-        $coments = Coment::all()->where('recepie_id', '=', $Recepie['id']); 
-        if($coments == null)
-            { $coments = 'empty'; }
+            { $logedUserName = "Niezalogowany"; }
+    // // coments
+    //     if($coments == null)
+    //         { $coments = 'empty'; }
 
         return view('recepieWiew', ['Recepie' => $Recepie , 
         'creatorName' =>$adminName,
-        'userName' => $userName,
-        'coments' =>$coments
+        'userName' => $logedUserName,
+        // 'coments' =>$coments
         ]);
     }
 
