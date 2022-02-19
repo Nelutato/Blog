@@ -28,4 +28,17 @@ class ComentControll extends Controller
         ]);
         return back();
     }
+
+    // function showComent($Recepie ,$adminName,$logedUserName)
+    // {
+    //     $coments = Coment::all()->where('recepie_id', '=', $Recepie['id']); 
+    //     if($coments == null)
+    //         { $coments = 'empty'; }
+
+    //     return view('recepieWiew', ['Recepie' => $Recepie , 
+    //     'creatorName' =>$adminName,
+    //     'userName' => $logedUserName,
+    //     'coments' =>$coments
+    //     ]);
+    // }
 }

@@ -70,7 +70,7 @@
             <div class="col-md-4 mx-auto border p-2">
                 <img src="{{URL('images/honeycomb.ico')}}" 
                     width="6%" class=" border rounded-circle" >
-                {{ $coment['user_id'] }} :
+                {{ $coment_user }} :
 
                 <div class="border w-75 my-2">
                     {{$coment['comment']}}

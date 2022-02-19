@@ -16,12 +16,14 @@ class ShowRecepie extends Controller
         return view('recepies', ['Recepie' => $Recepie]);
     }
 
-    function  showFullRecepie($slug)
+    function  showFullRecepie($slug )
     {
         $Recepie = Recepie::where('id', '=', $slug)->first();
         $adminName = Admin::where('id', '=',$Recepie['admin_id'])-> first();
         $adminName = $adminName['username'];
-        // $coments = Coment::all()->where('recepie_id', '=', $Recepie['id']); 
+        $comentControl = new ComentControll;
+
+
 
         if( null !== session()-> get('loggedUser') )
         {
@@ -32,15 +34,35 @@ class ShowRecepie extends Controller
              $logedUserName = $adminName;
         }else
             { $logedUserName = "Niezalogowany"; }
-    // // coments
-    //     if($coments == null)
-    //         { $coments = 'empty'; }
-
+        
+        // return redirect()->action($comentControl->showComent($Recepie ,$adminName,$logedUserName))
+        //     ->with(['Recepie'=> $Recepie,
+        //     'adminName'=>$adminName,
+        //     'logedUserName'=>$logedUserName
+        // ]);
+        $coments = $this->showComent($Recepie);
         return view('recepieWiew', ['Recepie' => $Recepie , 
         'creatorName' =>$adminName,
         'userName' => $logedUserName,
-        // 'coments' =>$coments
+        'coments' =>$coments['coments'],
+        'coment_user' => $coments['coment_user']
         ]);
     }
-
+    
+    function showComent($Recepie)
+    {
+        $coments = Coment::all()->where('recepie_id', '=', $Recepie['id']); 
+        // dd($coments);
+        $coment_user= User::where('id', '=', $coments[6]['user_id'] )->first();
+        if($coments == null)
+            { 
+                $coments = 'empty'; 
+            }
+        $comentsArr = array(
+            'coments' => $coments,
+            'coment_user' => $coment_user['name']
+        );
+        // dd($coment_user);
+        return $comentsArr;
+    }
 }
