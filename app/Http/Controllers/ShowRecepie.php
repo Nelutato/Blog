@@ -53,14 +53,19 @@ class ShowRecepie extends Controller
     {
         $coments = Coment::all()->where('recepie_id', '=', $Recepie['id']); 
         // dd($coments);
-        $coment_user= User::where('id', '=', $coments[6]['user_id'] )->first();
+        $i=0;
+        foreach ($coments as $coment)
+        {
+            $i++;
+            $coment_user[$i]= User::where('id', '=', $coment['user_id'] )->first();
+        }
         if($coments == null)
             { 
                 $coments = 'empty'; 
             }
         $comentsArr = array(
             'coments' => $coments,
-            'coment_user' => $coment_user['name']
+            'coment_user' => $coment_user
         );
         // dd($coment_user);
         return $comentsArr;

@@ -64,13 +64,14 @@
         </div>
 
     </div>
-
+{{$i=0}}
     @foreach ($coments as $coment)
+    {{$i++}}
         <div class="row m-2 p-2 justify-content-center ">
             <div class="col-md-4 mx-auto border p-2">
                 <img src="{{URL('images/honeycomb.ico')}}" 
                     width="6%" class=" border rounded-circle" >
-                {{ $coment_user }} :
+                {{ $coment_user[$i]['name'] }} :
 
                 <div class="border w-75 my-2">
                     {{$coment['comment']}}
