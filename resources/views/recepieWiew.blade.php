@@ -41,21 +41,16 @@
 
         <div class="col-md-4 border p-2">
             <form action={{ url('/Recepies/addComent/'.$Recepie['id']) }} method="post">
-                @csrf
-                <img src="{{URL('images/honeycomb.ico')}}"  
-                     width="6%" class=" border rounded-circle m-1" >
+            @csrf
+                <img src="{{URL('images/honeycomb.ico')}}" width="6%" class=" border rounded-circle m-1" >
                 {{ $userName }} : 
                 <textarea name="comment" id="comment"class="form-control" rows="2"> </textarea>
                 <div  class="my-1">
-                    <i class="bi bi-star"></i>
-                    <i class="bi bi-star"></i>
-                    <i class="bi bi-star"></i>   
                     <button type="submit" class="btn btn-success float-end m-1" >
-                            Button
+                        skomętuj
                     </button>
                 </div>
             </form>
-
             @if ($errors->any())
                 @foreach ($errors->all() as $error)
                     <br> {{ $error }}
@@ -64,19 +59,33 @@
         </div>
 
     </div>
-{{$i=0}}
-    @foreach ($coments as $coment)
-    {{$i++}}
+
+    {{$i=0}}
+    @foreach ($coments as $coment) {{$i++}}
+        @if ( $i >10)
+            @break
+        @endif
         <div class="row m-2 p-2 justify-content-center ">
             <div class="col-md-4 mx-auto border p-2">
-                <img src="{{URL('images/honeycomb.ico')}}" 
-                     width="6%" class=" border rounded-circle" >
+                <img src="{{URL('images/honeycomb.ico')}}" width="6%" class=" border rounded-circle" >
                 {{ $coment_user[$i]['name'] }} :
-
-                <div class="border w-75 my-2">
+                <div class="border my-2">
                     {{$coment['comment']}}
                 </div>
             </div>
+        
+            <div class="w-100"></div> <br>
+
+            <div class="col-md-3 m-1">
+                <form action={{ url('/Recepies/addComent/'.$Recepie['id']) }} method="post" >
+                @csrf
+                    <textarea name="comment" id="comment"class="form-control" rows="1"> </textarea>
+                    <div  class="my-1">
+                        <button type="submit" class="btn border float-end ">
+                            Odpowiedz
+                        </button>
+                    </div>
+                </form>
+            </div>
         </div>
-        {{-- work --}}
     @endforeach
