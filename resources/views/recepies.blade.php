@@ -73,21 +73,21 @@
 
   {{--      GENERATOR   ========================================== --}}
   @foreach ($Recepie as $recepie)
-  <?php
-    $recepieBody = substr($recepie['body'],0,250);
-    
-    $ingredient = explode(',', $recepie["ingredients"] );
-    $lenght = count( $ingredient );
-  ?>
-    <div class="row justify-content-center bg-light border my-2 border-2">
+    <?php
+      $recepieBody = substr($recepie['body'],0,250);
+      $ingredient = explode(',', $recepie["ingredients"] );
+      $lenght = count( $ingredient );
+    ?>
+    <div class="row justify-content-center bg-light border m-2 border-2">
       <div class="col-md-5 text-center p-1 bg-light text-md-start">
-        <h1 class="bg-light m-1">
+        <h1 class="d-inline bg-light m-1">
           {{ $recepie['title'] }}
         </h1>
-          {{$recepieBody}} <br>
-          <b> Składniki : </b> <br>
+        <small class="float-end"> {{$recepie['created_at']}} </small> <br>
+        {{$recepieBody}} <br>
+
+        <b id="ingredients"> Składniki : </b> <br>
         <ul class=" bg-light">
-         
           @for($i=0; $i < $lenght; $i++)
             @if ($i==2) 
               @break @endif
@@ -106,7 +106,7 @@
             alt="IMG" class="img-fluid " 
             style="height: 250px ;width: 300px"
             >
-    </div>
+    </div> 
  
   </div>
 @endforeach

@@ -46,9 +46,9 @@ class ShowRecepie extends Controller
     {
         $coments = 'empty'; 
         $coment_user[0] = 'empty';
-
         $coments = Coment::all()->where('recepie_id', '=', $Recepie['id']); 
         $i=0;
+        
         foreach ($coments as $coment)
         {
             $coment_user[$i]= User::where('id', '=', $coment['user_id'] )->first();

@@ -67,26 +67,27 @@
         @endif
         <div class="row m-2 p-2 justify-content-center ">
             <div class="col-md-4 mx-auto border p-2">
+                <small class="float-end"> {{$coment['created_at']}} </small> <br>
                 <img src="{{URL('images/honeycomb.ico')}}" width="6%" class=" border rounded-circle" >
-                {{ $coment_user[$i]['name'] }} :
+               <b> {{ $coment_user[$i]['name'] }} : </b> 
                 <div class="border my-2">
                     {{$coment['comment']}}
                 </div>
             </div>
-            
-{{-- Odpowiedzi niedokończone / Repeats not completed  --}}
-            {{-- <div class="w-100"></div> <br> --}}
-            {{-- <div class="col-md-3 m-1">
-                <form action={{ url('/Recepies/addComent/'.$Recepie['id']) }} method="post" >
-                @csrf
-                    <textarea name="comment" id="comment"class="form-control" rows="1"> </textarea>
-                    <div  class="my-1">
-                        <button type="submit" class="btn border float-end ">
-                            Odpowiedz
-                        </button>
-                    </div>
-                </form>
-            </div> --}}
+
+    {{-- Odpowiedzi niedokończone / Repeats not completed  --}}
+                {{-- <div class="w-100"></div> <br> --}}
+                {{-- <div class="col-md-3 m-1">
+                    <form action={{ url('/Recepies/addComent/'.$Recepie['id']) }} method="post" >
+                    @csrf
+                        <textarea name="comment" id="comment"class="form-control" rows="1"> </textarea>
+                        <div  class="my-1">
+                            <button type="submit" class="btn border float-end ">
+                                Odpowiedz
+                            </button>
+                        </div>
+                    </form>
+                </div> --}}
         </div>
     {{$i++}}
     @endforeach
