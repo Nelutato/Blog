@@ -24,3 +24,7 @@
 {
     color: #03CEA4;    
 }
+.nav-button:hover
+{
+    background-color: #EAC435;
+}

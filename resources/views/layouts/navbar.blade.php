@@ -19,13 +19,13 @@
       </a>
 
       <ul class="navbar-nav m-2 mt-lg-0">
-          <li class="nav-item active border border-light mx-1">
+          <li class="nav-button nav-item active border p-1 border-light mx-1">
             <a href="/Recepies" class="nav-link active">Recepies</a>
           </li>
-          <li class="nav-item active border border-light mx-1">
+          <li class="nav-button nav-item active border p-1 border-light mx-1">
             <a href="/Blog" class="nav-link active">Blog</a>
           </li>
-          <li class="nav-item active border border-light mx-1">
+          <li class="nav-button nav-item active border p-1 border-light mx-1">
             <a href="/Community" class="nav-link active">Community</a>
           </li>
           <li class="nav-item active mx-1 ">
