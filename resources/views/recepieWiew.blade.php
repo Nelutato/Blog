@@ -61,8 +61,8 @@
     </div>
 
     {{$i=0}}
-    @foreach ($coments as $coment) {{$i++}}
-        @if ( $i >10)
+    @foreach ($coments as $coment)
+        @if ( $i ==10 || $coment_user[0]=="empty")
             @break
         @endif
         <div class="row m-2 p-2 justify-content-center ">
@@ -73,10 +73,10 @@
                     {{$coment['comment']}}
                 </div>
             </div>
-        
-            <div class="w-100"></div> <br>
-
-            <div class="col-md-3 m-1">
+            
+{{-- Odpowiedzi niedokończone / Repeats not completed  --}}
+            {{-- <div class="w-100"></div> <br> --}}
+            {{-- <div class="col-md-3 m-1">
                 <form action={{ url('/Recepies/addComent/'.$Recepie['id']) }} method="post" >
                 @csrf
                     <textarea name="comment" id="comment"class="form-control" rows="1"> </textarea>
@@ -86,6 +86,7 @@
                         </button>
                     </div>
                 </form>
-            </div>
+            </div> --}}
         </div>
+    {{$i++}}
     @endforeach

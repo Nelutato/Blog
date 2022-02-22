@@ -73,33 +73,38 @@
 
   {{--      GENERATOR   ========================================== --}}
   @foreach ($Recepie as $recepie)
-
+  <?php
+    $recepieBody = substr($recepie['body'],0,250);
+    
+    $ingredient = explode(',', $recepie["ingredients"] );
+    $lenght = count( $ingredient );
+  ?>
     <div class="row justify-content-center bg-light border my-2 border-2">
-      
       <div class="col-md-5 text-center p-1 bg-light text-md-start">
         <h1 class="bg-light m-1">
           {{ $recepie['title'] }}
         </h1>
-          {{ $recepie['body'] }}
+          {{$recepieBody}} <br>
+          <b> Składniki : </b> <br>
         <ul class=" bg-light">
-          ingredients : <br>
-          <?php
-            $ingredient = explode(',', $recepie["ingredients"] );
-            $lenght = count( $ingredient );
-          ?> <br>
-
+         
           @for($i=0; $i < $lenght; $i++)
-          <li> {{ $ingredient[$i] }} </li>
+            @if ($i==2) 
+              @break @endif
+            <li> {{ $ingredient[$i] }} </li>
           @endfor
-
-          <a href="/Recepies/Wiew/ {{ $recepie['id'] }}" class=" bg-light"> Read More . . . </a>
+          <a href="/Recepies/Wiew/ {{ $recepie['id'] }}" class=" bg-light">
+            <button type="button" class="btn bg-own-green float-end">
+              Więcej ...
+            </button>
+          </a>
         </ul>
       </div>
 
       <div class="col-md-3 text-center bg-light">
         <img src="{{ asset('images/'. $recepie['image']) }}" 
             alt="IMG" class="img-fluid " 
-            style="height: 200px ;width: 250px"
+            style="height: 250px ;width: 300px"
             >
     </div>
  

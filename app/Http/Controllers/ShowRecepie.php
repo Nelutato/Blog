@@ -21,9 +21,6 @@ class ShowRecepie extends Controller
         $Recepie = Recepie::where('id', '=', $slug)->first();
         $adminName = Admin::where('id', '=',$Recepie['admin_id'])-> first();
         $adminName = $adminName['username'];
-        $comentControl = new ComentControll;
-
-
 
         if( null !== session()-> get('loggedUser') )
         {
@@ -35,39 +32,33 @@ class ShowRecepie extends Controller
         }else
             { $logedUserName = "Niezalogowany"; }
         
-        // return redirect()->action($comentControl->showComent($Recepie ,$adminName,$logedUserName))
-        //     ->with(['Recepie'=> $Recepie,
-        //     'adminName'=>$adminName,
-        //     'logedUserName'=>$logedUserName
-        // ]);
         $coments = $this->showComent($Recepie);
-        return view('recepieWiew', ['Recepie' => $Recepie , 
-        'creatorName' =>$adminName,
-        'userName' => $logedUserName,
-        'coments' =>$coments['coments'],
-        'coment_user' => $coments['coment_user']
+        return view('recepieWiew', [
+            'Recepie' => $Recepie , 
+            'creatorName' =>$adminName,
+            'userName' => $logedUserName,
+            'coments' =>$coments['coments'],
+            'coment_user' => $coments['coment_user']
         ]);
     }
     
     function showComent($Recepie)
     {
+        $coments = 'empty'; 
+        $coment_user[0] = 'empty';
+
         $coments = Coment::all()->where('recepie_id', '=', $Recepie['id']); 
-        // dd($coments);
         $i=0;
         foreach ($coments as $coment)
         {
-            $i++;
             $coment_user[$i]= User::where('id', '=', $coment['user_id'] )->first();
+            $i++;
         }
-        if($coments == null)
-            { 
-                $coments = 'empty'; 
-            }
         $comentsArr = array(
             'coments' => $coments,
             'coment_user' => $coment_user
         );
-        // dd($coment_user);
+        
         return $comentsArr;
     }
 }
