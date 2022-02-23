@@ -21,12 +21,14 @@ use App\Models\Coment;
 | contains the "web" middleware group. Now create something great!
 |
 */
-Route::view('/','home');
-Route::get('Recepies',[ShowRecepie::class , 'show']);
+
+Route::get('/{slug}', [ShowRecepie::class ,'show']);
+
 
 Route::get('/user/logout',[UserController::class, 'logout']);
 Route::post('/user/register', [UserController::class , 'register']);
 Route::post('/user/login', [UserController::class , 'logIn']);
+
 Route::group(['middleware'=>['AuthUserCheck']],function()
 {
     Route::view('user', 'login');
@@ -37,6 +39,7 @@ Route::group(['middleware'=>['AuthUserCheck']],function()
 Route::post('/admin/registerAdminAccount', [AdminController::class , 'register']);
 Route::post('/admin/login', [AdminController::class , 'logIn']);
 Route::get('/admin/logout', [AdminController::class , 'logOut']);
+
 Route::group(['middleware'=>['AuthAdminCheck']],function()
 {
     Route::view('/admin/loginform', 'adminLogin');
@@ -46,11 +49,9 @@ Route::group(['middleware'=>['AuthAdminCheck']],function()
 });
 // Dodaj to do middlewar-u !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! \/
 Route::post('admin/createPost', [RecepiesController::class , 'createPost']); 
-    // Route::post('admin/createPost', [RecepiesController::class , 'StoreImage'])->name('store'); //admin.
 
 //                      =                           =                   =               =           =
 Route::get('/Recepies/Wiew/{slug}', [ShowRecepie::class , 'showFullRecepie']);
-                    // [ ComentControll::class ,'showComent']);
 Route::post('/Recepies/addComent/{slug}', [ComentControll::class , 'addComment']);
 
-Route::get('/{slug}', [MainSites::class , 'index']);
+// Route::get('/{slug}', [MainSites::class , 'index']);

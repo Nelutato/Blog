@@ -9,7 +9,6 @@ class MainSites extends Controller
     function index($slug)
     {
         $mainSite= [
-            'welcome'=> 'home',
             'Blog'=> 'blog',
             'Community'=>'community' 
         ];

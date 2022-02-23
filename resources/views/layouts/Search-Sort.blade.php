@@ -1,5 +1,5 @@
 <div class="container border">
-    <div class="row d-flex justify-content-between m-3 p-1" >
+  <div class="row d-flex justify-content-between m-3 p-1" >
   
       {{-- <div class="container col-md-8">
           Dodaj Skladnik:<br/>
@@ -26,16 +26,15 @@
               {
                 echo "<option selected ='selected' value="$option">$option opinia</option>"
               }else {
-                echo "<option value="$option">$option Najnowsze</option>"
+                echo "<option value="$option">$option Najnowsze</option>";
               }
             
             }
-          echo "</select>"
+          echo "</select>";
         ?>
       </div>
   
-    </div>
-
+  </div>
     {{-- <div class="row border ">
       <div class="container col-md-1 bg-dark text-own-yellow m-1 border rounded-3">
         carrot
@@ -44,4 +43,4 @@
         onion
       </div>
     </div> --}}
-  </div>
+</div>

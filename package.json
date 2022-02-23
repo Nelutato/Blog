@@ -24,6 +24,7 @@
         "vue-template-compiler": "^2.6.12"
     },
     "dependencies": {
-        "bootstrap-icons": "^1.7.2"
+        "bootstrap-icons": "^1.7.2",
+        "vue-owl-carousel": "^2.0.3"
     }
 }

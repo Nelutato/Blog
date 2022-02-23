@@ -39,23 +39,6 @@ class RecepiesController extends Controller
     {
         return view('createPostForm');
     }
-
-                                            //          FOR CKEDITOR
-    // function StoreImage(Request $req )
-    // {
-
-    //     $task = new Task();
-    //     $task->id = 0;
-    //     $task->exist=true;
-    //     $image = $task->addMediaFromRequest('upload')-> move(public_path('images'),'image.png');
-
-    //     return response()-> json()([
-            
-    //         // 'url' => $image
-    //         'url' => 'https://www.imgacademy.com/themes/custom/imgacademy/images/helpbox-contact.jpg'
-    //     ]);
-    //     return $req;
-    // }
     
     
 }

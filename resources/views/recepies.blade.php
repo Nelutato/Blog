@@ -2,10 +2,10 @@
 
 <div class="container-fluid" >
 
-@include('layouts/Search-Sort')
+{{-- @include('layouts/Search-Sort')                end it with vue :) --}}
 
 
-    <div class="row justify-content-center bg-light border my-2 border-2">
+    {{-- <div class="row justify-content-center bg-light border my-2 border-2">
   
         <div class="col-md-5 text-center p-1 bg-light text-md-start">
           <h1 class="bg-light m-1">
@@ -34,7 +34,7 @@
           <img src="{{URL('images/Pad-Thai-test.jpg')}}" alt="IMG" class="img-fluid " style="max-height: 300px">
         </div>
 
-    </div>
+    </div> --}}
 
 
   {{--      GENERATOR   ========================================== --}}

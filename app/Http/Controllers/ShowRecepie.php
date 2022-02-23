@@ -10,10 +10,19 @@ use App\Models\Coment;
 use App\Http\Controllers\ComentControll;
 class ShowRecepie extends Controller
 {
-    function Show()
+    function Show($slug)
     {
-        $Recepie = Recepie::all();
-        return view('recepies', ['Recepie' => $Recepie]);
+        if($slug == "welcome")
+        {
+            $Recepie = Recepie::latest()->first();
+            return view('home', ['Recepie' => $Recepie]);
+        }
+        elseif($slug=="Recepies")
+        {
+            $Recepie = Recepie::all();
+            return view('recepies', ['Recepie' => $Recepie]);
+        }else
+            {return back();}
     }
 
     function  showFullRecepie($slug )

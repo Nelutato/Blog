@@ -28,3 +28,8 @@
 {
     background-color: #EAC435;
 }
+.btn:hover
+{
+    opacity: 0.60;
+    background-color: #EAC435;
+}
