@@ -4,6 +4,9 @@ $recepieBody = substr($recepie['body'],0,250);
 $ingredient = explode(',', $recepie["ingredients"] );
 $lenght = count( $ingredient );
 ?>
+<script> 
+  var obraz = "<?php echo $recepie; ?>";
+</script>
 
 <body>
 @include('layouts/navbar')
