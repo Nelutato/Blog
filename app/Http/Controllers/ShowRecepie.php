@@ -12,17 +12,15 @@ class ShowRecepie extends Controller
 {
     function Show($slug)
     {
-        if($slug == "welcome")
-        {
-            $Recepie = Recepie::latest()->first();
-            return view('home', ['Recepie' => $Recepie]);
-        }
-        elseif($slug=="Recepies")
+        if($slug=="Recepies")
         {
             $Recepie = Recepie::all();
             return view('recepies', ['Recepie' => $Recepie]);
         }else
-            {return back();}
+        {
+                $Recepie = Recepie::latest()->first();
+                return view('home', ['Recepie' => $Recepie]);
+        }
     }
 
     function  showFullRecepie($slug )

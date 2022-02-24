@@ -22,7 +22,7 @@ use App\Models\Coment;
 |
 */
 
-Route::get('/{slug}', [ShowRecepie::class ,'show']);
+Route::get('{slug}', [ShowRecepie::class ,'show']);
 
 
 Route::get('/user/logout',[UserController::class, 'logout']);

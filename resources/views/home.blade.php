@@ -5,7 +5,12 @@ $ingredient = explode(',', $recepie["ingredients"] );
 $lenght = count( $ingredient );
 ?>
 <script> 
-  var obraz = "<?php echo $recepie; ?>";
+  // "<?php echo $recepie; ?>"
+  function changeSlideUP()
+  {
+  document.cookie = "slide";
+  }
+
 </script>
 
 <body>
