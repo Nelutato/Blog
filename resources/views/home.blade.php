@@ -1,20 +1,25 @@
 <?php
-$recepie = $Recepie;
+// print_r($Recepie);
+
+$recepie = $Recepie[0];
 $recepieBody = substr($recepie['body'],0,250);
 $ingredient = explode(',', $recepie["ingredients"] );
 $lenght = count( $ingredient );
+
 ?>
+
 <script> 
-  // "<?php echo $recepie; ?>"
-  function changeSlideUP()
+ 
+ function changeSlideUP()
   {
-  document.cookie = "slide";
+    var Recepie = <?php  echo json_encode($Recepie); ?>;
   }
 
 </script>
 
 <body>
 @include('layouts/navbar')
+
 <div class="container-fluid">
 
   <div class="row m-2 text-center">
@@ -102,11 +107,14 @@ $lenght = count( $ingredient );
   <a href="#" class="link-secondary"> <i class="bi bi-github"></i>  </a>
   <a href="#" class="link-secondary"> <i class="bi bi-envelope"></i> </a>
 </footer>
+
 </body>
-</html>
+</html> 
 
 {{-- <div class="float-end col-md-1 my-auto bg-light ">
   <h1 class="bg-light text-center "> 
     <i class="bi bi-chevron-right bg-light"></i>
   </h1>
 </div> --}}
+
+{{-- </script> --}}

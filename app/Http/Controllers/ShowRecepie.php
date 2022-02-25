@@ -18,7 +18,7 @@ class ShowRecepie extends Controller
             return view('recepies', ['Recepie' => $Recepie]);
         }else
         {
-                $Recepie = Recepie::latest()->first();
+                $Recepie = Recepie::all();
                 return view('home', ['Recepie' => $Recepie]);
         }
     }
