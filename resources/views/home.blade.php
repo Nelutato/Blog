@@ -12,7 +12,9 @@ $lenght = count( $ingredient );
  
  function changeSlideUP()
   {
-    var Recepie = <?php  echo json_encode($Recepie); ?>;
+    // var Recepie = <?php  echo json_encode($Recepie); ?>;
+    // document.innerHtml = "asdf";
+    alert("I am an alert box!");
   }
 
 </script>
@@ -35,7 +37,7 @@ $lenght = count( $ingredient );
     </div> 
 
     <div class="col-md-5 p-1 bg-light text-md-start">
-      <h1 class="d-inline bg-light m-1">
+      <h1 id ="title" class="d-inline bg-light m-1">
         {{ $recepie['title'] }}
       </h1>
       <small class="float-end"> {{$recepie['created_at']}} </small> <br>
