@@ -2,24 +2,45 @@
 // print_r($Recepie);
 
 $recepie = $Recepie[0];
-$recepieBody = substr($recepie['body'],0,250);
-$ingredient = explode(',', $recepie["ingredients"] );
-$lenght = count( $ingredient );
+for($i=0; $i<3;$i++)
+{
+  $ingredient = array();
+  $recepieBody[$i] = substr($Recepie[$i]['body'],0,250);
+  $ingredient = explode(',', $Recepie[$i]["ingredients"] );
 
+  // $lenght[$i] = count( $ingredient);
+
+  // if($lenght > 3)
+  // {
+  //   $lenght=3;
+  // }
+}
 ?>
 
 <script> 
- 
- function changeSlideUP()
+ i=0;
+ function changeSlide(wich)
   {
-    // var Recepie = <?php  echo json_encode($Recepie); ?>;
-    // document.innerHtml = "asdf";
-    alert("I am an alert box!");
+    if(wich == "UP" && i!= 3)
+    {
+      i++;
+    }else if(wich == "DOWN" && i !=0 ){
+      i--;
+    }else if(wich=="DOWN"){
+      i=3;
+    }else{
+      i=0;
+    }                   // za dużo if elseif etc. popraw to !!!!!!!!!!!!!!!! 
+
+    var Recepie = <?php  echo json_encode($Recepie); ?>;
+
+    document.getElementById("title").innerHTML = Recepie[i]['title']; 
+    
   }
 
 </script>
 
-<body>
+<body >
 @include('layouts/navbar')
 
 <div class="container-fluid">
@@ -30,26 +51,24 @@ $lenght = count( $ingredient );
 
 
   <div class="row justify-content-center bg-light border m-2 border-2">
-    <div class="float-end col-md-1 my-auto bg-light ">
+    <div class="float-end col-md-1 my-auto bg-light" onclick='changeSlide("UP")'>
       <h1 class="bg-light text-center "> 
         <i class="bi bi-chevron-left bg-light"></i>
       </h1>
     </div> 
 
     <div class="col-md-5 p-1 bg-light text-md-start">
-      <h1 id ="title" class="d-inline bg-light m-1">
+      <h1 id ="title" class="d-inline bg-light m-1 " >
         {{ $recepie['title'] }}
       </h1>
       <small class="float-end"> {{$recepie['created_at']}} </small> <br>
-      {{$recepieBody}} <br>
+      {{$recepieBody[0]}} <br>
 
       <b id="ingredients"> Składniki : </b> <br>
         <ul class=" bg-light">
-          @for($i=0; $i < $lenght; $i++)
-            @if ($i==2) 
-              @break @endif
-            <li> {{ $ingredient[$i] }} </li>
-          @endfor
+          {{-- @for($i=0; $i < $lenght; $i++)
+            <li>  $ingredient  </li>
+          @endfor --}}
           <a href="/Recepies/Wiew/ {{ $recepie['id'] }}" class=" bg-light">
             <button type="button" class="btn bg-own-green float-end">
               Więcej ...
@@ -65,7 +84,7 @@ $lenght = count( $ingredient );
           >
     </div> 
 
-    <div class="float-end col-md-1 my-auto bg-light ">
+    <div class="float-end col-md-1 my-auto bg-light " onclick='changeSlide("DOWN")'>
       <h1 class="bg-light text-center "> 
         <i class="bi bi-chevron-right bg-light"></i>
       </h1>
@@ -112,11 +131,3 @@ $lenght = count( $ingredient );
 
 </body>
 </html> 
-
-{{-- <div class="float-end col-md-1 my-auto bg-light ">
-  <h1 class="bg-light text-center "> 
-    <i class="bi bi-chevron-right bg-light"></i>
-  </h1>
-</div> --}}
-
-{{-- </script> --}}
