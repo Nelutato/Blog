@@ -1,29 +1,6 @@
-<?php
-// print_r($Recepie);
-
-$recepie = $Recepie[0];
-// dd($Recepie[0]['created_at']);
-// for($i=0; $i<3;$i++)
-// {
-//   $lenght = array();
-//   $recepieBody[$i] = substr($Recepie[$i]['body'],0,250);
-//   $ingredient = explode(',', $Recepie[$i]["ingredients"] );
-//   $lenght[$i] = count($ingredient);
-
-//   if($lenght[$i] > 3)
-//   {
-//     $lenght=3;
-//   }
-// }
-?>
-
 <script> 
  i=0;
  var Recepie = <?php  echo json_encode($Recepie); ?>;
-//  var adDate = new Date();
-//  var adDate = new Date(Date.parse(Recepie[0]['created_at'].replace(/[-]/g,'/')));
-//  alert(adDate);
-
 
  function changeSlide(wich)
   {
@@ -47,7 +24,6 @@ $recepie = $Recepie[0];
     document.getElementById("moreButton").href = "/Recepies/Wiew/"+Recepie[i]['id'];
     document.getElementById("recepieImage").src= "http://localhost:8000/images/"+Recepie[i]['image'];
   }
-
 </script>
 
 <body onload='changeSlide("none")'>
@@ -69,14 +45,14 @@ $recepie = $Recepie[0];
 
     <div class="col-md-5 p-1 bg-light text-md-start">
       <h1 id ="title" class="d-inline bg-light m-1 " >
-        {{-- $recepie['title'] --}}
+          Title
       </h1>
-      <small id="created_at" class="float-end"> {{--$recepie['created_at']--}} </small> <br>
-      <i id="recepieBody"> {{-- $recepieBody[0] --}} </i><br>
+      <small id="created_at" class="float-end"> date </small> <br>
+      <i id="recepieBody"> body </i><br>
 
       <b id="ingredients"> Składniki : </b> <br>
         <ul class=" bg-light" id="ingredients_list">
-            <li>  {{-- $ingredient[0] --}}  </li>
+            <li>  skladnik  </li>
         </ul>
           <a id="moreButton" href="/Recepies/Wiew/ {{-- $recepie['id'] --}}" class=" bg-light">
             <button type="button" class="btn bg-own-green float-end">
