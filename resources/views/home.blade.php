@@ -2,23 +2,29 @@
 // print_r($Recepie);
 
 $recepie = $Recepie[0];
-for($i=0; $i<3;$i++)
-{
-  $ingredient = array();
-  $recepieBody[$i] = substr($Recepie[$i]['body'],0,250);
-  $ingredient = explode(',', $Recepie[$i]["ingredients"] );
+// dd($Recepie[0]['created_at']);
+// for($i=0; $i<3;$i++)
+// {
+//   $lenght = array();
+//   $recepieBody[$i] = substr($Recepie[$i]['body'],0,250);
+//   $ingredient = explode(',', $Recepie[$i]["ingredients"] );
+//   $lenght[$i] = count($ingredient);
 
-  // $lenght[$i] = count( $ingredient);
-
-  // if($lenght > 3)
-  // {
-  //   $lenght=3;
-  // }
-}
+//   if($lenght[$i] > 3)
+//   {
+//     $lenght=3;
+//   }
+// }
 ?>
 
 <script> 
  i=0;
+ var Recepie = <?php  echo json_encode($Recepie); ?>;
+//  var adDate = new Date();
+//  var adDate = new Date(Date.parse(Recepie[0]['created_at'].replace(/[-]/g,'/')));
+//  alert(adDate);
+
+
  function changeSlide(wich)
   {
     if(wich == "UP" && i!= 3)
@@ -32,15 +38,19 @@ for($i=0; $i<3;$i++)
       i=0;
     }                   // za dużo if elseif etc. popraw to !!!!!!!!!!!!!!!! 
 
-    var Recepie = <?php  echo json_encode($Recepie); ?>;
+    var adDate = new Date(Recepie[i]['created_at']);
 
     document.getElementById("title").innerHTML = Recepie[i]['title']; 
-    
+    document.getElementById("recepieBody").innerHTML = Recepie[i]['body'].substr(0,150); 
+    document.getElementById("created_at").innerHTML = adDate.toDateString();
+    document.getElementById("ingredients_list").innerHTML = Recepie[i]['ingredients'].split(',');
+    document.getElementById("moreButton").href = "/Recepies/Wiew/"+Recepie[i]['id'];
+    document.getElementById("recepieImage").src= "http://localhost:8000/images/"+Recepie[i]['image'];
   }
 
 </script>
 
-<body >
+<body onload='changeSlide("none")'>
 @include('layouts/navbar')
 
 <div class="container-fluid">
@@ -59,29 +69,27 @@ for($i=0; $i<3;$i++)
 
     <div class="col-md-5 p-1 bg-light text-md-start">
       <h1 id ="title" class="d-inline bg-light m-1 " >
-        {{ $recepie['title'] }}
+        {{-- $recepie['title'] --}}
       </h1>
-      <small class="float-end"> {{$recepie['created_at']}} </small> <br>
-      {{$recepieBody[0]}} <br>
+      <small id="created_at" class="float-end"> {{--$recepie['created_at']--}} </small> <br>
+      <i id="recepieBody"> {{-- $recepieBody[0] --}} </i><br>
 
       <b id="ingredients"> Składniki : </b> <br>
-        <ul class=" bg-light">
-          {{-- @for($i=0; $i < $lenght; $i++)
-            <li>  $ingredient  </li>
-          @endfor --}}
-          <a href="/Recepies/Wiew/ {{ $recepie['id'] }}" class=" bg-light">
+        <ul class=" bg-light" id="ingredients_list">
+            <li>  {{-- $ingredient[0] --}}  </li>
+        </ul>
+          <a id="moreButton" href="/Recepies/Wiew/ {{-- $recepie['id'] --}}" class=" bg-light">
             <button type="button" class="btn bg-own-green float-end">
               Więcej ...
             </button>
           </a>
-        </ul>
+
     </div>
 
     <div class="col-md-3 text-center bg-light">
-      <img src="{{ asset('images/'. $recepie['image']) }}" 
-          alt="IMG" class="img-fluid " 
-          style="height: 300px ;width: 350px"
-          >
+      <img id="recepieImage" class="img-fluid "  
+          src="{{-- asset('images/'. $recepie['image']) --}}" 
+          style="height: 300px ;width: 350px" alt="IMG">
     </div> 
 
     <div class="float-end col-md-1 my-auto bg-light " onclick='changeSlide("DOWN")'>
