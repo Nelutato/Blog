@@ -1,8 +1,28 @@
 @include('layouts/navbar')
 <div class="container-flex" >
 
-    <div class="row  m-2 text-center">
-            <h2>{{$Recepie['title']}}</h2> <br>
+    <div class=" row d-flex text-center m-2  ">
+        <div class=" float-start w-75">
+            <h1>{{ $Recepie['title'] }}</h1> 
+        </div>
+
+        <div class="my-1 float-start w-75">
+            <a href="edit/{{$Recepie['id']}}" class="linkFont">
+                <button class="btn border bg-own-yellow "> 
+                    Edytuj 
+                </button>
+            </a>
+            <a href="" class="linkFont">
+                <button class="btn border bg-own-yellow "> 
+                    przeglądaj inne wersje 
+                </button>
+            </a>
+        </div>
+        <div class="w-25">
+            <i class="bi bi-piggy-bank"></i> <br>
+            <i class="bi bi-stopwatch"></i> <br>
+            <i class="bi bi-egg-fried"></i> <br>
+        </div>
     </div>
 
     <div class="row mx-auto  my-2 justify-content-center">
@@ -74,20 +94,6 @@
                     {{$coment['comment']}}
                 </div>
             </div>
-
-    {{-- Odpowiedzi niedokończone / Repeats not completed  --}}
-                {{-- <div class="w-100"></div> <br> --}}
-                {{-- <div class="col-md-3 m-1">
-                    <form action={{ url('/Recepies/addComent/'.$Recepie['id']) }} method="post" >
-                    @csrf
-                        <textarea name="comment" id="comment"class="form-control" rows="1"> </textarea>
-                        <div  class="my-1">
-                            <button type="submit" class="btn border float-end ">
-                                Odpowiedz
-                            </button>
-                        </div>
-                    </form>
-                </div> --}}
         </div>
     {{$i++}}
     @endforeach

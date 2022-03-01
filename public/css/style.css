@@ -13,8 +13,6 @@
 #SortingRecepies
 {
     border: 2px solid #EAC435;
-
-
 }
 .admin-recepies-image:hover
 {
@@ -32,4 +30,10 @@
 {
     opacity: 0.60;
     background-color: #EAC435;
+    color: black;
+}
+.linkFont
+{
+    text-decoration: none;
+    color: white;
 }

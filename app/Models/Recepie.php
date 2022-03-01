@@ -17,5 +17,8 @@ class Recepie extends Model
     {
         return $this-> belongsTo(Admin::class);
     }
-
+    public function recepieEdited()
+    {
+        return $this-> hasMany(recepieEdited::class);
+    }
 }

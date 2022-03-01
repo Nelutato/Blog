@@ -16,7 +16,7 @@ class ShowRecepie extends Controller
         {
             $Recepie = Recepie::all();
             return view('recepies', ['Recepie' => $Recepie]);
-        }else
+        }elseif($slug== "welcome" || $slug== "")
         {
                 $Recepie = Recepie::all();
                 return view('home', ['Recepie' => $Recepie]);

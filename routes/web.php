@@ -9,18 +9,10 @@ use App\Http\Controllers\ComentControll;
 use App\Http\Middleware\AuthAdminCheck;
 use App\Http\Controllers\RecepiesController;
 use App\Http\Controllers\ShowRecepie;
+use App\Http\Controllers\EditRecepie;
 use App\Models\Coment;
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
+/*================================================*/
 
 Route::get('{slug}', [ShowRecepie::class ,'show']);
 
@@ -53,5 +45,6 @@ Route::post('admin/createPost', [RecepiesController::class , 'createPost']);
 //                      =                           =                   =               =           =
 Route::get('/Recepies/Wiew/{slug}', [ShowRecepie::class , 'showFullRecepie']);
 Route::post('/Recepies/addComent/{slug}', [ComentControll::class , 'addComment']);
+Route::get('/Recepies/Wiew/edit/{slug}', [EditRecepie::class, 'show']);
 
 // Route::get('/{slug}', [MainSites::class , 'index']);
