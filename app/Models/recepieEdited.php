@@ -9,6 +9,8 @@ class recepieEdited extends Model
 {
     use HasFactory;
 
+    protected $fillable =['recepieBelongs', 'recepieUser', 'ingredients', 'Body', 'taste', 'speed', 'price', 'photo' ];
+
     function recepie()
     {
         return $this -> belongsTo(Recepie::class);

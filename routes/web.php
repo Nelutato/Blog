@@ -14,8 +14,6 @@ use App\Models\Coment;
 
 /*================================================*/
 
-Route::get('{slug}', [ShowRecepie::class ,'show']);
-
 
 Route::get('/user/logout',[UserController::class, 'logout']);
 Route::post('/user/register', [UserController::class , 'register']);
@@ -45,6 +43,8 @@ Route::post('admin/createPost', [RecepiesController::class , 'createPost']);
 //                      =                           =                   =               =           =
 Route::get('/Recepies/Wiew/{slug}', [ShowRecepie::class , 'showFullRecepie']);
 Route::post('/Recepies/addComent/{slug}', [ComentControll::class , 'addComment']);
-Route::get('/Recepies/Wiew/edit/{slug}', [EditRecepie::class, 'show']);
 
+Route::get('/Recepies/Wiew/edit/{slug}', [EditRecepie::class, 'show']);
+Route::post('/edit/createRecepie/{slug}', [EditRecepie::class, 'create']);
+Route::get('/{slug}', [ShowRecepie::class ,'show']);
 // Route::get('/{slug}', [MainSites::class , 'index']);

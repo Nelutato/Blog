@@ -1,16 +1,16 @@
 @include('layouts/navbar')
 
 <div class="row d-flex justify-content-center">
-    <div class="col-md-8">
-        <form action="/admin/createPost" method="POST" enctype="multipart/form-data">
+    <div class="col-md-8 text-center">
+        <form action={{ url('/edit/createRecepie/'.$id)}} method="POST" enctype="multipart/form-data">
             @csrf
-                Title: <br>
+                <b> Title : </b><br>
                     <input type="text" name="title" id=""> <br>
-                Img: <br>
+                <b> Img : </b><br>
                     <input type="file" name="image" class="from-control"> <br>
-                ingredients: <br>
+                <b> ingredients : </b> <br>
                     <input type="text" name="ingredients" id=""> <br>
-                body: <br>
+                <b> body : </b> <br>
                     <textarea name="body" id="body"
                      cols="30" rows="10"> 
                     </textarea><br>
