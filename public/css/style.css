@@ -10,6 +10,11 @@
 {
     color:#EAC435;
 }
+.borderBottom-color-yellow
+{
+    border-bottom: #EAC435 1px solid;
+    /* border-color: #EAC435; */
+}
 #SortingRecepies
 {
     border: 2px solid #EAC435;
@@ -37,7 +42,16 @@
     text-decoration: none;
     color: white;
 }
+.linkFont-Black
+{
+    text-decoration: none;
+    color: black;
+}
 #footer a
 {
     margin-left: 8px;
+}
+#editedRecepieBlock:hover
+{
+    background-color: #EAC435;
 }

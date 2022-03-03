@@ -4,12 +4,46 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\recepieEdited;
+use App\Models\Recepie;
+use App\Models\User;
 
 class EditRecepie extends Controller
 {
     function show($slug)
     {
         return view('recepieEditing',['id' =>$slug]);
+    }
+
+    function showFullEditedRecepie($subpage, $slug)
+    {
+        $recepies = recepieEdited::all()->where('recepieBelongs' ,'=', $slug);
+        $recepie = Recepie::where('id', '=' , $slug)->first();
+        $user = User::where('id', '=' , $recepies[0]['recepieUser'])->first();
+
+        if($subpage == "ShowEdited"){
+            $editedRecepie = recepieEdited::where('id', '=', $slug)->first();
+            return view('recepieEditedFullWiew')->with([
+                'Recepies'=> $recepies,
+                'RecepieMain'=> $recepie,
+                'owner'=> $user,
+                'editedRecepie'=> $editedRecepie
+            ]);
+        }
+        elseif($subpage == "edited"){
+            return view('recepieEditedWiew')->with([
+                'Recepies'=> $recepies,
+                'RecepieMain'=> $recepie,
+                'owner'=> $user
+            ]);
+        }else
+        {
+            return back();
+        }
+    }
+    function opinion(Request $req ,$slug)
+    {
+        $recepies = recepieEdited::all()->where('recepieBelongs' ,'=', $slug);
+        return $req->input('id');
     }
 
     function create(Request $req, $slug)

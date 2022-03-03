@@ -47,4 +47,6 @@ Route::post('/Recepies/addComent/{slug}', [ComentControll::class , 'addComment']
 Route::get('/Recepies/Wiew/edit/{slug}', [EditRecepie::class, 'show']);
 Route::post('/edit/createRecepie/{slug}', [EditRecepie::class, 'create']);
 Route::get('/{slug}', [ShowRecepie::class ,'show']);
+Route::get('/Recepies/Wiew/{subpage}/{slug}', [EditRecepie::class, 'showFullEditedRecepie']);
+Route::post('/Recepies/Wiew/ShowEditedOpinion/{slug}',[EditRecepie::class, 'opinion']);
 // Route::get('/{slug}', [MainSites::class , 'index']);
