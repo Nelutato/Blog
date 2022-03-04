@@ -42,8 +42,17 @@ class EditRecepie extends Controller
     }
     function opinion(Request $req ,$slug)
     {
-        $recepies = recepieEdited::all()->where('recepieBelongs' ,'=', $slug);
-        return $req->input('id');
+        $recepies = recepieEdited::where('recepieBelongs' ,'=', $slug)->first();
+        $newTaste = $recepies->taste + $req->taste;
+        $newSpeed = $recepies->speed + $req->speed;
+        $newPrice = $recepies->price + $req->price;
+
+        $recepies->taste=$newTaste;
+        $recepies->speed=$newSpeed;
+        $recepies->Price=$newPrice;
+        $recepies->save();
+
+        return back();
     }
 
     function create(Request $req, $slug)

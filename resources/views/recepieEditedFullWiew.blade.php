@@ -22,7 +22,7 @@ $Recepie = $editedRecepie;
                         <option value="4">4</option>
                     </select> <br>
                 <i class="bi bi-stopwatch"></i>
-                    <select name="fast" id="fast">
+                    <select name="speed" id="speed">
                         <option value="1">1</option>
                         <option value="2">2</option>
                         <option value="3">3</option>
