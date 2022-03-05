@@ -47,10 +47,11 @@ class EditRecepie extends Controller
         $newSpeed = $recepies->speed + $req->speed;
         $newPrice = $recepies->price + $req->price;
 
-        $recepies->taste=$newTaste;
-        $recepies->speed=$newSpeed;
-        $recepies->Price=$newPrice;
-        $recepies->save();
+        $recepies->update([
+            'taste'=> $newTaste,
+            'speed'=> $newSpeed,
+            'price'=> $newPrice
+        ]);
 
         return back();
     }
