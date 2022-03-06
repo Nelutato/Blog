@@ -12,7 +12,7 @@
                     Edytuj 
                 </button>
             </a>
-            <a href="/Recepies/Wiew/edited/{{$Recepie['id']}}" class="linkFont">
+            <a href="/Recepies/edited/list/{{$Recepie['id']}}" class="linkFont">
                 <button class="btn border bg-own-yellow "> 
                     przeglądaj inne wersje 
                 </button>

@@ -25,6 +25,11 @@ class AuthAdminCheck
         {
             return redirect('admin/panel');
         }
+        if(!session()-> has('logedAdmin') &&  $req->path() =='admin/logout')
+        {
+            return back();
+        }
+
 
         return $next($req);
     }

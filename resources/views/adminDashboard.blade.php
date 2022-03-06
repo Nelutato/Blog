@@ -12,7 +12,7 @@
     
     <div class="row m-2 justify-content-center border border-2 d-flex">
         <h4> Your Posts :</h4>
-        
+        {{-- Generator --}}
             @for ($i = 0; $i < 3; $i++)
             @if ( isset($ownRecepies[$i]) )
                 <div class="col-md-3 m-2  admin-recepies-image text-center">
@@ -25,7 +25,7 @@
             @endfor
         
         <div class="col-md-1 my-auto d-flex justify-content-center text-center ">
-            <a href="/admin/recepieCreate" >
+            <a href="/recepieCreate" >
                 <i class="bi bi-plus-lg p-3 border"></i>
             </a>
         </div>

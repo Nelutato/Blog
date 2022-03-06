@@ -3,7 +3,7 @@
 
 
 <div class="container d-flex justify-content-center">
-    <form action="/admin/createPost" method="POST" enctype="multipart/form-data">
+    <form action="/createPost" method="POST" enctype="multipart/form-data">
     @csrf
         Title: <br>
             <input type="text" name="title" id=""> <br>

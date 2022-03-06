@@ -9,6 +9,16 @@ use App\Models\Recepie;
 
 class AdminController extends Controller
 {
+    function index()
+    {
+        $adminData= ['LogedAdminInfo'=> Admin::where('id', '=', session('logedAdmin'))-> first()];
+        $recepies = ['ownRecepies'=> Recepie::where('admin_id', '=', session('logedAdmin') )
+        -> latest()-> get()];
+
+        return view('adminDashboard')->with($adminData)
+                                     ->with($recepies);
+    }
+    
     function register(Request $req)
     {
         $req-> validate([
@@ -22,8 +32,8 @@ class AdminController extends Controller
             'username' => $req-> input('username'),
             'password' => Hash::make($req-> input('password')),
         ]);
-        $req-> session()-> put('logedAdmin', $admin->id);
 
+        $req-> session()-> put('logedAdmin', $admin->id);
         return redirect('/admin/panel');
     }
 
@@ -45,19 +55,9 @@ class AdminController extends Controller
             return redirect('/admin/panel');
         }
         else
-            { return back()->with('fail', 'incorrect password'); }
-    }
-
-    //          basics
-    function index()
-    {
-        $adminData= ['LogedAdminInfo'=> Admin::where('id', '=', session('logedAdmin'))-> first()];
-        $recepies = ['ownRecepies'=> Recepie::where('admin_id', '=', session('logedAdmin') )
-        -> latest()-> get()];
-
-        return view('adminDashboard')->with($adminData)
-                                     ->with($recepies);
-        // return $recepies;
+        { 
+            return back()->with('fail', 'incorrect password'); 
+        }
     }
 
     function logOut()

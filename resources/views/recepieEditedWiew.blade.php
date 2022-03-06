@@ -15,7 +15,7 @@
             ?>
             
             <div class="col-md-3 border m-1 d-inline" id="editedRecepieBlock">
-                <a href="/Recepies/Wiew/ShowEdited/{{$Recepies[$num]['id']}}" class="linkFont-Black">
+                <a href="/Recepies/edited/ShowFullEdited/{{$Recepies[$num]['id']}}" class="linkFont-Black">
                     <div class="w-75 float-start borderBottom-color-yellow "> 
                         Ingridients : <br>
                         {{$Recepies[$num]['ingredients']}} 
@@ -31,9 +31,9 @@
                         {{$body }}
                     </div>
                     <div class="w-100 borderBottom-color-yellow">
-                        <i class="bi bi-piggy-bank"></i> <br>
-                        <i class="bi bi-stopwatch"></i> <br>
-                        <i class="bi bi-egg-fried"></i> <br>
+                        <i class="bi bi-piggy-bank"></i> {{ $Recepies[$num]['price'] }} <br>
+                        <i class="bi bi-stopwatch"></i> {{ $Recepies[$num]['speed'] }}<br>
+                        <i class="bi bi-egg-fried"></i> {{ $Recepies[$num]['taste'] }} <br>
                     </div>
                     <div class="w-100 ">
                         <small> Stwożony przez : </small>

@@ -13,7 +13,8 @@
 </div>
 <div class="row my-2  d-flex justify-content-center">
     
-<h1>- Its restricted site for main writers </h1>
+<h1>- Its restricted site for Admins  </h1> <br>
+Go back if you dont have Admin Permissions
 <div class="row my-2  d-flex justify-content-center">
 
     <div class="col-md-4 p-2 border m-4 my-auto">

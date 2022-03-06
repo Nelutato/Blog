@@ -27,6 +27,10 @@ class AuthUserCheck
         {
             return redirect('user/view');
         }
+        if(!session()-> has('loggedUser') &&  $req->path() =='user/logout')
+        {
+            return back();
+        }
         return $next($req);
     }
     // https://www.youtube.com/watch?v=ko4PU4eplnY

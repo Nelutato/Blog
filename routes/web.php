@@ -14,39 +14,39 @@ use App\Models\Coment;
 
 /*================================================*/
 
-
-Route::get('/user/logout',[UserController::class, 'logout']);
+// USER
 Route::post('/user/register', [UserController::class , 'register']);
 Route::post('/user/login', [UserController::class , 'logIn']);
-
 Route::group(['middleware'=>['AuthUserCheck']],function()
 {
     Route::view('user', 'login');
     Route::get('/user/view',[UserController::class, 'UserView']);
+    Route::get('/user/logout',[UserController::class, 'logout']);
 });
 
-
+// ADMIN
 Route::post('/admin/registerAdminAccount', [AdminController::class , 'register']);
 Route::post('/admin/login', [AdminController::class , 'logIn']);
-Route::get('/admin/logout', [AdminController::class , 'logOut']);
-
 Route::group(['middleware'=>['AuthAdminCheck']],function()
 {
     Route::view('/admin/loginform', 'adminLogin');
     Route::view('/admin/registerform' , 'registerAdmin');
     Route::get('/admin/panel', [AdminController::class, 'index']);
-    Route::get('/admin/recepieCreate', [RecepiesController::class, 'createform']);
+    Route::get('/admin/logout', [AdminController::class , 'logOut']);
 });
-// Dodaj to do middlewar-u !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! \/
-Route::post('admin/createPost', [RecepiesController::class , 'createPost']); 
 
-//                      =                           =                   =               =           =
+// CREATING
+Route::group(['middleware' =>['CreateRecepie']],function()
+{
+    Route::get('/recepieCreate', [RecepiesController::class, 'createform']);
+    Route::post('/createPost', [RecepiesController::class , 'createPost']);
+    Route::get('/Recepies/Wiew/edit/{slug}', [EditRecepie::class, 'EditForm']);
+});
+// NO NEED TO LOG IN 
 Route::get('/Recepies/Wiew/{slug}', [ShowRecepie::class , 'showFullRecepie']);
 Route::post('/Recepies/addComent/{slug}', [ComentControll::class , 'addComment']);
-
-Route::get('/Recepies/Wiew/edit/{slug}', [EditRecepie::class, 'show']);
-Route::post('/edit/createRecepie/{slug}', [EditRecepie::class, 'create']);
 Route::get('/{slug}', [ShowRecepie::class ,'show']);
-Route::get('/Recepies/Wiew/{subpage}/{slug}', [EditRecepie::class, 'showFullEditedRecepie']);
+
+Route::post('/edit/createRecepie/{slug}', [EditRecepie::class, 'create']);
+Route::get('/Recepies/edited/{subpage}/{slug}', [EditRecepie::class, 'showEditedControll']);
 Route::post('/Recepies/Wiew/ShowEditedOpinion/{slug}',[EditRecepie::class, 'opinion']);
-// Route::get('/{slug}', [MainSites::class , 'index']);

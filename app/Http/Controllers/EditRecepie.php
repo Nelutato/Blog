@@ -9,36 +9,42 @@ use App\Models\User;
 
 class EditRecepie extends Controller
 {
-    function show($slug)
+    function EditForm($slug)
     {
         return view('recepieEditing',['id' =>$slug]);
     }
 
-    function showFullEditedRecepie($subpage, $slug)
+    function showEditedControll($subpage, $slug)
     {
         $recepies = recepieEdited::all()->where('recepieBelongs' ,'=', $slug);
         $recepie = Recepie::where('id', '=' , $slug)->first();
         $user = User::where('id', '=' , $recepies[0]['recepieUser'])->first();
 
-        if($subpage == "ShowEdited"){
-            $editedRecepie = recepieEdited::where('id', '=', $slug)->first();
-            return view('recepieEditedFullWiew')->with([
-                'Recepies'=> $recepies,
-                'RecepieMain'=> $recepie,
-                'owner'=> $user,
-                'editedRecepie'=> $editedRecepie
-            ]);
-        }
-        elseif($subpage == "edited"){
-            return view('recepieEditedWiew')->with([
-                'Recepies'=> $recepies,
-                'RecepieMain'=> $recepie,
-                'owner'=> $user
-            ]);
-        }else
-        {
-            return back();
-        }
+        if($subpage == "ShowFullEdited")
+            { return $this->ShowEditedRecepie($recepies, $recepie, $user, $slug);}
+        elseif($subpage == "list")
+            { return $this->listEditedRecepies($recepies, $recepie , $user);}
+        else
+            { return back(); }
+    }
+
+    function listEditedRecepies($recepies , $recepie, $user){
+        return view('recepieEditedWiew')->with([
+            'Recepies'=> $recepies,
+            'RecepieMain'=> $recepie,
+            'owner'=> $user
+        ]);
+    }
+
+    function ShowEditedRecepie($recepies, $recepie, $user, $slug)
+    {
+        $editedRecepie = recepieEdited::where('id', '=', $slug)->first();
+        return view('recepieEditedFullWiew')->with([
+            'Recepies'=> $recepies,
+            'RecepieMain'=> $recepie,
+            'owner'=> $user,
+            'editedRecepie'=> $editedRecepie
+        ]);
     }
     function opinion(Request $req ,$slug)
     {
@@ -58,6 +64,11 @@ class EditRecepie extends Controller
 
     function create(Request $req, $slug)
     {
+        $taste="0";
+        $speed="0";
+        $price="0";
+        $photo="none";
+
         if( null !== $req->session()->get('logedAdmin') )
         {
         $logedUser = $req->session()->get('logedAdmin');
@@ -74,10 +85,7 @@ class EditRecepie extends Controller
             'ingredients'=> 'required',
             'body' => 'required'
         ]);
-        $taste="0";
-        $speed="0";
-        $price="0";
-        $photo="none";
+        
         $end= recepieEdited::create([
             'recepieBelongs'=> $slug,
             'recepieUser'=> $logedUser,
