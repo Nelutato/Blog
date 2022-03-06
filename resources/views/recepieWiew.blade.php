@@ -1,6 +1,5 @@
 @include('layouts/navbar')
 <div class="container-flex" >
-
     <div class=" row d-flex text-center m-2  ">
         <div class=" float-start w-75">
             <h1>{{ $Recepie['title'] }}</h1> 
