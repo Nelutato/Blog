@@ -17,15 +17,19 @@ class RecepiesController extends Controller
             'image'=> 'required',
             'ingredients'=> 'required'
         ]);
-
-        $logedAdmin = $req->session()->get('logedAdmin');
+        if($req->session()->get('logedAdmin')){
+            $logedUser = $req->session()->get('logedAdmin');
+        }elseif($req->session()->get('loggedUser'))
+        {
+            $logedUser = $req->session()->get('loggedUser') + 90;
+        }
         $timeYMD = carbon::now()->toDateString();
         $timeHMS = carbon::now()->toTimeString();
-        $imageName= $logedAdmin. "_". $timeYMD. "_".$timeHMS. ".png";
+        $imageName= $logedUser. "_". $timeYMD. "_".$timeHMS. ".png";
         $req-> image -> move(public_path('images'),$imageName);
 
-        $recepie=  Recepie::create([
-            'admin_id' => $logedAdmin,
+        Recepie::create([
+            'admin_id' => $logedUser,
             'title' => $req-> input('title'),
             'body' => $req-> input('body'),
             'image' => $imageName,

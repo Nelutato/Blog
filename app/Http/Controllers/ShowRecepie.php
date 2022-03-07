@@ -26,8 +26,13 @@ class ShowRecepie extends Controller
     function  showFullRecepie($slug )
     {
         $Recepie = Recepie::where('id', '=', $slug)->first();
-        $adminName = Admin::where('id', '=',$Recepie['admin_id'])-> first();
-        $adminName = $adminName['username'];
+        if($Recepie['admin_id']<90){
+            $creatorName = Admin::where('id', '=',$Recepie['admin_id'])-> first();
+        }
+        if($Recepie['admin_id']>90){
+            $creatorName = User::where('id', '=',$Recepie['admin_id'])-> first();
+        }
+        $adminName = $creatorName['username'];
 
         if( null !== session()-> get('loggedUser') )
         {

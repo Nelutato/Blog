@@ -86,21 +86,17 @@ class EditRecepie extends Controller
             'body' => 'required'
         ]);
         
-        $end= recepieEdited::create([
+        recepieEdited::create([
             'recepieBelongs'=> $slug,
             'recepieUser'=> $logedUser,
             'ingredients'=> $req-> input('ingredients'),
             'Body'=> $req-> input('body'),
-            'taste'=> $taste,
-            'speed'=> $speed,
-            'price'=> $price,
-            'photo'=> $photo,
-            // 'taste'=> $req-> input('taste'),
-            // 'speed'=> $req-> input('speed'),
-            // 'price'=> $req-> input('price'),
-            // 'photo'=> $req-> input('photo'),
+            'taste'=> 0,
+            'speed'=> 0,
+            'price'=> 0,
+            'photo'=> $photo
         ]);
 
-        return $end;
+        return redirect('user/view') ;
     }
 }
