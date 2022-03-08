@@ -1,11 +1,10 @@
 @include('layouts/navbar')
 <div class="container-flex" >
     <div class=" row d-flex text-center m-2  ">
-        <div class=" float-start w-75">
-            <h1>{{ $Recepie['title'] }}</h1> 
-        </div>
+
 
         <div class="my-1 float-start w-75">
+            <h1>{{ $Recepie['title'] }}</h1> <br>
             <a href="edit/{{$Recepie['id']}}" class="linkFont">
                 <button class="btn border bg-own-yellow "> 
                     Edytuj 
@@ -18,10 +17,37 @@
             </a>
         </div>
         <div class="w-25">
-            <i class="bi bi-piggy-bank"></i> <br>
-            <i class="bi bi-stopwatch"></i> <br>
-            <i class="bi bi-egg-fried"></i> <br>
-        </div>
+            <form action="/Recepies/Wiew/ShowEditedOpinion/{{ $Recepie['id'] }}" 
+            method="POST">
+            @csrf
+            <input type="text" name="id" value="{{ $Recepie['id'] }}" hidden>
+            <i class="bi bi-piggy-bank"></i> 
+                <select name="price" id="price">
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                </select> <br>
+            <i class="bi bi-stopwatch"></i>
+                <select name="speed" id="speed">
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                </select> <br> 
+            <i class="bi bi-egg-fried"></i>
+                <select name="taste" id="taste">
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                </select> <br>
+
+            <button type="submit" class="btn bg-own-yellow">
+                Confirm
+            </button>
+        </form>
+    </div>
     </div>
 
     <div class="row mx-auto  my-2 justify-content-center">
