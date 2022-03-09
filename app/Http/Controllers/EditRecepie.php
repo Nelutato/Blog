@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\recepieEdited;
 use App\Models\Recepie;
 use App\Models\User;
+use Illuminate\Support\Carbon;
 
 class EditRecepie extends Controller
 {
@@ -71,10 +72,10 @@ class EditRecepie extends Controller
 
         if( null !== $req->session()->get('logedAdmin') )
         {
-        $logedUser = $req->session()->get('logedAdmin');
+            $logedUser = $req->session()->get('logedAdmin');
         }elseif( null !== $req->session()->get('loggedUser') )
         {
-        $logedUser = $req->session()->get('loggedUser');
+            $logedUser = $req->session()->get('loggedUser');
         }else
         {
             return back();
@@ -83,9 +84,19 @@ class EditRecepie extends Controller
         $req-> validate([
             'title' => 'required',
             'ingredients'=> 'required',
-            'body' => 'required'
+            'body' => 'required',
+            'image' => 'image|mimes:jpeg,png,jpg,gif,svg',
         ]);
-        
+
+        // dd($req->hasFile('image'));
+
+        if( $req->hasFile('image') )
+        {
+            $timeYMD = carbon::now()->toDateString();
+            $timeHMS = carbon::now()->toTimeString();
+            $imageName= "Edit_".$logedUser. "_". $timeYMD. "_".$timeHMS. ".png";
+            $req-> image -> move(public_path('images'),$imageName);
+        }
         recepieEdited::create([
             'recepieBelongs'=> $slug,
             'recepieUser'=> $logedUser,
@@ -94,7 +105,7 @@ class EditRecepie extends Controller
             'taste'=> 0,
             'speed'=> 0,
             'price'=> 0,
-            'photo'=> $photo
+            'photo'=> $imageName
         ]);
 
         return redirect('user/view') ;

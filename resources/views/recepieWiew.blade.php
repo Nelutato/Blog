@@ -22,7 +22,8 @@
             @csrf
             <input type="text" name="id" value="{{ $Recepie['id'] }}" hidden>
             <i class="bi bi-piggy-bank"></i> 
-                <select name="price" id="price">
+                <select name="price" id="price" >
+                    <option value="0" default>Price</option>
                     <option value="1">1</option>
                     <option value="2">2</option>
                     <option value="3">3</option>
@@ -30,6 +31,7 @@
                 </select> <br>
             <i class="bi bi-stopwatch"></i>
                 <select name="speed" id="speed">
+                    <option value="0" default>Time</option>
                     <option value="1">1</option>
                     <option value="2">2</option>
                     <option value="3">3</option>
@@ -37,6 +39,7 @@
                 </select> <br> 
             <i class="bi bi-egg-fried"></i>
                 <select name="taste" id="taste">
+                    <option value="0" default>taste</option>
                     <option value="1">1</option>
                     <option value="2">2</option>
                     <option value="3">3</option>
