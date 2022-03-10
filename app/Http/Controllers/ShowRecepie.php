@@ -8,6 +8,8 @@ use App\Models\Admin;
 use App\Models\User;
 use App\Models\Coment;
 use App\Http\Controllers\ComentControll;
+use App\Models\recepieEdited;
+
 class ShowRecepie extends Controller
 {
     function Show($slug)
@@ -15,6 +17,38 @@ class ShowRecepie extends Controller
         if($slug=="Recepies")
         {
             $Recepie = Recepie::all();
+            
+            $i=1;
+            
+            foreach($Recepie as $recepie){
+                $recepieEdited = recepieEdited::all()->where('recepieBelongs', '=', $i);
+                $recepieOpinion[$i] = ($recepie['taste']+ $recepie['speed']+ $recepie['price'])/3;
+                
+                if($recepieEdited){
+                    $j=1;
+                    foreach($recepieEdited as $recepieEdited){
+                        $recepieEditedOpinion[$j] = ($recepieEdited['taste']+ $recepieEdited['speed']+ $recepieEdited['price'])/3;
+
+                        if(isset($recepieEditedOpinion[$j]) && $recepieEditedOpinion[$j] > $recepieOpinion[$i])
+                        {
+                            $newData = recepieEdited::where('recepieBelongs', '=', $i)->first();
+                            $Recepie[$i-1]['body'] = $newData['Body'];
+                            $Recepie[$i-1]['ingredients'] = $newData['ingredients'];
+                            $Recepie[$i-1]['admin_id']= $newData['recepieUser'];
+                            $Recepie[$i-1]['taste']= $newData['taste'];
+                            $Recepie[$i-1]['speed']= $newData['speed'];
+                            $Recepie[$i-1]['price']= $newData['price'];
+                            if($newData['photo'] !== "none"){
+                                $Recepie[$i-1]['image'] = $newData['photo'];
+                            }
+                        }
+                    }
+                    $j++;
+                }
+                
+                $i++;
+            }
+
             return view('recepies', ['Recepie' => $Recepie]);
         }elseif($slug== "welcome" || $slug== "")
         {

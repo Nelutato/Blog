@@ -87,9 +87,6 @@ class EditRecepie extends Controller
             'body' => 'required',
             'image' => 'image|mimes:jpeg,png,jpg,gif,svg',
         ]);
-
-        // dd($req->hasFile('image'));
-
         if( $req->hasFile('image') )
         {
             $timeYMD = carbon::now()->toDateString();
@@ -97,6 +94,7 @@ class EditRecepie extends Controller
             $imageName= "Edit_".$logedUser. "_". $timeYMD. "_".$timeHMS. ".png";
             $req-> image -> move(public_path('images'),$imageName);
         }
+        
         recepieEdited::create([
             'recepieBelongs'=> $slug,
             'recepieUser'=> $logedUser,
