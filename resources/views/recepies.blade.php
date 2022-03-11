@@ -2,7 +2,7 @@
 
 <div class="container-fluid" >
 
-{{-- @include('layouts/Search-Sort')                end it with vue :) --}}
+@include('layouts/Search-Sort')                
 
   @foreach ($Recepie as $recepie)
     <?php

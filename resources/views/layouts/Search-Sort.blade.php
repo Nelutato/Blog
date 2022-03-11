@@ -1,46 +1,18 @@
 <div class="container border">
   <div class="row d-flex justify-content-between m-3 p-1" >
-  
-      {{-- <div class="container col-md-8">
-          Dodaj Skladnik:<br/>
-          <input type="search" class="col-md-3">
-          <button type="submit" class="btn border col-md-1">
-            <i class="bi bi-plus"></i>
-          </button>
-      </div> --}}
-  
-      <div class="container col-md-3 ">
-        <input type="search" class="search"> 
-        <button type="submit">
-          <i class="bi bi-search"></i>  <br>
+    <div class="col-md-3">
+      <form action={{ route("sorting" )}} method="POST">
+        @csrf
+        <select name="sort" id="sort">
+          <option value="oldest" selected> older_to_ealier </option>
+          <option value="newest"> newest </option>
+          <option value="byBestOpinion"> by best opinion </option>
+          <option value="byWortsOpinion"> by worst Opinion </option>
+        </select>
+        <button type="submit" class="btn border"> 
+          OK
         </button>
-          sort by: <br/>
-        <?php
-        $selected="dateAsscending"; // rosnąco
-        $options = array("dateAsscending","dateDescending");
-        
-          echo '<select name="Order" id="order-by" class="bg-light">'
-            foreach( $options as $option )
-            {
-              if( $selected == $option )
-              {
-                echo "<option selected ='selected' value="$option">$option opinia</option>"
-              }else {
-                echo "<option value="$option">$option Najnowsze</option>";
-              }
-            
-            }
-          echo "</select>";
-        ?>
-      </div>
-  
+      </form>
+    </div>
   </div>
-    {{-- <div class="row border ">
-      <div class="container col-md-1 bg-dark text-own-yellow m-1 border rounded-3">
-        carrot
-      </div>
-      <div class="container col-md-1 bg-dark text-own-yellow m-1 border rounded-3">
-        onion
-      </div>
-    </div> --}}
 </div>

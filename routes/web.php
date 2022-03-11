@@ -10,6 +10,7 @@ use App\Http\Controllers\ComentControll;
 use App\Http\Controllers\RecepiesController;
 use App\Http\Controllers\ShowRecepie;
 use App\Http\Controllers\EditRecepie;
+use App\Http\Controllers\SearchSortEngine;
 // use App\Models\Coment;
 use Illuminate\Support\Facades\URL;
 
@@ -53,5 +54,7 @@ Route::post('/Recepies/addComent/{slug}', [ComentControll::class , 'addComment']
 
 Route::get('/Recepies/edited/{subpage}/{slug}', [EditRecepie::class, 'showEditedControll']);
 Route::post('/Recepies/Wiew/ShowEditedOpinion/{slug}',[EditRecepie::class, 'opinion']);
+Route::post('/Recepies', [SearchSortEngine::class , 'sort',])->name('sorting');
 Route::get('{slug}', [ShowRecepie::class ,'show'])->name('main');
+
 

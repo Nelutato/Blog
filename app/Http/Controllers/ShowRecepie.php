@@ -12,10 +12,10 @@ use App\Models\recepieEdited;
 
 class ShowRecepie extends Controller
 {
-    function Show($slug)
+    function getAllRecepies()
     {
-        if($slug=="Recepies")
-        {
+        // if($slug=="Recepies")
+        // {
             $Recepie = Recepie::all();
             
             $i=1;
@@ -45,15 +45,24 @@ class ShowRecepie extends Controller
                     }
                     $j++;
                 }
-                
                 $i++;
             }
 
-            return view('recepies', ['Recepie' => $Recepie]);
-        }elseif($slug== "welcome" || $slug== "")
+            return  $Recepie;
+        // }
+    }
+    function Show($slug)
+    {
+        if($slug == "Recepies"){
+            return view('recepies' ,['Recepie' => $this ->getAllRecepies($slug)]); 
+        }
+        elseif($slug== "welcome" || $slug== "")
         {
                 $Recepie = Recepie::all();
                 return view('home', ['Recepie' => $Recepie]);
+        }else
+        {
+            return  $this ->getAllRecepies($slug);
         }
     }
 
