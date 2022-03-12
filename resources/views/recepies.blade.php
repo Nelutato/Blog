@@ -25,11 +25,19 @@
               @break @endif
             <li> {{ $ingredient[$i] }} </li>
           @endfor
-          <a href="/Recepies/Wiew/ {{ $recepie['id'] }}" class=" bg-light">
-            <button type="button" class="btn bg-own-green float-end">
-              Więcej ...
-            </button>
-          </a>
+          @if(isset($recepie['edited']))
+            <a href="Recepies/edited/ShowFullEdited/{{ $recepie['id'] }}" class=" bg-light">
+              <button type="button" class="btn bg-own-green float-end">
+                Więcej ...
+              </button>
+            </a>
+          @else
+            <a href="/Recepies/Wiew/ {{ $recepie['id'] }}" class=" bg-light">
+              <button type="button" class="btn bg-own-green float-end">
+                Więcej ...
+              </button>
+            </a>
+          @endif
         </ul>
       </div>
 

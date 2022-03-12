@@ -9,15 +9,13 @@ use App\Models\User;
 use App\Models\Coment;
 use App\Http\Controllers\ComentControll;
 use App\Models\recepieEdited;
+use Illuminate\Support\Arr;
 
 class ShowRecepie extends Controller
 {
     function getAllRecepies()
     {
-        // if($slug=="Recepies")
-        // {
             $Recepie = Recepie::all();
-            
             $i=1;
             
             foreach($Recepie as $recepie){
@@ -38,6 +36,8 @@ class ShowRecepie extends Controller
                             $Recepie[$i-1]['taste']= $newData['taste'];
                             $Recepie[$i-1]['speed']= $newData['speed'];
                             $Recepie[$i-1]['price']= $newData['price'];
+                            $Recepie[$i-1]['edited']= "yes";
+                            
                             if($newData['photo'] !== "none"){
                                 $Recepie[$i-1]['image'] = $newData['photo'];
                             }
@@ -47,7 +47,11 @@ class ShowRecepie extends Controller
                 }
                 $i++;
             }
-
+            // $values = array(
+            //     'Recepie' => $Recepie,
+            //     'edited' =>$edited
+            // );
+            // return  $values;
             return  $Recepie;
         // }
     }
