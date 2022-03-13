@@ -1,5 +1,8 @@
 <?php
 
+// W H Y this mysql dont work
+
+
 use Illuminate\Support\Facades\Route;
 // use App\Http\Controllers\MainSites;
 use App\Http\Controllers\UserController;
