@@ -12,7 +12,12 @@
 }
 .borderBottom-color-yellow
 {
-    border-bottom: #EAC435 1px solid;
+    border-bottom: #EAC435 2px solid;
+    /* border-color: #EAC435; */
+}
+.border-color-yellow
+{
+    border: #EAC435 3px solid;
     /* border-color: #EAC435; */
 }
 #SortingRecepies

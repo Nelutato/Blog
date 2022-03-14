@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Mar 14, 2022 at 04:04 PM
+-- Generation Time: Mar 06, 2022 at 07:19 PM
 -- Server version: 8.0.28-0ubuntu0.20.04.3
 -- PHP Version: 7.4.3
 
@@ -148,8 +148,7 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (7, '2022_02_03_195756_create_media_table', 2),
 (8, '2022_02_04_135054_create_media_table', 3),
 (9, '2022_02_14_165101_create_coments_table', 4),
-(10, '2022_03_01_142954_create_recepie_editeds_table', 5),
-(12, '2022_03_10_164835_add_opinions_to_recepie_table', 6);
+(10, '2022_03_01_142954_create_recepie_editeds_table', 5);
 
 -- --------------------------------------------------------
 
@@ -195,32 +194,26 @@ CREATE TABLE `recepies` (
   `ingredients` text COLLATE utf8mb4_unicode_ci NOT NULL,
   `image` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL,
-  `taste` int NOT NULL,
-  `speed` int NOT NULL,
-  `price` int NOT NULL
+  `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `recepies`
 --
 
-INSERT INTO `recepies` (`id`, `admin_id`, `body`, `title`, `ingredients`, `image`, `created_at`, `updated_at`, `taste`, `speed`, `price`) VALUES
-(1, 2, 'jak poprawnie jabłko', 'Jajecznica', 'jablko', '2_2022-01-29.png', '2022-01-28 16:43:50', '2022-01-28 16:43:50', 0, 0, 0),
-(5, 2, 'ugotuj i masz', 'zupa', 'woda ,kukurydza', '2_2022-01-29.png', '2022-01-29 17:16:17', '2022-01-29 17:16:17', 2, 0, 1),
-(6, 2, 'asdf\r\n\r\n    asdf', 'asdf', 'asdf', '2_2022-01-29 18:18:15.png', '2022-01-29 17:18:15', '2022-01-29 17:18:15', 0, 0, 0),
-(7, 2, 'asdf', 'asdf', 'asdf', '2_2022-01-29_2022-01-29 18:20:51.png', '2022-01-29 17:20:51', '2022-01-29 17:20:51', 0, 0, 0),
-(8, 2, 'asdf\r\n\r\n    asdf', 'asdf123', 'asdf', '2_2022-01-29_18:22:39.png', '2022-01-29 17:22:39', '2022-01-29 17:22:39', 0, 1, 3),
-(9, 2, 'asdgzxdgxz', 'asdf', 'dfasdfasdf ,asdfassdf', '2_2022-01-29_21:10:39.png', '2022-01-29 20:10:39', '2022-01-29 20:10:39', 0, 0, 0),
-(10, 2, 'zsdfg xdfg', 'asdf', 'asdfzsdf ,zasfa ,zsdfzsd', '2_2022-01-29_21:11:51.png', '2022-01-29 20:11:51', '2022-01-29 20:11:51', 0, 0, 0),
-(11, 1, 'asdfzsdf\r\n        zsdfasdf', 'dasfds', 'asdfzsdf', '1_2022-01-30_15:58:44.png', '2022-01-30 14:58:44', '2022-01-30 14:58:44', 0, 0, 0),
-(12, 2, 'zsdfnlszerlsefzsd', 'asdfka', 'asdf ,asdfsa ,asdf', '2_2022-01-30_16:07:28.png', '2022-01-30 15:07:28', '2022-01-30 15:07:28', 0, 0, 0),
-(13, 1, '<figure class=\"image\"><img><figcaption>asdf</figcaption></figure>', 'asdf', 'asdf', '1_2022-02-10_09:42:06.png', '2022-02-10 08:42:06', '2022-02-10 08:42:06', 0, 0, 0),
-(14, 1, '<p>vhjsrt676wssdcb</p><p>asduibfasd</p><figure class=\"image\"><img></figure><p>xdhvhjsrtyys</p><p>xsdgawert</p>', 'asdf1512', '5678wcfghcv', '1_2022-02-10_09:43:22.png', '2022-02-10 08:43:22', '2022-02-10 08:43:22', 0, 0, 0),
-(15, 1, 'smażymy czosnek do momętu w którym lekko zrumienieje dożucamy szpinak i przyprawy \r\n\r\nw tym bazylię smażymy jeszcze 5 min. \r\n\r\n<b>Ciasto Francuskie </b> rozkładamy na stole lub blacie , wycinamy kawałki (około 15 cm.) \r\n\r\nna każdy kawałek nakładamy szpinaku , tak żeby twożył linię i posypujemy serem lub tofu\r\n\r\n , potem zawijamy szpinak i zawijamy tak żeby przypominały muszelki ślimaka\r\n\r\njeżeli chcecie możecie polać masłem .\r\n\r\nkiedy już zawiniemy, wszystko wykładamy na papier do pieczenia i rozgrzewamy  piekarnik\r\n\r\ndo 180 , po rozgrzaniu piekanika wkładamy i pieczemy około 5 min lub dopuki ciasto francuskie \r\n\r\nnie będzie gotowe.', 'ciasto francuskie z szpinakiem', 'szpinak , ciasto francuskie , czosnek ,bazylia ,ser', '1_2022-02-13_18:04:54.png', '2022-02-13 17:04:54', '2022-02-13 17:04:54', 0, 0, 0),
-(17, 1, 'asdfzsdfqs', 'asdfzsdf123456', 'zsdfawer', '1_2022-03-07_17:08:54.png', '2022-03-07 16:08:54', '2022-03-07 16:08:54', 0, 0, 0),
-(18, 1, 'asdfzsdfqs', 'asdfzsdf123456', 'zsdfawer', '1_2022-03-07_17:10:44.png', '2022-03-07 16:10:44', '2022-03-07 16:10:44', 0, 0, 0),
-(19, 1, 'asdfzsdfqs', 'asdfzsdf123456', 'zsdfawer', '1_2022-03-07_17:10:54.png', '2022-03-07 16:10:54', '2022-03-07 16:10:54', 0, 0, 0);
+INSERT INTO `recepies` (`id`, `admin_id`, `body`, `title`, `ingredients`, `image`, `created_at`, `updated_at`) VALUES
+(1, 2, 'jak poprawnie jabłko', 'Jajecznica', 'jablko', '2_2022-01-29.png', '2022-01-28 16:43:50', '2022-01-28 16:43:50'),
+(5, 2, 'ugotuj i masz', 'zupa', 'woda ,kukurydza', '2_2022-01-29.png', '2022-01-29 17:16:17', '2022-01-29 17:16:17'),
+(6, 2, 'asdf\r\n\r\n    asdf', 'asdf', 'asdf', '2_2022-01-29 18:18:15.png', '2022-01-29 17:18:15', '2022-01-29 17:18:15'),
+(7, 2, 'asdf', 'asdf', 'asdf', '2_2022-01-29_2022-01-29 18:20:51.png', '2022-01-29 17:20:51', '2022-01-29 17:20:51'),
+(8, 2, 'asdf\r\n\r\n    asdf', 'asdf123', 'asdf', '2_2022-01-29_18:22:39.png', '2022-01-29 17:22:39', '2022-01-29 17:22:39'),
+(9, 2, 'asdgzxdgxz', 'asdf', 'dfasdfasdf ,asdfassdf', '2_2022-01-29_21:10:39.png', '2022-01-29 20:10:39', '2022-01-29 20:10:39'),
+(10, 2, 'zsdfg xdfg', 'asdf', 'asdfzsdf ,zasfa ,zsdfzsd', '2_2022-01-29_21:11:51.png', '2022-01-29 20:11:51', '2022-01-29 20:11:51'),
+(11, 1, 'asdfzsdf\r\n        zsdfasdf', 'dasfds', 'asdfzsdf', '1_2022-01-30_15:58:44.png', '2022-01-30 14:58:44', '2022-01-30 14:58:44'),
+(12, 2, 'zsdfnlszerlsefzsd', 'asdfka', 'asdf ,asdfsa ,asdf', '2_2022-01-30_16:07:28.png', '2022-01-30 15:07:28', '2022-01-30 15:07:28'),
+(13, 1, '<figure class=\"image\"><img><figcaption>asdf</figcaption></figure>', 'asdf', 'asdf', '1_2022-02-10_09:42:06.png', '2022-02-10 08:42:06', '2022-02-10 08:42:06'),
+(14, 1, '<p>vhjsrt676wssdcb</p><p>asduibfasd</p><figure class=\"image\"><img></figure><p>xdhvhjsrtyys</p><p>xsdgawert</p>', 'asdf1512', '5678wcfghcv', '1_2022-02-10_09:43:22.png', '2022-02-10 08:43:22', '2022-02-10 08:43:22'),
+(15, 1, 'smażymy czosnek do momętu w którym lekko zrumienieje dożucamy szpinak i przyprawy \r\n\r\nw tym bazylię smażymy jeszcze 5 min. \r\n\r\n<b>Ciasto Francuskie </b> rozkładamy na stole lub blacie , wycinamy kawałki (około 15 cm.) \r\n\r\nna każdy kawałek nakładamy szpinaku , tak żeby twożył linię i posypujemy serem lub tofu\r\n\r\n , potem zawijamy szpinak i zawijamy tak żeby przypominały muszelki ślimaka\r\n\r\njeżeli chcecie możecie polać masłem .\r\n\r\nkiedy już zawiniemy, wszystko wykładamy na papier do pieczenia i rozgrzewamy  piekarnik\r\n\r\ndo 180 , po rozgrzaniu piekanika wkładamy i pieczemy około 5 min lub dopuki ciasto francuskie \r\n\r\nnie będzie gotowe.', 'ciasto francuskie z szpinakiem', 'szpinak , ciasto francuskie , czosnek ,bazylia ,ser', '1_2022-02-13_18:04:54.png', '2022-02-13 17:04:54', '2022-02-13 17:04:54');
 
 -- --------------------------------------------------------
 
@@ -247,10 +240,7 @@ CREATE TABLE `recepie_editeds` (
 --
 
 INSERT INTO `recepie_editeds` (`id`, `recepieBelongs`, `recepieUser`, `ingredients`, `Body`, `taste`, `speed`, `price`, `photo`, `created_at`, `updated_at`) VALUES
-(1, 1, 1, 'asdf', 'asdf', 18, 17, 14, 'none', '2022-03-01 17:29:21', '2022-03-10 15:51:08'),
-(2, 1, 1, 'zsdfas', 'zsdfasefwe', 0, 0, 0, 'none', '2022-03-07 11:01:41', '2022-03-07 11:01:41'),
-(3, 1, 1, 'zsdfas', 'zsdfasefwe', 0, 0, 0, 'none', '2022-03-07 11:02:44', '2022-03-07 11:02:44'),
-(8, 1, 1, '12345', '12345', 0, 0, 0, 'Edit_1_2022-03-09_17:42:00.png', '2022-03-09 16:42:00', '2022-03-09 16:42:00');
+(1, 1, 1, 'asdf', 'asdf', 15, 12, 11, 'none', '2022-03-01 17:29:21', '2022-03-05 19:01:05');
 
 -- --------------------------------------------------------
 
@@ -385,7 +375,7 @@ ALTER TABLE `media`
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id` int UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `personal_access_tokens`
@@ -397,13 +387,13 @@ ALTER TABLE `personal_access_tokens`
 -- AUTO_INCREMENT for table `recepies`
 --
 ALTER TABLE `recepies`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT for table `recepie_editeds`
 --
 ALTER TABLE `recepie_editeds`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `users`

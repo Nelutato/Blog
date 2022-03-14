@@ -11,22 +11,28 @@
     <link rel="shortcut icon" type="image/x-icon" href="{{URL('images/honeycomb.ico') }}"/>
 </head>
 
-<nav class="navbar  navbar-expand-lg navbar-dark p-md-3 justify-inline bg-own-green">
+<nav class="navbar  navbar-expand-lg navbar-dark p-md-3 justify-inline bg-own-green borderBottom-color-yellow">
 
     <div class="container">
       <a href="/welcome" class="navbar-brand">
-        <img src="{{URL('images/Test_icon.png')}}" alt="img" class="fluid" width="80px">
+        <img src="{{URL('images/logo.jpg')}}" alt="img" class="fluid rounded-circle border-color-yellow" width="80px">
       </a>
 
       <ul class="navbar-nav m-2 mt-lg-0">
           <li class="nav-button nav-item active border p-1 border-light mx-1">
-            <a href="/Recepies" class="nav-link active">Recepies</a>
+            <a href="/Recepies" class="nav-link active">
+              Recepies
+            </a>
           </li>
           <li class="nav-button nav-item active border p-1 border-light mx-1">
-            <a href="/Blog" class="nav-link active">Blog</a>
+            <a href="/Blog" class="nav-link" style="pointer-events: none" inactiv>
+              Blog
+            </a>
           </li>
           <li class="nav-button nav-item active border p-1 border-light mx-1">
-            <a href="/Community" class="nav-link active">Community</a>
+            <a href="/Community" class="nav-link " style="pointer-events: none">
+              Community
+            </a>
           </li>
           <li class="nav-item active mx-1 ">
             <a href="/user" class="nav-link ">

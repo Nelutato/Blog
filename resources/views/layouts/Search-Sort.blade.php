@@ -6,8 +6,9 @@
         <select name="sort" id="sort">
           <option value="oldest" selected> older_to_ealier </option>
           <option value="newest"> newest </option>
-          <option value="byBestOpinion"> by best opinion </option>
-          <option value="byWortsOpinion"> by worst Opinion </option>
+          <option value="price"> price </option>
+          <option value="taste"> taste </option>
+          <option value="speed"> speed </option>
         </select>
         <button type="submit" class="btn border"> 
           OK

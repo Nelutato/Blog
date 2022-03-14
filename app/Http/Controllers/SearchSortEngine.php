@@ -20,22 +20,16 @@ class SearchSortEngine extends Controller
         $mode = $req->input('sort');
 
         if($mode == "oldest")
-        {
-            return view('recepies', ['Recepie' => $Recepie]);
-        }elseif($mode == "newest")
-        {
-            return view('recepies', ['Recepie' => array_reverse($Recepie->toArray())] );
-            // return $Recepie->reverse();
-        }elseif($mode=="byWorstOpinion")
-        {
-            return "worst";
-        }elseif($mode== "byBestOpinion")
-        {
-            dd($Recepie);
-            return "Best";
-        }else
-        {
-            return back() ;        
-        }
+            { return view('recepies', ['Recepie' => $Recepie]); }
+        elseif($mode == "newest")
+            { return view('recepies', ['Recepie' => array_reverse($Recepie->toArray())] ); }
+        elseif($mode=="price")
+            { return view('recepies', ['Recepie' => $Recepie->sortByDesc('price')]); }
+        elseif($mode=="taste")
+            { return view('recepies', ['Recepie' => $Recepie->sortByDesc('taste')]); }
+        elseif($mode=="speed")
+            { return view('recepies', ['Recepie' => $Recepie->sortByDesc('speed')]); }
+        else
+            { return back() ; }
     }
 }

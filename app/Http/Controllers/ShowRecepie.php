@@ -2,14 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Models\Recepie;
 use App\Models\Admin;
 use App\Models\User;
 use App\Models\Coment;
-use App\Http\Controllers\ComentControll;
 use App\Models\recepieEdited;
-use Illuminate\Support\Arr;
 
 class ShowRecepie extends Controller
 {
@@ -47,13 +44,8 @@ class ShowRecepie extends Controller
                 }
                 $i++;
             }
-            // $values = array(
-            //     'Recepie' => $Recepie,
-            //     'edited' =>$edited
-            // );
-            // return  $values;
+
             return  $Recepie;
-        // }
     }
     function Show($slug)
     {

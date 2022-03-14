@@ -1,15 +1,11 @@
 <?php
 
-// W H Y this mysql dont work
 
 
 use Illuminate\Support\Facades\Route;
-// use App\Http\Controllers\MainSites;
 use App\Http\Controllers\UserController;
-// use App\Http\Middleware\AuthUserCheck;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\ComentControll;
-// use App\Http\Middleware\AuthAdminCheck;
 use App\Http\Controllers\RecepiesController;
 use App\Http\Controllers\ShowRecepie;
 use App\Http\Controllers\EditRecepie;
