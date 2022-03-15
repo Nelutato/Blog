@@ -19,12 +19,20 @@ class EditRecepie extends Controller
     {
         $recepies = recepieEdited::all()->where('recepieBelongs' ,'=', $slug);
         $recepie = Recepie::where('id', '=' , $slug)->first();
+        // dd($recepies);
+        if(isset($recepies[0]['recepieUser'])){
         $user = User::where('id', '=' , $recepies[0]['recepieUser'])->first();
+        }else
+        {
+            $user = "none";
+        }
 
         if($subpage == "ShowFullEdited")
             { return $this->ShowEditedRecepie($recepies, $recepie, $user, $slug);}
         elseif($subpage == "list")
-            { return $this->listEditedRecepies($recepies, $recepie , $user);}
+            {
+                 return $this->listEditedRecepies($recepies, $recepie , $user);
+            }
         else
             { return back(); }
     }
@@ -50,9 +58,10 @@ class EditRecepie extends Controller
     function opinion(Request $req ,$slug)
     {
         $recepies = recepieEdited::where('recepieBelongs' ,'=', $slug)->first();
-        $newTaste = $recepies->taste + $req->taste;
-        $newSpeed = $recepies->speed + $req->speed;
-        $newPrice = $recepies->price + $req->price;
+        // dd($recepies);
+        $newTaste = $recepies->taste + $req->input('taste');
+        $newSpeed = $recepies->speed + $req->input('speed');
+        $newPrice = $recepies->price + $req->input('price');
 
         $recepies->update([
             'taste'=> $newTaste,
