@@ -1,0 +1,6 @@
+Bug's : 
+- when trying to add opinion on Recepies/Wiew :
+  Err , Trying to get property 'taste' of non-object
+- when typing somthing else in url like "/asdf" shows database data !
+- can't add edited recepie without img 
+- can login as admin and user in same time !!!!
