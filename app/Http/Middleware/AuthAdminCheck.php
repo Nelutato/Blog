@@ -29,6 +29,10 @@ class AuthAdminCheck
         {
             return back();
         }
+        if(session()-> has('loggedUser'))
+        {
+            return redirect('/user/logout');
+        }
 
 
         return $next($req);
