@@ -16,7 +16,7 @@ class ShowRecepie extends Controller
             $i=1;
             
             foreach($Recepie as $recepie){
-                $recepieEdited = recepieEdited::all()->where('recepieBelongs', '=', $i);
+                $recepieEdited = recepieEdited::where('recepieBelongs', '=', $i)->get();
                 $recepieOpinion[$i] = ($recepie['taste']+ $recepie['speed']+ $recepie['price'])/3;
                 
                 if($recepieEdited){
@@ -97,7 +97,7 @@ class ShowRecepie extends Controller
     {
         $coments = 'empty'; 
         $coment_user[0] = 'empty';
-        $coments = Coment::all()->where('recepie_id', '=', $Recepie['id']); 
+        $coments = Coment::where('recepie_id', '=', $Recepie['id'])->get(); 
         $i=0;
         
         foreach ($coments as $coment)

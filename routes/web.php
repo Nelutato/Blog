@@ -19,24 +19,24 @@ Route::get('/', function (){
 });
 
 // USER
-Route::post('/user/register', [UserController::class , 'register']);
-Route::post('/user/login', [UserController::class , 'logIn']);
-Route::group(['middleware'=>['AuthUserCheck']],function()
+Route::group(['middleware'=>['AuthUserCheck'],'prefix' => 'user'],function()
 {
-    Route::view('user', 'login');
-    Route::get('/user/view',[UserController::class, 'UserView']);
-    Route::get('/user/logout',[UserController::class, 'logout']);
+    Route::post('/register', [UserController::class , 'register']);
+    Route::post('/login', [UserController::class , 'logIn']);
+    Route::view('/', 'login');
+    Route::get('/view',[UserController::class, 'UserView']);
+    Route::get('/logout',[UserController::class, 'logout']);
 });
 
 // ADMIN
-Route::post('/admin/registerAdminAccount', [AdminController::class , 'register']);
-Route::post('/admin/login', [AdminController::class , 'logIn']);
-Route::group(['middleware'=>['AuthAdminCheck']],function()
+Route::group(['middleware'=> ['AuthAdminCheck'], 'prefix'=> 'admin'],function()
 {
-    Route::view('/admin/loginform', 'adminLogin');
-    Route::view('/admin/registerform' , 'registerAdmin');
-    Route::get('/admin/panel', [AdminController::class, 'index']);
-    Route::get('/admin/logout', [AdminController::class , 'logOut']);
+    Route::post('/registerAdminAccount', [AdminController::class , 'register']);
+    Route::post('/login', [AdminController::class , 'logIn']);
+    Route::view('/loginform', 'adminLogin');
+    Route::view('/registerform' , 'registerAdmin');
+    Route::get('/panel', [AdminController::class, 'index']);
+    Route::get('/logout', [AdminController::class , 'logOut']);
 });
 
 // CREATING

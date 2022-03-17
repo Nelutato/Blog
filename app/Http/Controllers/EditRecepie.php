@@ -17,7 +17,7 @@ class EditRecepie extends Controller
 
     function showEditedControll($subpage, $slug)
     {
-        $recepies = recepieEdited::all()->where('recepieBelongs' ,'=', $slug);
+        $recepies = recepieEdited::where('recepieBelongs' ,'=', $slug)->get();
         $recepie = Recepie::where('id', '=' , $slug)->first();
         // dd($recepies);
         if(isset($recepies[0]['recepieUser'])){
