@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Mar 14, 2022 at 04:04 PM
+-- Generation Time: Mar 19, 2022 at 02:32 PM
 -- Server version: 8.0.28-0ubuntu0.20.04.3
 -- PHP Version: 7.4.3
 
@@ -77,7 +77,10 @@ INSERT INTO `coments` (`id`, `user_id`, `recepie_id`, `comment`, `created_at`, `
 (10, 0, 5, 'asdf', '2022-02-20 17:26:03', '2022-02-20 17:26:03'),
 (11, 1, 5, 'zsdfaq', '2022-02-20 17:26:25', '2022-02-20 17:26:25'),
 (12, 0, 6, 'sdfg', '2022-02-21 17:11:20', '2022-02-21 17:11:20'),
-(13, 0, 7, 'asdfz', '2022-02-22 17:52:08', '2022-02-22 17:52:08');
+(13, 0, 7, 'asdfz', '2022-02-22 17:52:08', '2022-02-22 17:52:08'),
+(14, 0, 7, 'asdf', '2022-03-16 14:07:10', '2022-03-16 14:07:10'),
+(15, 0, 1, 'xdfgxdfggg345', '2022-03-16 14:17:11', '2022-03-16 14:17:11'),
+(16, 1, 5, 'zse', '2022-03-16 14:18:30', '2022-03-16 14:18:30');
 
 -- --------------------------------------------------------
 
@@ -247,7 +250,7 @@ CREATE TABLE `recepie_editeds` (
 --
 
 INSERT INTO `recepie_editeds` (`id`, `recepieBelongs`, `recepieUser`, `ingredients`, `Body`, `taste`, `speed`, `price`, `photo`, `created_at`, `updated_at`) VALUES
-(1, 1, 1, 'asdf', 'asdf', 18, 17, 14, 'none', '2022-03-01 17:29:21', '2022-03-10 15:51:08'),
+(1, 1, 1, 'asdf', 'asdf', 20, 19, 16, 'none', '2022-03-01 17:29:21', '2022-03-16 14:13:30'),
 (2, 1, 1, 'zsdfas', 'zsdfasefwe', 0, 0, 0, 'none', '2022-03-07 11:01:41', '2022-03-07 11:01:41'),
 (3, 1, 1, 'zsdfas', 'zsdfasefwe', 0, 0, 0, 'none', '2022-03-07 11:02:44', '2022-03-07 11:02:44'),
 (8, 1, 1, '12345', '12345', 0, 0, 0, 'Edit_1_2022-03-09_17:42:00.png', '2022-03-09 16:42:00', '2022-03-09 16:42:00');
@@ -276,7 +279,8 @@ CREATE TABLE `users` (
 INSERT INTO `users` (`id`, `name`, `email`, `email_verified_at`, `password`, `remember_token`, `created_at`, `updated_at`) VALUES
 (0, 'niezalogowany', 'unregistred', NULL, '1', NULL, '2022-02-14 16:13:47', '2022-02-14 16:13:47'),
 (1, '12345678', 'purepeper@gmail.com', NULL, '$2y$10$SQokZR999qi8NT5/vdNOQOY2Ow9gxtcCmMlbOUd.hjW4gVxldAQca', NULL, '2022-02-14 16:13:47', '2022-02-14 16:13:47'),
-(4, '12345678XD', 'asdf@chuj.jebacpis', NULL, '$2y$10$7xTJTHTgQesuNhvXi9nvuecbvDoLBCKzyzZEg.VgWWif6qNN2uKPu', NULL, '2022-02-19 15:45:21', '2022-02-19 15:45:21');
+(4, '12345678XD', 'asdf@chuj.jebacpis', NULL, '$2y$10$7xTJTHTgQesuNhvXi9nvuecbvDoLBCKzyzZEg.VgWWif6qNN2uKPu', NULL, '2022-02-19 15:45:21', '2022-02-19 15:45:21'),
+(5, 'Test12345', '1234@asdf.com', NULL, '$2y$10$KjJgkjEG713ZbXd0TS9Y..WLWSDOLR4B5Mj81z2rDPyWMse0m0ume', NULL, '2022-03-17 17:04:36', '2022-03-17 17:04:36');
 
 --
 -- Indexes for dumped tables
@@ -367,7 +371,7 @@ ALTER TABLE `admins`
 -- AUTO_INCREMENT for table `coments`
 --
 ALTER TABLE `coments`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT for table `failed_jobs`
@@ -409,7 +413,7 @@ ALTER TABLE `recepie_editeds`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- Constraints for dumped tables
