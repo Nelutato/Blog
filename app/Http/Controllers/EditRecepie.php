@@ -55,19 +55,38 @@ class EditRecepie extends Controller
             'editedRecepie'=> $editedRecepie
         ]);
     }
-    function opinion(Request $req ,$slug)
+
+    function opinion(Request $req, $subpage, $slug)
     {
-        $recepies = recepieEdited::where('recepieBelongs' ,'=', $slug)->first();
-        // dd($recepies);
-        $newTaste = $recepies->taste + $req->input('taste');
-        $newSpeed = $recepies->speed + $req->input('speed');
-        $newPrice = $recepies->price + $req->input('price');
+        $recepiesEdited =  recepieEdited::when($subpage=== 'AddEditedOpinion' ,
+            function($querry ) use ($slug)
+            {
+                $querry->where('recepieBelongs','=',$slug );
+            })->first();
+
+        $recepies =  Recepie::when($subpage=== 'AddOpinion' ,
+            function($querry ) use ($slug)
+            {
+                $querry->where('id','=',$slug )->get();
+            });
+        if(!$recepiesEdited)
+        {
+            $recepies == $recepiesEdited;
+        }
+        // dd($subpage === 'addOpinion');
+        dd($subpage=== 'AddEditedOpinion');
+        $newTaste = ($recepies->taste + $req->input('taste'))/2;
+        $newSpeed = ($recepies->speed + $req->input('speed'))/2;
+        $newPrice = ($recepies->price + $req->input('price'))/2;
 
         $recepies->update([
             'taste'=> $newTaste,
             'speed'=> $newSpeed,
             'price'=> $newPrice
-        ]);
+        ]);   
+
+
+ ;
 
         return back();
     }

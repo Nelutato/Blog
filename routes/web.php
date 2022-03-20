@@ -52,7 +52,7 @@ Route::get('/Recepies/Wiew/{slug}', [ShowRecepie::class , 'showFullRecepie']);
 Route::post('/Recepies/addComent/{slug}', [ComentControll::class , 'addComment']);
 
 Route::get('/Recepies/edited/{subpage}/{slug}', [EditRecepie::class, 'showEditedControll']);
-Route::post('/Recepies/Wiew/ShowEditedOpinion/{slug}',[EditRecepie::class, 'opinion']);
+Route::post('/Recepies/Wiew/{subpage}/{slug}',[EditRecepie::class, 'opinion']);
 Route::post('/Recepies', [SearchSortEngine::class , 'sort',])->name('sorting');
 Route::get('{slug}', [ShowRecepie::class ,'show'])->name('main');
 

@@ -9,7 +9,7 @@ $Recepie = $editedRecepie;
         </div>
 
         <div class="w-25">
-            <form action="/Recepies/Wiew/ShowEditedOpinion/{{ $RecepieMain['id'] }}" 
+            <form action="/Recepies/Wiew/AddEditedOpinion/{{ $RecepieMain['id'] }}" 
                   method="POST"
             >
             @csrf
