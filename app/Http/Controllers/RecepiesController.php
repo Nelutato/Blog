@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Recepie;
-use App\Models\Task;
+use App\Models\recepieEdited;
 use Illuminate\Support\Carbon;
 
 class RecepiesController extends Controller
@@ -42,6 +42,26 @@ class RecepiesController extends Controller
     function createform()
     {
         return view('createPostForm');
+    }
+
+    function opinion(Request $req, $subpage, $slug)
+    {
+        if($subpage == 'AddEditedOpinion')
+            { $recepies =  recepieEdited::where('recepieBelongs','=',$slug )->first(); }
+        elseif($subpage== 'AddOpinion')
+            { $recepies = Recepie::where('id','=',$slug )->first(); }
+        else
+            { return back(); }
+        $newTaste = ($recepies->taste + $req->input('taste'));
+        $newSpeed = ($recepies->speed + $req->input('speed'));
+        $newPrice = ($recepies->price + $req->input('price'));
+
+        $recepies->update([
+            'taste'=> $newTaste,
+            'speed'=> $newSpeed,
+            'price'=> $newPrice
+        ]);   
+        return back();
     }
     
     

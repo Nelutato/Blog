@@ -20,6 +20,7 @@
             <form action="/Recepies/Wiew/AddOpinion/{{ $Recepie['id'] }}" 
                   method="POST"
             >
+            @method('PUT')
             @csrf
             <input type="text" name="id" value="{{ $Recepie['id'] }}" hidden>
                 <i class="bi bi-piggy-bank"></i> 
