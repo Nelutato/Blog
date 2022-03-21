@@ -59,16 +59,11 @@ class EditRecepie extends Controller
     function opinion(Request $req, $subpage, $slug)
     {
         if($subpage == 'AddEditedOpinion')
-        {
-            $recepies =  recepieEdited::where('recepieBelongs','=',$slug )->first();
-        }elseif($subpage== 'AddOpinion')
-        {
-            $recepies = Recepie::where('id','=',$slug )->first();
-        }else
-        {
-            return back();
-        }
-
+            { $recepies =  recepieEdited::where('recepieBelongs','=',$slug )->first(); }
+        elseif($subpage== 'AddOpinion')
+            { $recepies = Recepie::where('id','=',$slug )->first(); }
+        else
+            { return back(); }
         $newTaste = ($recepies->taste + $req->input('taste'));
         $newSpeed = ($recepies->speed + $req->input('speed'));
         $newPrice = ($recepies->price + $req->input('price'));
