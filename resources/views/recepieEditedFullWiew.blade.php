@@ -26,6 +26,7 @@ $Recepie = $editedRecepie;
                         <option value="2">2</option>
                         <option value="3">3</option>
                         <option value="4">4</option>
+                        <option value="5">5</option>
                     </select> <br>
                 <i class="bi bi-stopwatch"></i>
                     <select name="speed" id="speed">
@@ -33,6 +34,7 @@ $Recepie = $editedRecepie;
                         <option value="2">2</option>
                         <option value="3">3</option>
                         <option value="4">4</option>
+                        <option value="5">5</option>
                     </select> <br> 
                 <i class="bi bi-egg-fried"></i>
                     <select name="taste" id="taste">
@@ -40,6 +42,7 @@ $Recepie = $editedRecepie;
                         <option value="2">2</option>
                         <option value="3">3</option>
                         <option value="4">4</option>
+                        <option value="5">5</option>
                     </select> <br>
                     <button type="submit" class="btn bg-own-yellow">
                         Confirm

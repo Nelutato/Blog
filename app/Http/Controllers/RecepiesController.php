@@ -52,9 +52,9 @@ class RecepiesController extends Controller
             { $recepies = Recepie::where('id','=',$slug )->first(); }
         else
             { return back(); }
-        $newTaste = ($recepies->taste + $req->input('taste'));
-        $newSpeed = ($recepies->speed + $req->input('speed'));
-        $newPrice = ($recepies->price + $req->input('price'));
+        $newTaste = ($recepies->taste + $req->input('taste'))/2;
+        $newSpeed = ($recepies->speed + $req->input('speed'))/2;
+        $newPrice = ($recepies->price + $req->input('price'))/2;
 
         $recepies->update([
             'taste'=> $newTaste,
