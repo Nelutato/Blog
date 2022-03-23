@@ -21,31 +21,31 @@ Route::get('/', function (){
 // USER
 Route::group(['middleware'=>['AuthUserCheck'],'prefix' => 'user'],function()
 {
-    Route::post('/register', [UserController::class , 'register']);
-    Route::post('/login', [UserController::class , 'logIn']);
+    Route::post('/register', [UserController::class , 'register'])->name('register');
+    Route::post('/login', [UserController::class , 'logIn'])->name('login');
     Route::view('/', 'login');
-    Route::get('/view',[UserController::class, 'UserView']);
-    Route::get('/logout',[UserController::class, 'logout']);
+    Route::get('/view',[UserController::class, 'UserView'])->name('view');
+    Route::get('/logout',[UserController::class, 'logout'])->name('logout');
 });
 
 // ADMIN
 Route::group(['middleware'=> ['AuthAdminCheck'], 'prefix'=> 'admin'],function()
 {
-    Route::post('/registerAdminAccount', [AdminController::class , 'register']);
-    Route::post('/login', [AdminController::class , 'logIn']);
+    Route::post('/registerAdminAccount', [AdminController::class , 'register'])->name('register');
+    Route::post('/login', [AdminController::class , 'logIn'])->name('login');
     Route::view('/loginform', 'adminLogin');
     Route::view('/registerform' , 'registerAdmin');
-    Route::get('/panel', [AdminController::class, 'index']);
-    Route::get('/logout', [AdminController::class , 'logOut']);
+    Route::get('/panel', [AdminController::class, 'index'])->name('panel');
+    Route::get('/logout', [AdminController::class , 'logOut'])->name('logout');
 });
 
 // CREATING
-Route::group(['middleware' =>['CreateRecepie']],function()
+Route::group(['middleware' =>['CreateRecepie'],'prefix'=> 'create'],function()
 {
-    Route::get('/recepieCreate', [RecepiesController::class, 'createform']);
-    Route::post('/createPost', [RecepiesController::class , 'createPost']);
-    Route::get('/Recepies/Wiew/edit/{slug}', [EditRecepie::class, 'EditForm']);
-    Route::post('/edit/createRecepie/{slug}', [EditRecepie::class, 'create']);
+    Route::get('/recepieCreate', [RecepiesController::class, 'createform'])->name('recepie');
+    Route::post('/createPost', [RecepiesController::class , 'createPost'])->name('post');
+    Route::get('/Recepies/Wiew/edit/{slug}', [EditRecepie::class, 'EditForm'])->name('edit');
+    Route::post('/edit/createRecepie/{slug}', [EditRecepie::class, 'create'])->name('edited');
 });
 // NO NEED TO LOG IN 
 Route::get('/Recepies/Wiew/{slug}', [ShowRecepie::class , 'showFullRecepie']);
