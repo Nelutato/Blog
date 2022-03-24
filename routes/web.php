@@ -10,6 +10,7 @@ use App\Http\Controllers\RecepiesController;
 use App\Http\Controllers\ShowRecepie;
 use App\Http\Controllers\EditRecepie;
 use App\Http\Controllers\SearchSortEngine;
+use App\Http\Middleware\AuthUserCheck;
 // use App\Models\Coment;
 use Illuminate\Support\Facades\URL;
 
@@ -19,11 +20,12 @@ Route::get('/', function (){
 });
 
 // USER
-Route::group(['middleware'=>['AuthUserCheck'],'prefix' => 'user'],function()
+// 'name'=> 'user.'
+Route::group(['middleware'=>'AuthUserCheck', 'prefix'=> 'user','name'=> 'user.' ],function()
 {
     Route::post('/register', [UserController::class , 'register'])->name('register');
     Route::post('/login', [UserController::class , 'logIn'])->name('login');
-    Route::view('/', 'login');
+    Route::view('/', 'login')->name('loginView');
     Route::get('/view',[UserController::class, 'UserView'])->name('view');
     Route::get('/logout',[UserController::class, 'logout'])->name('logout');
 });

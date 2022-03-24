@@ -24,6 +24,7 @@ class UserController extends Controller
             {
                 $req-> session()-> put('loggedUser',$userData->id);
                 return redirect('user/view');
+                // return view('user.view');
             }else
             {
                 return back()->with('fail', 'password is incorrect');
@@ -48,7 +49,7 @@ class UserController extends Controller
         $user->save();
 
         $req-> session()-> put('loggedUser',$user->id);
-        return redirect('user/view');
+        return view('user.view');
     }
 
     function userView()
@@ -62,7 +63,7 @@ class UserController extends Controller
         if(session()-> has('loggedUser'))   
         {
             session()-> pull('loggedUser');   
-            return redirect('/user');
+            return redirect('user/');
         }
     }
 }
