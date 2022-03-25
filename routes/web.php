@@ -29,6 +29,7 @@ Route::group(['middleware'=>'AuthUserCheck', 'prefix'=> 'user','name'=> 'user.' 
     Route::get('/view',[UserController::class, 'UserView'])->name('view');
     Route::get('/logout',[UserController::class, 'logout'])->name('logout');
 });
+// sadf
 
 // ADMIN
 Route::group(['middleware'=> ['AuthAdminCheck'], 'prefix'=> 'admin'],function()
