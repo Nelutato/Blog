@@ -11,8 +11,13 @@ $Recepie = $editedRecepie;
                     przeglądaj inne wersje 
                 </button>
             </a>
-
+            <a href="/Recepies/Wiew/edit/{{$Recepie['id']}}'" class="linkFont">
+                <button class="btn border bg-own-yellow "> 
+                    edytuj
+                </button>
+            </a>
         </div>
+        
         <div class="w-25">
             <form action="/Recepies/Wiew/AddEditedOpinion/{{ $RecepieMain['id'] }}" 
                   method="POST"
@@ -60,7 +65,7 @@ $Recepie = $editedRecepie;
                     $ingredient = explode(',', $Recepie["ingredients"] ) ;
                     $lenght = count( $ingredient );
                 ?>
-                @for($i=0; $i < $lenght; $i++)
+                @for($i=0; $i < $lenght-1; $i++)
                     <li> {{ $ingredient[$i] }} </li><br>
                 @endfor
             </ul>

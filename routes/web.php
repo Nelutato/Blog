@@ -47,14 +47,14 @@ Route::group(['middleware' =>['CreateRecepie'],'prefix'=> 'create'],function()
 {
     Route::get('/recepieCreate', [RecepiesController::class, 'createform'])->name('recepie');
     Route::post('/createPost', [RecepiesController::class , 'createPost'])->name('post');
-    Route::get('/Recepies/Wiew/edit/{slug}', [EditRecepie::class, 'EditForm'])->name('edit');
+    Route::get('/Recepies/Wiew/edit/{slug}', [EditRecepie::class, 'EditForm']);
     Route::post('/edit/createRecepie/{slug}', [EditRecepie::class, 'create'])->name('edited');
 });
 // NO NEED TO LOG IN 
 Route::get('/Recepies/Wiew/{slug}', [ShowRecepie::class , 'showFullRecepie']);
 Route::post('/Recepies/addComent/{slug}', [ComentControll::class , 'addComment']);
 Route::get('/Recepies/edited/{subpage}/{slug}', [EditRecepie::class, 'showEditedControll']);
-Route::put('/Recepies/Wiew/{subpage}/{slug}',[RecepiesController::class, 'opinion']);
+Route::get('/Recepies/Wiew/{subpage}/{slug}',[RecepiesController::class, 'opinion']);
 Route::post('/Recepies', [SearchSortEngine::class , 'sort',])->name('sorting');
 Route::get('{slug}', [ShowRecepie::class ,'show'])->name('main');
 
