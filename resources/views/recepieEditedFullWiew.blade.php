@@ -11,7 +11,7 @@ $Recepie = $editedRecepie;
                     przeglądaj inne wersje 
                 </button>
             </a>
-            <a href="/Recepies/Wiew/edit/{{$Recepie['id']}}'" class="linkFont">
+            <a href="/create/edit/{{$Recepie['id']}}" class="linkFont">
                 <button class="btn border bg-own-yellow "> 
                     edytuj
                 </button>

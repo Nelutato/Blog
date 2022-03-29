@@ -43,10 +43,7 @@ class Kernel extends HttpKernel
             // \Laravel\Sanctum\Http\Middleware\EnsureFrontendRequestsAreStateful::class,
             'throttle:api',
             \Illuminate\Routing\Middleware\SubstituteBindings::class,
-        ],
-        'CreateRecepie'=> [
-            \App\Http\Middleware\CreateRecepie::class 
-        ],
+        ]
     ];
 
     /**
@@ -61,6 +58,7 @@ class Kernel extends HttpKernel
         'AuthUserCheck' => \App\Http\Middleware\AuthUserCheck::class,
         'AuthAdminCheck' => \App\Http\Middleware\AuthAdminCheck::class,
         'auth.basic' => \Illuminate\Auth\Middleware\AuthenticateWithBasicAuth::class,
+        'CreateRecepie'=> \App\Http\Middleware\CreateRecepie::class ,
         'cache.headers' => \Illuminate\Http\Middleware\SetCacheHeaders::class,
         'can' => \Illuminate\Auth\Middleware\Authorize::class,
         'guest' => \App\Http\Middleware\RedirectIfAuthenticated::class,

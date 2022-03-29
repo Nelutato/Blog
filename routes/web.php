@@ -10,6 +10,7 @@ use App\Http\Controllers\RecepiesController;
 use App\Http\Controllers\ShowRecepie;
 use App\Http\Controllers\EditRecepie;
 use App\Http\Controllers\SearchSortEngine;
+use App\Http\Middleware\CreateRecepie;
 use App\Http\Middleware\AuthUserCheck;
 // use App\Models\Coment;
 use Illuminate\Support\Facades\URL;
@@ -43,11 +44,11 @@ Route::group(['middleware'=> ['AuthAdminCheck'], 'prefix'=> 'admin'],function()
 });
 
 // CREATING
-Route::group(['middleware' =>['CreateRecepie'],'prefix'=> 'create'],function()
+Route::group(['middleware' => 'CreateRecepie' ,'prefix'=> 'create'],function()
 {
     Route::get('/recepieCreate', [RecepiesController::class, 'createform'])->name('recepie');
     Route::post('/createPost', [RecepiesController::class , 'createPost'])->name('post');
-    Route::get('/Recepies/Wiew/edit/{slug}', [EditRecepie::class, 'EditForm']);
+    Route::get('/edit/{slug}', [EditRecepie::class, 'EditForm']);
     Route::post('/edit/createRecepie/{slug}', [EditRecepie::class, 'create'])->name('edited');
 });
 // NO NEED TO LOG IN 
