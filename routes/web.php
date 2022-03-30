@@ -1,5 +1,8 @@
 <?php
-
+// use App\Http\Middleware\CreateRecepie;
+// use App\Http\Middleware\AuthUserCheck;
+// // use App\Models\Coment;
+// use Illuminate\Support\Facades\URL;
 
 
 use Illuminate\Support\Facades\Route;
@@ -10,18 +13,15 @@ use App\Http\Controllers\RecepiesController;
 use App\Http\Controllers\ShowRecepie;
 use App\Http\Controllers\EditRecepie;
 use App\Http\Controllers\SearchSortEngine;
-use App\Http\Middleware\CreateRecepie;
-use App\Http\Middleware\AuthUserCheck;
-// use App\Models\Coment;
-use Illuminate\Support\Facades\URL;
 
-/*================================================*/
+
+
 Route::get('/', function (){
     return redirect("/welcome");
 });
 
 // USER
-// 'name'=> 'user.'
+
 Route::group(['middleware'=>'AuthUserCheck', 'prefix'=> 'user','name'=> 'user.' ],function()
 {
     Route::post('/register', [UserController::class , 'register'])->name('register');
@@ -30,7 +30,6 @@ Route::group(['middleware'=>'AuthUserCheck', 'prefix'=> 'user','name'=> 'user.' 
     Route::get('/view',[UserController::class, 'UserView'])->name('view');
     Route::get('/logout',[UserController::class, 'logout'])->name('logout');
 });
-// sadf
 
 // ADMIN
 Route::group(['middleware'=> ['AuthAdminCheck'], 'prefix'=> 'admin'],function()
@@ -43,7 +42,6 @@ Route::group(['middleware'=> ['AuthAdminCheck'], 'prefix'=> 'admin'],function()
     Route::get('/logout', [AdminController::class , 'logOut'])->name('logout');
 });
 
-// CREATING
 Route::group(['middleware' => 'CreateRecepie' ,'prefix'=> 'create'],function()
 {
     Route::get('/recepieCreate', [RecepiesController::class, 'createform'])->name('recepie');
