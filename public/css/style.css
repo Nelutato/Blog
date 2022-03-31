@@ -36,11 +36,12 @@
 {
     background-color: #EAC435;
 }
+
 .btn:hover
 {
-    opacity: 0.60;
-    background-color: #EAC435;
+    background-color: #eac335e8;
     color: black;
+    letter-spacing: .05rem;
 }
 .linkFont
 {
@@ -81,4 +82,20 @@
     cursor: pointer;
     font-weight: 500;
     font-size: 15pt;
+}
+.own-hover-border
+{
+    border: 1px solid rgb(223, 219, 219);
+}
+.own-hover-border:hover
+{
+    border-left: 3px dashed #EAC435;
+}
+select ,select option
+{
+  border: 1px solid rgb(223, 219, 219);   
+}
+select:hover
+{
+    opacity: 70%;
 }
