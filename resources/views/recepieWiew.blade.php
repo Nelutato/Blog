@@ -1,11 +1,12 @@
 @include('layouts/navbar')
+
 <div class="container-flex" >
     <div class=" row d-flex text-center m-2  ">
 
 
         <div class="my-1 float-start w-75">
             <h1>{{ $Recepie['title'] }}</h1> <br>
-            <a href="create/edit/{{$Recepie['id']}}" class="linkFont">
+            <a href="/create/edit/{{$Recepie['id']}}" class="linkFont">
                 <button class="btn border bg-own-yellow "> 
                     Edytuj 
                 </button>

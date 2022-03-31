@@ -60,3 +60,25 @@
 {
     background-color: #EAC435;
 }
+.input-own
+{
+    transition: border 280ms ,20ms;
+}
+.input-own:focus ,.input-own:hover
+{
+    outline: 0;
+    background:  #f8fff5;
+    border: 2px solid #EAC435;
+}
+
+#addImage
+{
+    display: inline-block;
+    background:  #fbfff0;
+    border: 1px solid #999;
+    border-radius: 3px;
+    padding: 5px 25px;
+    cursor: pointer;
+    font-weight: 500;
+    font-size: 15pt;
+}

@@ -5,13 +5,17 @@
         <form action={{ url('/edit/createRecepie/'.$id)}} method="POST" enctype="multipart/form-data">
             @csrf
                 <b> Title : </b><br>
-                    <input type="text" name="title" id=""> <br>
+                    <input type="text" name="title" class="input-own"> <br>
                 <b> Img : </b><br>
-                    <input type="file" name="image" class="from-control"> <br>
+                <label for="image" >
+                    <input type="file" name="image" id="image" class="from-control" hidden> 
+                    <span class="img-thumbnail " id="addImage">+</span>
+                </label>
+                <br>
                 <b> ingredients : </b> <br>
-                    <input type="text" name="ingredients" id=""> <br>
+                    <input type="text" name="ingredients" class="input-own"> <br>
                 <b> body : </b> <br>
-                    <textarea name="body" id="body"
+                    <textarea name="body" id="body" class="input-own"
                      cols="30" rows="10"> 
                     </textarea><br>
                 <button type="submit" class="btn btn-primary m-1"> post </button>
