@@ -1,10 +1,5 @@
 <?php
 use App\Http\Middleware\CreateRecepie;
-// use App\Http\Middleware\AuthUserCheck;
-// // use App\Models\Coment;
-// use Illuminate\Support\Facades\URL;
-
-
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\AdminController;
@@ -14,7 +9,7 @@ use App\Http\Controllers\ShowRecepie;
 use App\Http\Controllers\EditRecepie;
 use App\Http\Controllers\SearchSortEngine;
 
-
+// Maturka
 
 Route::get('/', function (){
     return redirect("/welcome");
