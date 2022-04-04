@@ -7,7 +7,7 @@ use App\Models\recepieEdited;
 use App\Models\Recepie;
 use App\Models\User;
 use Illuminate\Support\Carbon;
-
+use App\Models\Coment;
 class EditRecepie extends Controller
 {
     function EditForm($slug)
@@ -15,53 +15,8 @@ class EditRecepie extends Controller
         return view('recepieEditing',['id' =>$slug]);
     }
 
-    function showEditedControll($subpage, $slug)
-    {
-        $recepies = recepieEdited::where('recepieBelongs' ,'=', $slug)->get();
-        $recepie = Recepie::where('id', '=' , $slug)->first();
-        // dd($recepies);
-        if(isset($recepies[0]['recepieUser'])){
-        $user = User::where('id', '=' , $recepies[0]['recepieUser'])->first();
-        }else
-        {
-            $user = "none";
-        }
-
-        if($subpage == "ShowFullEdited")
-            { return $this->ShowEditedRecepie($recepies, $recepie, $user, $slug);}
-        elseif($subpage == "list")
-            {
-                 return $this->listEditedRecepies($recepies, $recepie , $user);
-            }
-        else
-            { return back(); }
-    }
-
-    function listEditedRecepies($recepies , $recepie, $user){
-        return view('recepieEditedWiew')->with([
-            'Recepies'=> $recepies,
-            'RecepieMain'=> $recepie,
-            'owner'=> $user
-        ]);
-    }
-
-    function ShowEditedRecepie($recepies, $recepie, $user, $slug)
-    {
-        $editedRecepie = recepieEdited::where('id', '=', $slug)->first();
-        return view('recepieEditedFullWiew')->with([
-            'Recepies'=> $recepies,
-            'RecepieMain'=> $recepie,
-            'owner'=> $user,
-            'editedRecepie'=> $editedRecepie
-        ]);
-    }
-
     function create(Request $req, $slug)
     {
-        $taste="0";
-        $speed="0";
-        $price="0";
-        $photo="none";
 
         if( null !== $req->session()->get('logedAdmin') )
         {
@@ -101,4 +56,80 @@ class EditRecepie extends Controller
 
         return redirect('user/view') ;
     }
+
+    function showEditedControll($subpage, $slug)
+    {
+        $recepies = recepieEdited::where('recepieBelongs' ,'=', $slug)->get();
+        $recepie = Recepie::where('id', '=' , $slug)->first();
+        if(isset($recepies[0]['recepieUser'])){
+        $user = User::where('id', '=' , $recepies[0]['recepieUser'])->first();
+        }else
+        {
+            $user = "none";
+        }
+
+        if($subpage == "ShowFullEdited")
+            { return $this->ShowEditedRecepie($recepies, $recepie, $user, $slug);}
+        elseif($subpage == "list")
+            {
+                 return $this->listEditedRecepies($recepies, $recepie , $user);
+            }
+        else
+            { return back(); }
+    }
+
+    function listEditedRecepies($recepies , $recepie, $user){
+        return view('recepieEditedWiew')->with([
+            'Recepies'=> $recepies,
+            'RecepieMain'=> $recepie,
+            'owner'=> $user
+        ]);
+    }
+
+    function ShowEditedRecepie($recepies, $recepie, $user, $slug)
+    {
+        $editedRecepie = recepieEdited::where('id', '=', $slug)->first();
+        if( null !== session()-> get('loggedUser') )
+        {
+            $logedUser = session()->get('loggedUser');
+            $logedUser = User::where('id', '=',$logedUser)->first();
+            $logedUserName = $logedUser['name'];
+        }elseif (null !== session()-> get('logedAdmin')) {
+             $logedUserName = 'admin';
+        }else
+            { $logedUserName = "Niezalogowany"; }
+
+        $coments = $this->showComent($recepie);
+        return view('recepieEditedFullWiew')->with([
+            'Recepies'=> $recepies,
+            'RecepieMain'=> $recepie,
+            'owner'=> $user,
+            'editedRecepie'=> $editedRecepie,
+            'coments' =>$coments['coments'],
+            'coment_user' => $coments['coment_user'],
+            'userName' =>$logedUserName
+        ]);
+
+    }
+
+    function showComent($Recepie)
+    {
+        $coments = 'empty'; 
+        $coment_user[0] = 'empty';
+        $coments = Coment::where('recepie_id', '=', $Recepie)->get(); 
+        $i=0;
+        
+        foreach ($coments as $coment)
+        {
+            $coment_user[$i]= User::where('id', '=', $coment['user_id'] )->first();
+            $i++;
+        }
+        $comentsArr = array(
+            'coments' => $coments,
+            'coment_user' => $coment_user
+        );
+        
+        return $comentsArr;
+    }
+
 }

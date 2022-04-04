@@ -83,7 +83,7 @@ class ShowRecepie extends Controller
         }else
             { $logedUserName = "Niezalogowany"; }
         
-        $coments = $this->showComent($Recepie);
+        $coments = $this->showComent($Recepie['id']);
         return view('recepieWiew', [
             'Recepie' => $Recepie , 
             'creatorName' =>$adminName,
@@ -97,7 +97,7 @@ class ShowRecepie extends Controller
     {
         $coments = 'empty'; 
         $coment_user[0] = 'empty';
-        $coments = Coment::where('recepie_id', '=', $Recepie['id'])->get(); 
+        $coments = Coment::where('recepie_id', '=', $Recepie)->get(); 
         $i=0;
         
         foreach ($coments as $coment)

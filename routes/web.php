@@ -48,6 +48,7 @@ Route::group(['middleware' => 'CreateRecepie' ,'prefix'=> 'create'],function()
 // NO NEED TO LOG IN 
 Route::get('/Recepies/Wiew/{slug}', [ShowRecepie::class , 'showFullRecepie']);
 Route::post('/Recepies/addComent/{slug}', [ComentControll::class , 'addComment']);
+Route::post('/Recepies/edited/addComent/{slug}', [ComentControll::class , 'addComment']);
 Route::get('/Recepies/edited/{subpage}/{slug}', [EditRecepie::class, 'showEditedControll']);
 Route::get('/Recepies/Wiew/{subpage}/{slug}',[RecepiesController::class, 'opinion']);
 Route::post('/Recepies', [SearchSortEngine::class , 'sort',])->name('sorting');

@@ -90,3 +90,44 @@ $Recepie = $editedRecepie;
             Lorem ipsum dolor,sit amet consectetur adipisicing elit. Necessitatibus, exercitationem! Pariatur, minima? Natus itaque facilis quisquam ipsum officia maiores quas voluptatibus qui quis. Sequi tempora corporis provident reprehenderit voluptates. Facere fugiat esse dolorem consequuntur doloribus quod ducimus obcaecati quis aut libero. Ducimus molestiae quasi dignissimos ad officia explicabo quae, asperiores ipsam et magni quia aliquam exercitationem rem dolorum nemo aperiam!
         </div>
     </div>
+    {{--  coment --}}
+    <div class="row m-3 p-2 border-top justify-content-center">
+
+        <div class="col-md-4 border p-2">
+            <form action={{ url('/Recepies/addComent/'.$Recepie['id']) }} method="post">
+            @csrf
+                <img src="{{URL('images/honeycomb.ico')}}" width="6%" class=" border rounded-circle m-1" >
+                {{ $userName }} : 
+                <textarea name="comment" id="comment"class="form-control" rows="2"> </textarea>
+                <div  class="my-1">
+                    <button type="submit" class="btn btn-success float-end m-1" >
+                        skomętuj
+                    </button>
+                </div>
+            </form>
+            @if ($errors->any())
+                @foreach ($errors->all() as $error)
+                    <br> {{ $error }}
+                @endforeach
+            @endif
+        </div>
+
+    </div>
+
+    {{$i=0}}
+    @foreach ($coments as $coment)
+        @if ( $i ==10 || $coment_user[0]=="empty")
+            @break
+        @endif
+        <div class="row m-2 p-2 justify-content-center ">
+            <div class="col-md-4 mx-auto border p-2">
+                <small class="float-end"> {{$coment['created_at']}} </small> <br>
+                <img src="{{URL('images/honeycomb.ico')}}" width="6%" class=" border rounded-circle" >
+               <b> {{ $coment_user[$i]['name'] }} : </b> 
+                <div class="border my-2">
+                    {{$coment['comment']}}
+                </div>
+            </div>
+        </div>
+    {{$i++}}
+    @endforeach
