@@ -1,7 +1,8 @@
 <!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+{{-- <html lang="{{ str_replace('_', '-', app()->getLocale()) }}"> --}}
+<html lang="pl">
 <head>
-    <meta charset="utf-8">
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
@@ -10,6 +11,8 @@
     <link href="{{ asset('/css/style.css') }}" rel="stylesheet">
     <link rel="shortcut icon" type="image/x-icon" href="{{URL('images/honeycomb.ico') }}"/>
 </head>
+<body>
+  
 
 <nav class="navbar  navbar-expand-lg navbar-dark p-md-3 justify-inline bg-own-green borderBottom-color-yellow">
 
