@@ -4,8 +4,8 @@
       <form action={{ route("sorting" )}} method="POST">
         @csrf
         <select name="sort" id="sort">
-          <option value="oldest" selected> older_to_ealier </option>
-          <option value="newest"> newest </option>
+          <option value="ASC" selected> older_to_ealier </option>
+          <option value="DESC"> newest </option>
           <option value="price"> price </option>
           <option value="taste"> taste </option>
           <option value="speed"> speed </option>

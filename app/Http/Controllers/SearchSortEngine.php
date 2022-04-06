@@ -18,21 +18,16 @@ class SearchSortEngine extends Controller
     {
         $order = $req->input('sort');
 
-        $Recepie = Recepie::when($order == 'oldest',
-            function($querry)
-            {
-                $querry; 
-            })
-        ->when($order == 'newest',
-            function($querry)
-            {
-                $querry->orderBy('created_at','DESC');
-            })
-        ->when($order,
-            function($querry, $order)
-            {
-                $querry->orderBy("$order",'ASC');
-            })->get();
+        if($order == 'ASC' | $order == 'DESC')
+        {
+            $Recepie = Recepie::orderBy('created_at', $order)->get();
+        }elseif( $order == 'price' | $order == 'taste' | $order == 'speed' )
+        {
+            $Recepie = Recepie::orderBy($order,'ASC')->get();
+        }else
+        {
+            $Recepie = Recepie::get();
+        }
         
         return view('recepies', ['Recepie' => $Recepie]);
     }
