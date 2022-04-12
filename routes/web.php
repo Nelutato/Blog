@@ -9,7 +9,7 @@ use App\Http\Controllers\ShowRecepie;
 use App\Http\Controllers\EditRecepie;
 use App\Http\Controllers\SearchSortEngine;
 
-// Maturka
+
 
 Route::get('/', function (){
     return redirect("/welcome");
