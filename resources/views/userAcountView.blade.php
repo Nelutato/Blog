@@ -8,11 +8,11 @@
 
         if (info.style.display === "none") 
         {
-            info.style.display = "block";
+            info.style.display = "inline-flex";
             change.style.display = "none";
         } else {
             info.style.display = "none";
-            change.style.display = "block";
+            change.style.display = "inline-flex";
         }
     }
 </script>
@@ -25,7 +25,7 @@
         </div>
 
         <div class="col-md-3 m-1"> 
-            <a href="logout"> Wylogój</a>
+            <a href="logout"> Wyloguj</a>
         </div>
     </div>
 
@@ -37,6 +37,12 @@
                     @foreach ($errors->all() as $error)
                         {{ $error }}  <br>
                     @endforeach
+                </div>
+            @endif
+
+            @if(Session::get('change'))
+                <div class="bg-own-green">
+                    {{Session::get('change')}}
                 </div>
             @endif
 

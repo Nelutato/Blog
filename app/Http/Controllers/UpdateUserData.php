@@ -19,6 +19,7 @@ class UpdateUserData extends Controller
                 $user = User::find($id);
                 $user ->name = $req->input('username');
                 $user->save();
+                
                 return back()->with('change','udało się zmienić Nazwę użytkownika');
 
         }elseif($req->input('email')!= NULL)
@@ -31,6 +32,7 @@ class UpdateUserData extends Controller
                 $user = User::find($id);
                 $user ->email = $req->input('email');
                 $user->save();
+
                 return back()->with('change','udało się zmienić adres email');
         }
     }

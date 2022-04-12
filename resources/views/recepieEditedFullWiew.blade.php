@@ -1,4 +1,62 @@
 @include('layouts/navbar')
+<script>
+    const button = document.getElementById("count");
+    const wynik = document.getElementById("wynik");
+
+    var ocena =new Array() ;
+    var count=0;
+    var i=0;
+    var ocenione = true;
+
+    function HandleStarOver(num)
+    {
+        if(ocenione)
+        {
+            for(let i=0;i<=num;i++)
+            {
+                document.getElementById(i).src = "{{URL('images/star.svg')}}";
+            }
+        }
+    }
+    function HandleStarOut(num)
+    {
+        if(ocenione)
+        {
+            for(let i=0;i<=num;i++)
+            {
+                document.getElementById(i).src = "{{URL('images/Star-Filed.svg')}}";
+            }
+        }
+    }
+    function HandleStarCount(num)
+    {
+        if(!ocenione)
+        {
+            ocena[count] = num;
+            for(let i=0;i<num;i++)
+            {
+                document.getElementById(i).src = "{{URL('images/Star-Filed.svg')}}";
+            }
+            document.getElementById("price").value = ocena[count];
+            count++;
+            console.table(ocena);
+        }
+        ocenione=true;
+    }
+    function reset()
+    {
+        if(!ocenione)
+        {
+            // ocenione=true;
+            for(let i=0;i<=4;i++)
+            {
+                document.getElementById(i).src = "{{URL('images/star.svg')}}";
+            }
+        }
+    }
+</script>
+
+
 <?php 
 $Recepie = $editedRecepie;
 ?>
@@ -18,37 +76,44 @@ $Recepie = $editedRecepie;
             </a>
         </div>
         
-        <div class="w-25">
+        <div class="w-25" onmouseout="reset()">
             <form action="/Recepies/Wiew/AddEditedOpinion/{{ $RecepieMain['id'] }}" 
                   method="POST"
             >
             @method('put')
             @csrf
             <input type="text" name="id" value="{{ $Recepie['id'] }}" hidden>
-                <i class="bi bi-piggy-bank"></i> 
-                    <select name="price" id="price">
-                        <option value="1">1</option>
-                        <option value="2">2</option>
-                        <option value="3">3</option>
-                        <option value="4">4</option>
-                        <option value="5">5</option>
-                    </select> <br>
-                <i class="bi bi-stopwatch"></i>
-                    <select name="speed" id="speed">
-                        <option value="1">1</option>
-                        <option value="2">2</option>
-                        <option value="3">3</option>
-                        <option value="4">4</option>
-                        <option value="5">5</option>
-                    </select> <br> 
-                <i class="bi bi-egg-fried"></i>
-                    <select name="taste" id="taste">
-                        <option value="1">1</option>
-                        <option value="2">2</option>
-                        <option value="3">3</option>
-                        <option value="4">4</option>
-                        <option value="5">5</option>
-                    </select> <br>
+            <input type="number" hidden name="price" id="price">
+            <input type="number" hidden name="speed" id="speed">
+            <input type="number" hidden name="taste" id="taste">
+
+                <div class="w-50 text-center d-flex justify-content-center" onload="star()">
+                    <i class="bi bi-piggy-bank"></i> 
+                        <img id="0" class="image-flex w-100 float-left" src="{{URL('images/star.svg')}}" onmouseover="HandleStarOver(0)" onmouseout="HandleStarOut(0)" onclick="HandleStarCount(1)">
+                        <img id="1" class="image-flex w-100 float-left" src="{{URL('images/star.svg')}}" onmouseover="HandleStarOver(1)" onmouseout="HandleStarOut(1)" onclick="HandleStarCount(2)">
+                        <img id="2" class="image-flex w-100 float-left" src="{{URL('images/star.svg')}}" onmouseover="HandleStarOver(2)" onmouseout="HandleStarOut(2)" onclick="HandleStarCount(3)">
+                        <img id="3" class="image-flex w-100 float-left" src="{{URL('images/star.svg')}}" onmouseover="HandleStarOver(3)" onmouseout="HandleStarOut(3)" onclick="HandleStarCount(4)">
+                        <img id="4" class="image-flex w-100 float-left" src="{{URL('images/star.svg')}}" onmouseover="HandleStarOver(4)" onmouseout="HandleStarOut(4)" onclick="HandleStarCount(5)">
+                </div>
+
+                <div class="w-50 text-center d-flex justify-content-center" onload="star()">
+                    <i class="bi bi-stopwatch"></i>
+                        <img id="0" class="image-flex w-100 float-left" src="{{URL('images/star.svg')}}" onmouseover="HandleStarOver(0)" onmouseout="HandleStarOut(0)" onclick="HandleStarCount(1)">
+                        <img id="1" class="image-flex w-100 float-left" src="{{URL('images/star.svg')}}" onmouseover="HandleStarOver(1)" onmouseout="HandleStarOut(1)" onclick="HandleStarCount(2)">
+                        <img id="2" class="image-flex w-100 float-left" src="{{URL('images/star.svg')}}" onmouseover="HandleStarOver(2)" onmouseout="HandleStarOut(2)" onclick="HandleStarCount(3)">
+                        <img id="3" class="image-flex w-100 float-left" src="{{URL('images/star.svg')}}" onmouseover="HandleStarOver(3)" onmouseout="HandleStarOut(3)" onclick="HandleStarCount(4)">
+                        <img id="4" class="image-flex w-100 float-left" src="{{URL('images/star.svg')}}" onmouseover="HandleStarOver(4)" onmouseout="HandleStarOut(4)" onclick="HandleStarCount(5)">
+                </div>
+
+                <div class="w-50 text-center d-flex justify-content-center" onload="star()">
+                    <i class="bi bi-egg-fried"></i> 
+                        <img id="0" class="image-flex w-100 float-left" src="{{URL('images/star.svg')}}" onmouseover="HandleStarOver(0)" onmouseout="HandleStarOut(0)" onclick="HandleStarCount(1)">
+                        <img id="1" class="image-flex w-100 float-left" src="{{URL('images/star.svg')}}" onmouseover="HandleStarOver(1)" onmouseout="HandleStarOut(1)" onclick="HandleStarCount(2)">
+                        <img id="2" class="image-flex w-100 float-left" src="{{URL('images/star.svg')}}" onmouseover="HandleStarOver(2)" onmouseout="HandleStarOut(2)" onclick="HandleStarCount(3)">
+                        <img id="3" class="image-flex w-100 float-left" src="{{URL('images/star.svg')}}" onmouseover="HandleStarOver(3)" onmouseout="HandleStarOut(3)" onclick="HandleStarCount(4)">
+                        <img id="4" class="image-flex w-100 float-left" src="{{URL('images/star.svg')}}" onmouseover="HandleStarOver(4)" onmouseout="HandleStarOut(4)" onclick="HandleStarCount(5)">
+                </div>
+
                     <button type="submit" class="btn bg-own-yellow">
                         Confirm
                     </button>
