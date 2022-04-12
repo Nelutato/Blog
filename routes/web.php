@@ -8,7 +8,7 @@ use App\Http\Controllers\RecepiesController;
 use App\Http\Controllers\ShowRecepie;
 use App\Http\Controllers\EditRecepie;
 use App\Http\Controllers\SearchSortEngine;
-
+use App\Http\Controllers\UpdateUserData;
 
 
 Route::get('/', function (){
@@ -24,6 +24,7 @@ Route::group(['middleware'=>'AuthUserCheck', 'prefix'=> 'user','name'=> 'user.' 
     Route::view('/', 'login')->name('loginView');
     Route::get('/view',[UserController::class, 'UserView'])->name('view');
     Route::get('/logout',[UserController::class, 'logout'])->name('logout');
+    Route::put('/update/{id}', [UpdateUserData::class, 'update'])->name('update');
 });
 
 // ADMIN

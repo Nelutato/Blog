@@ -18,16 +18,27 @@
 </script>
 
 <div class="container-flex">
+
     <div class="row d-flex justify-content-between p-1 m-2">
         <div class="col-md-3 m-1"> 
             <h3> Witaj  <b>{{$LogedUserInfo['name']}} </b></h3>
         </div>
+
         <div class="col-md-3 m-1"> 
             <a href="logout"> Wylogój</a>
         </div>
     </div>
+
     <div class="row d-flex justify-content-center">
-        <div class="col-md-6 m1 border p-2">    
+        <div class="col-md-6 m1 border p-2">  
+
+            @if($errors->any())
+                <div class="bg-dark text-light p-1"> 
+                    @foreach ($errors->all() as $error)
+                        {{ $error }}  <br>
+                    @endforeach
+                </div>
+            @endif
 
             <div class="d-flex justify-content-center m-1 p-1"> 
                 <img src="{{URL('images/logo.jpg')}}" alt="Prof" 
@@ -38,8 +49,10 @@
             Username : <br>
                 <i id="UserName"> {{ $LogedUserInfo['name'] }} </i> 
 
-                <form action="changeUserName" method="post" id="changeUserName" style="display: none">
-                    <input type="text" name="username" id="username">
+                <form action="update/{{$LogedUserInfo['id']}}" method="POST" id="changeUserName" style="display: none">
+                @method('PUT')
+                @csrf
+                    <input type="text" name="username" id="username" required>
                     <button type="submit" class="btn border">
                          Zmień
                     </button>
@@ -51,8 +64,10 @@
             e-mail :  <br>
                 <i id="UserEmail"> {{ $LogedUserInfo['email'] }} </i> 
 
-                <form action="changeEmail" method="post" id="changeUserEmail" style="display: none">
-                    <input type="text" name="email" id="email">
+                <form action="update/{{$LogedUserInfo['id']}}" method="post" id="changeUserEmail" style="display: none">
+                @method('PUT')
+                @csrf
+                    <input type="text" name="email" id="email" required>
                     <button type="submit" class="btn border">
                          Zmień
                     </button>
