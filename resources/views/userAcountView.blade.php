@@ -1,5 +1,22 @@
 @include('layouts/navbar')
 
+<script>
+    function Change(wich)
+    {
+      var info = document.getElementById(wich);
+      var change = document.getElementById('change'+wich);
+
+        if (info.style.display === "none") 
+        {
+            info.style.display = "block";
+            change.style.display = "none";
+        } else {
+            info.style.display = "none";
+            change.style.display = "block";
+        }
+    }
+</script>
+
 <div class="container-flex">
     <div class="row d-flex justify-content-between p-1 m-2">
         <div class="col-md-3 m-1"> 
@@ -11,19 +28,41 @@
     </div>
     <div class="row d-flex justify-content-center">
         <div class="col-md-6 m1 border p-2">    
+
             <div class="d-flex justify-content-center m-1 p-1"> 
                 <img src="{{URL('images/logo.jpg')}}" alt="Prof" 
                 class=" img-flex w-25 h-25 rounded-pill border-color-yellow">
             </div>
             <div class="w-100 border"></div>
+
             Username : <br>
-                <i> {{ $LogedUserInfo['name'] }} </i><br>
+                <i id="UserName"> {{ $LogedUserInfo['name'] }} </i> 
+
+                <form action="changeUserName" method="post" id="changeUserName" style="display: none">
+                    <input type="text" name="username" id="username">
+                    <button type="submit" class="btn border">
+                         Zmień
+                    </button>
+                </form>
+                
+                <i class="bi bi-gear m-1" onclick="Change('UserName')"></i> <br>
             <div class="w-100 border"></div>
+
             e-mail :  <br>
-                <i> {{ $LogedUserInfo['email'] }} </i> <br>
-            <div class="w-100 border"></div>
+                <i id="UserEmail"> {{ $LogedUserInfo['email'] }} </i> 
+
+                <form action="changeEmail" method="post" id="changeUserEmail" style="display: none">
+                    <input type="text" name="email" id="email">
+                    <button type="submit" class="btn border">
+                         Zmień
+                    </button>
+                </form>
+
+                <i class="bi bi-gear m-1" onclick="Change('UserEmail')"></i> <br>
+            <div class="w-100 border m-1"></div>
+
             Użytkownik od : <br>
-                <i> {{$LogedUserInfo['created_at']}} </i>
+                <i> {{$LogedUserInfo['created_at']}} </i> 
             <div class="w-100 border"></div>
         </div>
     </div>

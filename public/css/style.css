@@ -99,3 +99,7 @@ select:hover
 {
     opacity: 70%;
 }
+.bi-gear:hover
+{
+    color:rgb(74, 74, 248);
+}
