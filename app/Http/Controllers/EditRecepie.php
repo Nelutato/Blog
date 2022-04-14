@@ -61,16 +61,19 @@ class EditRecepie extends Controller
     {
         $recepies = recepieEdited::where('recepieBelongs' ,'=', $slug)->get();
         $recepie = Recepie::where('id', '=' , $slug)->first();
-        if(isset($recepies[0]['recepieUser'])){
+
+        if(isset($recepies[0]['recepieUser']))
+        {
         $user = User::where('id', '=' , $recepies[0]['recepieUser'])->first();
         }else
         {
-            $user = "none";
+            $user =array( 'name'=>"DeletedU");
         }
 
         if($subpage == "ShowFullEdited")
-            { return $this->ShowEditedRecepie($recepies, $recepie, $user, $slug);}
-        elseif($subpage == "list")
+            {
+                return $this->ShowEditedRecepie($recepies, $recepie, $user, $slug);
+            }elseif($subpage == "list")
             {
                  return $this->listEditedRecepies($recepies, $recepie , $user);
             }
@@ -91,14 +94,13 @@ class EditRecepie extends Controller
         $editedRecepie = recepieEdited::where('id', '=', $slug)->first();
         if( null !== session()-> get('loggedUser') )
         {
-            $logedUser = session()->get('loggedUser');
-            $logedUser = User::where('id', '=',$logedUser)->first();
+            $logedUser = User::where('id', '=',session()->get('loggedUser'))->first();
             $logedUserName = $logedUser['name'];
-        }elseif (null !== session()-> get('logedAdmin')) {
-             $logedUserName = 'admin';
         }else
-            { $logedUserName = "Niezalogowany"; }
-
+        {
+            $logedUserName = "Niezalogowany"; 
+        }
+        // dd($recepie);
         $coments = $this->showComent($recepie);
         return view('recepieEditedFullWiew')->with([
             'Recepies'=> $recepies,
@@ -109,7 +111,11 @@ class EditRecepie extends Controller
             'coment_user' => $coments['coment_user'],
             'userName' =>$logedUserName
         ]);
-
+        
+        // elseif ( null !== session()->get('logedAdmin') ) 
+        // {
+        //      $logedUserName = 'admin';
+        // }
     }
 
     function showComent($Recepie)

@@ -18,6 +18,7 @@
             }
         }
     }
+
     function HandleStarOut(num)
     {
         if(ocenione)
@@ -28,6 +29,7 @@
             }
         }
     }
+
     function HandleStarCount(num)
     {
         if(!ocenione)
@@ -43,6 +45,7 @@
         }
         ocenione=true;
     }
+
     function reset()
     {
         if(!ocenione)
@@ -76,7 +79,7 @@ $Recepie = $editedRecepie;
             </a>
         </div>
         
-        <div class="w-25" onmouseout="reset()">
+        <div class="w-25" >
             <form action="/Recepies/Wiew/AddEditedOpinion/{{ $RecepieMain['id'] }}" 
                   method="POST"
             >
@@ -87,7 +90,7 @@ $Recepie = $editedRecepie;
             <input type="number" hidden name="speed" id="speed">
             <input type="number" hidden name="taste" id="taste">
 
-                <div class="w-50 text-center d-flex justify-content-center" onload="star()">
+                <div class="w-50 text-center d-flex justify-content-center" onload="star()" onmouseout="reset()">
                     <i class="bi bi-piggy-bank"></i> 
                         <img id="0" class="image-flex w-100 float-left" src="{{URL('images/star.svg')}}" onmouseover="HandleStarOver(0)" onmouseout="HandleStarOut(0)" onclick="HandleStarCount(1)">
                         <img id="1" class="image-flex w-100 float-left" src="{{URL('images/star.svg')}}" onmouseover="HandleStarOver(1)" onmouseout="HandleStarOut(1)" onclick="HandleStarCount(2)">
