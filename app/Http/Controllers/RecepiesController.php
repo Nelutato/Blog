@@ -104,28 +104,23 @@ class RecepiesController extends Controller
     function  showFullRecepie($slug )
     {
         $Recepie = Recepie::where('id', '=', $slug)->first();
-        if($Recepie['admin_id']<90){
-            $creatorName = Admin::where('id', '=',$Recepie['admin_id'])-> first();
-        }
-        if($Recepie['admin_id']>90){
-            $creatorName = User::where('id', '=',$Recepie['admin_id'])-> first();
-        }
-        $adminName = $creatorName['username'];
+        $creatorName = User::where('id', '=',$Recepie['admin_id'])-> first(['name']);
 
         if( null !== session()-> get('loggedUser') )
         {
-            $logedUser = session()->get('loggedUser');
-            $logedUser = User::where('id', '=',$logedUser)->first();
-            $logedUserName = $logedUser['name'];
-        }elseif (null !== session()-> get('logedAdmin')) {
-             $logedUserName = $adminName;
+            $logedUserName =User::where( 'id', '=', session()->get('loggedUser') )-> first();;
+        }elseif (null !== session()-> get('logedAdmin')) 
+        {
+            $logedUserName = User::where( 'id', '=', session()->get('logedAdmin') )-> first();
         }else
-            { $logedUserName = "Niezalogowany"; }
+        {
+            $logedUserName = "Niezalogowany"; 
+        }
         
         $coments = $this->showComent($Recepie['id']);
         return view('recepieWiew', [
             'Recepie' => $Recepie , 
-            'creatorName' =>$adminName,
+            'creatorName' =>$creatorName['name'],
             'userName' => $logedUserName,
             'coments' =>$coments['coments'],
             'coment_user' => $coments['coment_user']
