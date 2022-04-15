@@ -1,15 +1,13 @@
 <?php
-use App\Http\Middleware\CreateRecepie;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\ComentControll;
 use App\Http\Controllers\RecepiesController;
-use App\Http\Controllers\ShowRecepie;
 use App\Http\Controllers\EditRecepie;
 use App\Http\Controllers\SearchSortEngine;
 use App\Http\Controllers\UpdateUserData;
-
+use App\Http\Controllers\recepieOpinion;
 
 Route::get('/', function (){
     return redirect("/welcome");
@@ -47,12 +45,12 @@ Route::group(['middleware' => 'CreateRecepie' ,'prefix'=> 'create'],function()
 });
 
 // NO NEED TO LOG IN 
-Route::get('/Recepies/Wiew/{slug}', [ShowRecepie::class , 'showFullRecepie']);
+Route::get('/Recepies/Wiew/{slug}', [RecepiesController::class , 'showFullRecepie']);
 Route::post('/Recepies/addComent/{slug}', [ComentControll::class , 'addComment']);
 Route::post('/Recepies/edited/addComent/{slug}', [ComentControll::class , 'addComment']);
 Route::get('/Recepies/edited/{subpage}/{slug}', [EditRecepie::class, 'showEditedControll']);
-Route::get('/Recepies/Wiew/{subpage}/{slug}',[RecepiesController::class, 'opinion']);
+Route::put('/Recepies/Wiew/{subpage}/{slug}',[recepieOpinion::class, 'opinion']);
 Route::post('/Recepies', [SearchSortEngine::class , 'sort',])->name('sorting');
-Route::get('{slug}', [ShowRecepie::class ,'show'])->name('main');
+Route::get('{slug}', [RecepiesController::class ,'show'])->name('main');
 
 

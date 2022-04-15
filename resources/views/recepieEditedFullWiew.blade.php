@@ -67,7 +67,7 @@ $Recepie = $editedRecepie;
     <div class=" row d-flex text-center m-2  ">
         <div class=" float-start w-75">
             <h1>{{ $RecepieMain['title'] }}</h1> 
-            <a href="/Recepies/edited/list/{{$Recepie['id']}}" class="linkFont">
+            <a href="/Recepies/edited/list/{{$RecepieMain['id']}}" class="linkFont">
                 <button class="btn border bg-own-yellow "> 
                     przeglądaj inne wersje 
                 </button>

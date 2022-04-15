@@ -45,7 +45,7 @@ class EditRecepie extends Controller
     function ShowEditedRecepie( $slug)
     {
         $recepies = recepieEdited::where('id' ,'=', $slug)->first();
-        $recepie = Recepie::where('id', '=' , $slug)->first(['title','id']);
+        $recepie = Recepie::where('id', '=' , $recepies['recepieBelongs'])->first(['title','id']);
         $editedRecepie = recepieEdited::where('id', '=', $slug)->first();
         $user = User::where('id', '=' , $recepies['recepieUser'])->first(['name']);
         $coments = $this->showComent($recepie);
@@ -58,6 +58,7 @@ class EditRecepie extends Controller
         {
             $logedUserName = "Niezalogowany"; 
         }
+
         return view('recepieEditedFullWiew')->with([
             'Recepies'=> $recepies,
             'RecepieMain'=> $recepie,
