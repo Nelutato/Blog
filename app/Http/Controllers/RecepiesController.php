@@ -8,7 +8,6 @@ use App\Models\recepieEdited;
 use Illuminate\Support\Carbon;
 use App\Models\User;
 use App\Models\Coment;
-use ImageOptimizer;
 class RecepiesController extends Controller
 {
     function createform()
