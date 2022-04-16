@@ -3,13 +3,13 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Http\Controllers\ShowRecepie;
+use App\Http\Controllers\RecepiesController;
 use App\Models\Recepie;
 
 class SearchSortEngine extends Controller
 {
     protected $ShowRecepie;
-    function __construct(ShowRecepie $ShowRecepie)
+    function __construct(RecepiesController $ShowRecepie)
     {
         $this->ShowRecepie = $ShowRecepie;
     }

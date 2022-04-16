@@ -8,6 +8,7 @@ use App\Models\Recepie;
 use App\Models\User;
 use Illuminate\Support\Carbon;
 use App\Models\Coment;
+
 class EditRecepie extends Controller
 {
     function showEditedControll($subpage, $slug)
@@ -99,7 +100,6 @@ class EditRecepie extends Controller
 
     function create(Request $req, $slug)
     {
-
         if( null !== $req->session()->get('logedAdmin') )
         {
             $logedUser = $req->session()->get('logedAdmin');
@@ -122,7 +122,11 @@ class EditRecepie extends Controller
             $timeYMD = carbon::now()->toDateString();
             $timeHMS = carbon::now()->toTimeString();
             $imageName= "Edit_".$logedUser. "_". $timeYMD. "_".$timeHMS. ".png";
-            $req-> image -> move(public_path('images'),$imageName);
+            $pathToFile = public_path('images')."/".$imageName;
+            $req-> image -> move($pathToFile);
+        }else
+        {
+            $imageName="empty";
         }
         
         recepieEdited::create([

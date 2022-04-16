@@ -6,12 +6,16 @@ use Illuminate\Http\Request;
 use App\Models\Recepie;
 use App\Models\recepieEdited;
 use Illuminate\Support\Carbon;
-use App\Models\Admin;
 use App\Models\User;
 use App\Models\Coment;
-
+use ImageOptimizer;
 class RecepiesController extends Controller
 {
+    function createform()
+    {
+        return view('createPostForm');
+    }
+
     public function createPost(Request $req)
     {
         $req-> validate([
@@ -20,16 +24,21 @@ class RecepiesController extends Controller
             'image'=> 'required',
             'ingredients'=> 'required'
         ]);
-        if($req->session()->get('logedAdmin')){
+
+        if($req->session()->get('logedAdmin'))
+        {
             $logedUser = $req->session()->get('logedAdmin');
         }elseif($req->session()->get('loggedUser'))
         {
             $logedUser = $req->session()->get('loggedUser') + 90;
         }
+        
         $timeYMD = carbon::now()->toDateString();
         $timeHMS = carbon::now()->toTimeString();
         $imageName= $logedUser. "_". $timeYMD. "_".$timeHMS. ".png";
-        $req-> image -> move(public_path('images'),$imageName);
+        $pathToFile = public_path('images')."/".$imageName;
+        $req-> image -> move($pathToFile);
+        
 
         Recepie::create([
             'admin_id' => $logedUser,
@@ -41,28 +50,40 @@ class RecepiesController extends Controller
        
         return redirect('admin/panel');
     }
-
-    function createform()
+    
+    function Show($page)
     {
-        return view('createPostForm');
+        if($page == "Recepies"){
+            return view('recepies' ,['Recepie' => $this ->getAllRecepies()]); 
+        }
+        elseif($page== "welcome")
+        {
+                $Recepie = Recepie::all();
+                return view('home', ['Recepie' => $Recepie]);
+        }else
+        {
+            return  $this ->getAllRecepies();
+        }
     }
     
-    // =================================
     function getAllRecepies()
     {
             $Recepie = Recepie::all();
             $i=1;
             
-            foreach($Recepie as $recepie){
-                $recepieEdited = recepieEdited::where('recepieBelongs', '=', $i)->get();
-                $recepieOpinion[$i] = ($recepie['taste']+ $recepie['speed']+ $recepie['price'])/3;
-                
-                if($recepieEdited){
-                    $j=1;
-                    foreach($recepieEdited as $recepieEdited){
-                        $recepieEditedOpinion[$j] = ($recepieEdited['taste']+ $recepieEdited['speed']+ $recepieEdited['price'])/3;
+            foreach($Recepie as $recepie)
+            {            
+                $recepieEdited = recepieEdited::where('recepieBelongs', '=', $recepie['id'])->get();
 
-                        if(isset($recepieEditedOpinion[$j]) && $recepieEditedOpinion[$j] > $recepieOpinion[$i])
+                if( isset($recepieEdited) )
+                {
+                    $recepieOpinion= ($recepie['taste']+ $recepie['speed']+ $recepie['price'])/3;
+                    // dla każdego edytowanego przepisu 
+                    foreach($recepieEdited as $recepieEdited){
+                        $recepieEditedOpinion = ($recepieEdited['taste']+ $recepieEdited['speed']+ $recepieEdited['price'])/3;
+
+                        // Jeżeli edytowana ma lepszą opinię zamień oryginalny przepis na edytowany
+                        if( $recepieEditedOpinion > $recepieOpinion )
                         {
                             $newData = recepieEdited::where('recepieBelongs', '=', $i)->first();
                             $Recepie[$i-1]['body'] = $newData['Body'];
@@ -72,13 +93,11 @@ class RecepiesController extends Controller
                             $Recepie[$i-1]['speed']= $newData['speed'];
                             $Recepie[$i-1]['price']= $newData['price'];
                             $Recepie[$i-1]['edited']= "yes";
-                            
                             if($newData['photo'] !== "none"){
                                 $Recepie[$i-1]['image'] = $newData['photo'];
                             }
                         }
                     }
-                    $j++;
                 }
                 $i++;
             }
@@ -86,25 +105,11 @@ class RecepiesController extends Controller
             return  $Recepie;
     }
 
-    function Show($slug)
-    {
-        if($slug == "Recepies"){
-            return view('recepies' ,['Recepie' => $this ->getAllRecepies($slug)]); 
-        }
-        elseif($slug== "welcome" || $slug== "")
-        {
-                $Recepie = Recepie::all();
-                return view('home', ['Recepie' => $Recepie]);
-        }else
-        {
-            return  $this ->getAllRecepies($slug);
-        }
-    }
-
     function  showFullRecepie($slug )
     {
         $Recepie = Recepie::where('id', '=', $slug)->first();
         $creatorName = User::where('id', '=',$Recepie['admin_id'])-> first(['name']);
+        $coments = $this->showComent($Recepie['id']);
 
         if( null !== session()-> get('loggedUser') )
         {
@@ -117,7 +122,6 @@ class RecepiesController extends Controller
             $logedUserName = "Niezalogowany"; 
         }
         
-        $coments = $this->showComent($Recepie['id']);
         return view('recepieWiew', [
             'Recepie' => $Recepie , 
             'creatorName' =>$creatorName['name'],

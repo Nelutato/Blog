@@ -2,7 +2,7 @@
 
 <div class="row d-flex justify-content-center">
     <div class="col-md-8 text-center">
-        <form action={{ url('/edit/createRecepie/'.$id)}} method="POST" enctype="multipart/form-data">
+        <form action={{ url('/create/edit/createRecepie/'.$id)}} method="POST" enctype="multipart/form-data">
             @csrf
                 <b> Title : </b><br>
                     <input type="text" name="title" class="input-own"> <br>
