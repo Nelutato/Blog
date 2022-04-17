@@ -1,9 +1,6 @@
 <?php
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\User\UserController;
-// use App\Http\Controllers\User\UpdateUserData;
-// use App\Http\Controllers\UpdateUserData;
-// use App\Http\Controllers\UserController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\ComentControll;
 use App\Http\Controllers\RecepiesController;
