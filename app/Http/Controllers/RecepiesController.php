@@ -61,7 +61,8 @@ class RecepiesController extends Controller
                 return view('home', ['Recepie' => $Recepie]);
         }else
         {
-            return  $this ->getAllRecepies();
+            // return  $this ->getAllRecepies();
+            return back();
         }
     }
     

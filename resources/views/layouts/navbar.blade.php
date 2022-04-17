@@ -38,7 +38,7 @@
             </a>
           </li>
           <li class="nav-item active mx-1 ">
-            <a href="/user" class="nav-link ">
+            <a href="{{ route('users.index') }}" class="nav-link ">
               <i class="bi bi-person " style="font-size:1.6em"></i>
             </a>
           </li>

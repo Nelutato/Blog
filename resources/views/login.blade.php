@@ -16,7 +16,7 @@
  <div class="row my-2  d-flex justify-content-center">
 
     <div class="col-md-4 p-2 border m-4 my-auto">
-        <form action="/user/login" method="POST" class="">
+        <form action="{{route('users.logIn')}}" method="POST" class="">
             @csrf
             <h3>login</h3>
             <div class="m-2">
@@ -35,7 +35,7 @@
 
 
     <div class="col-md-4 p-2 border m-4">
-        <form action="/user/register" method="POST" >
+        <form action="{{ route('users.store') }}" method="POST" >
             @csrf
             <h3>Register</h3>
             <div class="m-2">

@@ -25,7 +25,7 @@
         </div>
 
         <div class="col-md-3 m-1"> 
-            <a href="logout"> Wyloguj</a>
+            <a href="{{route('users.logOut')}}"> Wyloguj</a>
         </div>
     </div>
 
@@ -55,7 +55,7 @@
             Username : <br>
                 <i id="UserName"> {{ $LogedUserInfo['name'] }} </i> 
 
-                <form action="update/{{$LogedUserInfo['id']}}" method="POST" id="changeUserName" style="display: none">
+                <form action="{{ route('users.update', ['user' =>$LogedUserInfo['id']]) }}" method="POST" id="changeUserName" style="display: none">
                 @method('PUT')
                 @csrf
                     <input type="text" name="username" id="username" required>
@@ -65,12 +65,12 @@
                 </form>
                 
                 <i class="bi bi-gear m-1" onclick="Change('UserName')"></i> <br>
-            <div class="w-100 border"></div>
+            <div class="w-100 border my-1"></div>
 
             e-mail :  <br>
                 <i id="UserEmail"> {{ $LogedUserInfo['email'] }} </i> 
 
-                <form action="update/{{$LogedUserInfo['id']}}" method="post" id="changeUserEmail" style="display: none">
+                <form action="{{ route('users.update', ['user' =>$LogedUserInfo['id']]) }}" method="post" id="changeUserEmail" style="display: none">
                 @method('PUT')
                 @csrf
                     <input type="text" name="email" id="email" required>
@@ -80,11 +80,20 @@
                 </form>
 
                 <i class="bi bi-gear m-1" onclick="Change('UserEmail')"></i> <br>
-            <div class="w-100 border m-1"></div>
+            <div class="w-100 border my-1"></div>
 
             Użytkownik od : <br>
                 <i> {{$LogedUserInfo['created_at']}} </i> 
-            <div class="w-100 border"></div>
+            <div class="w-100 border my-1"></div>
+            {{-- {{dd($LogedUserInfo['id']);}} --}}
+            <form action="{{ route('users.destroy' , [ 'user'=> $LogedUserInfo['id']]) }}" method="post"> 
+                @method('delete')
+                @csrf
+                <button type="submit" class="btn border"> 
+                    Usuń
+                 </button>
+            </form>
+            
         </div>
     </div>
 </div>

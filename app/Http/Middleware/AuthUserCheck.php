@@ -17,22 +17,22 @@ class AuthUserCheck
 
     public function handle(Request $req, Closure $next)
     {
-        if(!session()->has('loggedUser') && ($req->path() =='user/view' && $req->path() != 'user'))
+        if(!session()->has('loggedUser') &&  ($req->path() != 'user/users' && $req->path() != 'user/login'))
         {
-            return redirect('user')->with('fail','You must be logged in');
+            return redirect()->route('users.index');
         }
-        if(session()->has('loggedUser') && ($req->path() =='user'))
+        if(session()->has('loggedUser') && ($req->path() =='user/users'))
         {
-            return redirect('user/view');
+            return redirect()->route( 'users.show',['user'=> session('loggedUser')] );
         }
         if(!session()-> has('loggedUser') &&  $req->path() =='user/logout')
         {
             return back();
         }
-        if(session()-> has('logedAdmin'))
-        {
-            return redirect('/admin/logout');
-        }
+        // if(session()-> has('logedAdmin'))
+        // {
+        //     return redirect('/admin/logout');
+        // }
         return $next($req);
     }
 
