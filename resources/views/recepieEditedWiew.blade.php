@@ -1,4 +1,5 @@
-@include('layouts/navbar')
+@extends('layouts.app')
+@section('content')
 
 <div class="row text-center borderBottom-color-yellow">
     <h1>{{$RecepieMain['title']}}</h1>
@@ -57,4 +58,4 @@
 </div>
 @endfor
 
-@include('layouts/fotter')
+@endsection

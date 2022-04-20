@@ -1,5 +1,6 @@
+@extends('layouts.app')
+@section('content')
 
-@include('layouts/navbar')
 <body onload='changeSlide("none")'>
   <div class="container-fluid" >
 
@@ -78,7 +79,7 @@
   </div>
 
 </body>
-@include('layouts/fotter')
+@endsection
 
 {{--  SCRIPT SECTION  --}}
 <script> 

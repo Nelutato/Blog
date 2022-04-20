@@ -1,4 +1,6 @@
-@include('layouts/navbar')
+@extends('layouts.app')
+@section('content')
+
 <script>
     const button = document.getElementById("count");
     const wynik = document.getElementById("wynik");
@@ -199,3 +201,4 @@ $Recepie = $editedRecepie;
         </div>
     {{$i++}}
     @endforeach
+@endsection

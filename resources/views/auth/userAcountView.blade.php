@@ -1,4 +1,5 @@
-@include('layouts/navbar')
+@extends('layouts.app')
+@section('content')
 
 <script>
     function Change(wich)
@@ -25,11 +26,16 @@
         </div>
 
         <div class="col-md-3 m-1"> 
-            <a href="{{route('users.logOut')}}"> Wyloguj</a>
+            <form action="{{ route('logout' , [ 'user'=> $LogedUserInfo['id']]) }}" method="post"> 
+                @csrf
+                <button type="submit" class="btn border border-danger"> 
+                        Wyloguj
+                </button>
+            </form>
         </div>
     </div>
 
-    <div class="row d-flex justify-content-center">
+    <div class="row d-flex justify-content-center m-1">
         <div class="col-md-6 m1 border p-2">  
 
             @if($errors->any())
@@ -54,46 +60,35 @@
 
             Username : <br>
                 <i id="UserName"> {{ $LogedUserInfo['name'] }} </i> 
-
-                <form action="{{ route('users.update', ['user' =>$LogedUserInfo['id']]) }}" method="POST" id="changeUserName" style="display: none">
-                @method('PUT')
-                @csrf
-                    <input type="text" name="username" id="username" required>
+                <form action="{{ route('update.name') }}" method="POST" id="changeUserName" style="display: none">
+                    @method('PUT')
+                    @csrf
+                    <input type="text" name="name" id="name" required>
                     <button type="submit" class="btn border">
                          Zmień
                     </button>
                 </form>
-                
-                <i class="bi bi-gear m-1" onclick="Change('UserName')"></i> <br>
+                <i class="bi bi-gear m-1" onclick="Change('UserName')">c</i> <br>
             <div class="w-100 border my-1"></div>
 
             e-mail :  <br>
                 <i id="UserEmail"> {{ $LogedUserInfo['email'] }} </i> 
-
-                <form action="{{ route('users.update', ['user' =>$LogedUserInfo['id']]) }}" method="post" id="changeUserEmail" style="display: none">
-                @method('PUT')
-                @csrf
+                <form action="{{ route('update.email', ['user' =>$LogedUserInfo['id']]) }}" method="post" id="changeUserEmail" style="display: none">
+                    @method('PUT')
+                    @csrf
                     <input type="text" name="email" id="email" required>
                     <button type="submit" class="btn border">
                          Zmień
                     </button>
                 </form>
-
-                <i class="bi bi-gear m-1" onclick="Change('UserEmail')"></i> <br>
+                <i class="bi bi-gear m-1" onclick="Change('UserEmail')">C</i> <br>
             <div class="w-100 border my-1"></div>
 
             Użytkownik od : <br>
                 <i> {{$LogedUserInfo['created_at']}} </i> 
             <div class="w-100 border my-1"></div>
-            {{-- {{dd($LogedUserInfo['id']);}} --}}
-            <form action="{{ route('users.destroy' , [ 'user'=> $LogedUserInfo['id']]) }}" method="post"> 
-                @method('delete')
-                @csrf
-                <button type="submit" class="btn border"> 
-                    Usuń
-                 </button>
-            </form>
-            
         </div>
     </div>
 </div>
+
+@endsection

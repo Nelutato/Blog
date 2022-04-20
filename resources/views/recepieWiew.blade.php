@@ -1,4 +1,5 @@
-@include('layouts/navbar')
+@extends('layouts.app')
+@section('content')
 
 <div class="container-flex" >
     <div class=" row d-flex text-center m-2  ">
@@ -124,3 +125,4 @@
         </div>
     {{$i++}}
     @endforeach
+@endsection

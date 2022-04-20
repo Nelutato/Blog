@@ -11,19 +11,6 @@ use App\Models\Coment;
 
 class EditRecepie extends Controller
 {
-    function showEditedControll($subpage, $slug)
-    {
-        if($subpage == "ShowFullEdited")
-        {
-            return $this->ShowEditedRecepie($slug);
-        }elseif($subpage == "list")
-        {
-            return $this->listEditedRecepies($slug);
-        }else
-        { 
-            return back(); 
-        }
-    }
 
     function listEditedRecepies($slug)
     {
@@ -100,16 +87,7 @@ class EditRecepie extends Controller
 
     function create(Request $req, $slug)
     {
-        if( null !== $req->session()->get('logedAdmin') )
-        {
-            $logedUser = $req->session()->get('logedAdmin');
-        }elseif( null !== $req->session()->get('loggedUser') )
-        {
-            $logedUser = $req->session()->get('loggedUser');
-        }else
-        {
-            return back();
-        }
+        $logedUser = Auth::user()->name;
 
         $req-> validate([
             'title' => 'required',

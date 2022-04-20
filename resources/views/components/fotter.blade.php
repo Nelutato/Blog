@@ -1,4 +1,4 @@
-<footer class="text-center" id="footer">
+<footer class="text-center border-top" id="footer">
     Coppyright Patryk Wojcik 2021-2022<br/>
     Contackt :
     <a href="#" class="link-secondary"> <i class="bi bi-phone-vibrate"></i> </a> 
