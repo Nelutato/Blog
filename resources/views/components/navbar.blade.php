@@ -7,7 +7,7 @@
 
       <ul class="navbar-nav m-2 mt-lg-0">
             <li class="nav-button nav-item active border p-1 border-light mx-1">
-                <a href="/Recepies" class="nav-link active">
+                <a href="{{ route('Recepie.index') }}" class="nav-link active">
                     Recepies
                 </a>
             </li>

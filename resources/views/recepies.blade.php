@@ -3,9 +3,9 @@
 
 <div class="container-fluid" >
 
-@include('components.Search-Sort')                
+{{-- @include('components.Search-Sort')                 --}}
 
-  @foreach ($Recepie as $recepie)
+  @foreach ($Recepies as $recepie)
     <?php
       $recepieBody = substr($recepie['body'],0,250);
       $ingredient = explode(',', $recepie["ingredients"] );
@@ -31,12 +31,7 @@
           @endfor
         </ul>
 
-        <a class="bg-light"
-        @if(isset($recepie['edited']))
-          href="{{ route( 'showEdited',['slug' =>$recepie['id']]) }}"
-        @else
-          href="/Recepies/Wiew/ {{ $recepie['id'] }}"
-        @endif >
+        <a class="bg-light" href="{{ route('Recepie.show',$recepie) }}">
           <button type="button" class="btn bg-own-green float-end">
             Więcej ...
           </button>

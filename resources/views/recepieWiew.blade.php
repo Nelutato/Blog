@@ -109,15 +109,16 @@
     </div>
 
     {{$i=0}}
+    {{-- {{ dd($coments) }} --}}
     @foreach ($coments as $coment)
-        @if ( $i ==10 || $coment_user[0]=="empty")
+        @if ( $i ==10 || $coment['user']=="empty")
             @break
         @endif
         <div class="row m-2 p-2 justify-content-center ">
             <div class="col-md-4 mx-auto border p-2">
                 <small class="float-end"> {{$coment['created_at']}} </small> <br>
                 <img src="{{URL('images/honeycomb.ico')}}" width="6%" class=" border rounded-circle" >
-               <b> {{ $coment_user[$i]['name'] }} : </b> 
+               <b> {{ $coment['user']['name'] }} : </b> 
                 <div class="border my-2">
                     {{$coment['comment']}}
                 </div>

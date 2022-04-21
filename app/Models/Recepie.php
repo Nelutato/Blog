@@ -13,12 +13,12 @@ class Recepie extends Model
     protected $primaryKey = 'id';
     protected $fillable = ['admin_id', 'body', 'title', 'ingredients', 'image', 'taste','speed', 'price'];
 
-    public function admin()
+    public function user()
     {
-        return $this-> belongsTo(Admin::class);
+        return $this-> belongsTo(User::class);
     }
-    public function recepieEdited()
+    public function coment()
     {
-        return $this-> hasMany(recepieEdited::class);
+        return $this->hasMany(Coment::class);
     }
 }
