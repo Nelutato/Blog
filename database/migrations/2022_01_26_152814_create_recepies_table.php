@@ -15,16 +15,16 @@ class CreateRecepiesTable extends Migration
     {
         Schema::create('recepies', function (Blueprint $table) {
             $table->id();
-            $table-> unsignedBiginteger('admin_id');
+            $table-> foreignId('user_id')->constrained('users');
+            $table-> unsignedBiginteger('primary');
             $table-> text('body');
             $table-> text('title');
             $table-> text('ingredients');
             $table->string ('image');
+            $table-> integer('taste');
+            $table-> integer('speed');
+            $table-> integer('price'); 
             $table->timestamps();
-            $table-> foreign('admin_id')
-            ->references('id')
-            ->on('admins')
-            ->onDelete('cascade');
         });
     }
 
