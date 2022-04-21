@@ -14,10 +14,10 @@ Route::get('/home', [HomeController::class, 'index'])->name('home');
 
 Route::group(['prefix' => 'user'], function()
 {
-Auth::routes();
-Route::get('/',[HomeController::class, 'userView'])->name('userView');
-Route::put('/updateName',[UserUpdate::class , 'updateName'])->name('update.name');
-Route::put('/updateEmail',[UserUpdate::class , 'updateEmail'])->name('update.email');
+    Auth::routes();
+    Route::get('/',[HomeController::class, 'userView'])->name('userView');
+    Route::put('/updateName',[UserUpdate::class , 'updateName'])->name('update.name');
+    Route::put('/updateEmail',[UserUpdate::class , 'updateEmail'])->name('update.email');
 });
 
 Route::group(['middleware' => 'auth' ,
@@ -33,14 +33,9 @@ Route::group(['middleware' => 'auth' ,
 
 Route::group(['prefix'=>'Recepies'],
     function(){
-        Route::resource('Recepie','RecepieController');    
-        // Route::post('/', [SearchSortEngine::class , 'sort',])->name('sorting');
-        // Route::get('/Wiew/{slug}', [RecepiesController::class , 'showFullRecepie']);
-        // Route::put('/Wiew/{subpage}/{slug}',[recepieOpinion::class, 'opinion']);
+        Route::resource('Recepie','RecepieController')->except('destroy, update, edit');    
         // Route::post('/addComent/{slug}', [ComentControll::class , 'addComment']);
-        // Route::post('/edited/addComent/{slug}', [ComentControll::class , 'addComment']);
-        // Route::get('/edited/ShowEdited/{slug}', [EditRecepie::class, 'showEditedRecepie'])->name('showEdited');
-        // Route::get('/edited/list/{slug}', [EditRecepie::class, 'listEditedRecepies'])->name('listEdited');
+        // Route::get('/list/{slug}', [RecepieCotroller::class, 'listEditedRecepies'])->name('listEdited');
     }
 );
 Route::redirect('/', '/welcome');
