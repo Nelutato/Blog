@@ -9,13 +9,13 @@ class Recepie extends Model
 {
     use HasFactory;
 
-    protected $table= 'recepies';
+    protected $table = 'recepies';
     protected $primaryKey = 'id';
-    protected $fillable = ['admin_id', 'body', 'title', 'ingredients', 'image', 'taste','speed', 'price'];
+    protected $fillable = ['admin_id', 'body', 'title', 'ingredients', 'image', 'taste', 'speed', 'price'];
 
     public function user()
     {
-        return $this-> belongsTo(User::class);
+        return $this->belongsTo(User::class);
     }
     public function coment()
     {

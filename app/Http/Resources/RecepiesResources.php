@@ -14,14 +14,6 @@ class RecepiesResources extends JsonResource
      */
     public function toArray($request)
     {
-        return [
-            'id' => $this->id,
-            'title' => $this->title,
-            'body' => Str::limit($this->body, 40),
-            'ingridients' => $this->ingridients,
-            'user' => UserResource::make($this->user_id)
-        ];
-
-        // return parent::toArray($request);
+        return parent::toArray($request);
     }
 }

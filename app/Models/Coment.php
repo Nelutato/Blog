@@ -12,10 +12,11 @@ class Coment extends Model
     {
         return $this->belongsTo(Recepie::class);
     }
+
     public function User()
     {
         return $this->belongsTo(User::class);
     }
-    protected $fillable = ['user_id', 'recepie_id', 'comment'];
 
+    protected $fillable = ['user_id', 'recepie_id', 'coment'];
 }
