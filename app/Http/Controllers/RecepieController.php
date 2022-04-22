@@ -6,6 +6,7 @@ use App\Models\Recepie;
 use App\Models\Coment;
 use App\Models\User;
 use Auth;
+use Carbon\Carbon;
 use App\Http\Resources\UserResource;
 use App\Http\Resources\RecepiesResources;
 use Illuminate\Http\Request;
@@ -14,40 +15,48 @@ class RecepieController extends Controller
 {
     public function index()
     {
-        $Recepies = Recepie::all();
+        $Recepies = Recepie::whereColumn('id', 'primary')->get();
         return view('recepies', compact('Recepies'));
     }
 
     public function create()
     {
-        return view('createPostForm');
+        return view('CreateRecepie');
     }
 
-    public function store(Request $request)
+    public function store(Request $request, $slug = null)
     {
-        $req->validate([
+        $request->validate([
             'title' => 'required',
             'body' => 'required',
             'image' => 'required',
             'ingredients' => 'required',
         ]);
 
-        $logedUser = Auth::user()->name;
         $timeYMD = carbon::now()->toDateString();
         $timeHMS = carbon::now()->toTimeString();
-        $imageName = $logedUser . '_' . $timeYMD . '_' . $timeHMS . '.png';
+        $imageName = Auth::user()->name . '_' . $timeYMD . '_' . $timeHMS . '.png';
         $pathToFile = public_path('images') . '/' . $imageName;
-        $req->image->move($pathToFile);
+        $request->image->move($pathToFile);
 
-        Recepie::create([
-            'admin_id' => $logedUser,
-            'title' => $req->input('title'),
-            'body' => $req->input('body'),
+        $Recepie = Recepie::create([
+            'user_id' => Auth::id(),
+            'title' => $request->input('title'),
+            'body' => $request->input('body'),
             'image' => $imageName,
-            'ingredients' => $req->input('ingredients'),
+            'ingredients' => $request->input('ingredients'),
+            'primary' => 0,
         ]);
 
-        return redirect()->route('Recepie');
+        if (isset($slug)) {
+            $Recepie->primary = $slug;
+        } else {
+            $Recepie->primary = $Recepie->id;
+        }
+        // dd($Recepie, $slug);
+        $Recepie->save();
+
+        return redirect()->route('Recepie.show', [$Recepie]);
     }
 
     public function show($recepie)
@@ -81,6 +90,27 @@ class RecepieController extends Controller
             ->with(['Recepie' => $Recepie]);
     }
 
+    function addComment(Request $req, $slug)
+    {
+        Coment::create([
+            'user_id' => Auth::id(),
+            'recepie_id' => $slug,
+            'comment' => $req->input('comment'),
+        ]);
+        return back();
+    }
+
+    function listSubRecepies($slug)
+    {
+        return view('SubRecepieList', [
+            'Recepie' => Recepie::where('primary', '=', $slug)->get(),
+        ]);
+    }
+
+    function subRecepieCreateForm($slug)
+    {
+        return view('CreateSubRecepie', ['id' => $slug]);
+    }
     // public function edit(Recepie $recepie)
     // {
     //     return "not Ready";

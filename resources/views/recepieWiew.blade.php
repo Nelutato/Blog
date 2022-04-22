@@ -6,12 +6,12 @@
 
             <div class="my-1 float-start w-75">
                 <h1>{{ $Recepie['title'] }}</h1> <br>
-                <a href="/create/edit/{{ $Recepie['id'] }}" class="linkFont">
+                <a href="/create/sub/{{ $Recepie['id'] }}" class="linkFont">
                     <button class="btn border bg-own-yellow ">
                         Edytuj
                     </button>
                 </a>
-                <a href="/Recepies/edited/list/{{ $Recepie['id'] }}" class="linkFont">
+                <a href="{{ route('list', $Recepie['id']) }}" class="linkFont">
                     <button class="btn border bg-own-yellow ">
                         przeglądaj inne wersje
                     </button>

@@ -11,7 +11,7 @@ class Recepie extends Model
 
     protected $table = 'recepies';
     protected $primaryKey = 'id';
-    protected $fillable = ['admin_id', 'body', 'title', 'ingredients', 'image', 'taste', 'speed', 'price'];
+    protected $fillable = ['user_id', 'primary', 'body', 'title', 'ingredients', 'image', 'taste', 'speed', 'price'];
 
     public function user()
     {
