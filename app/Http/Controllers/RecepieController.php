@@ -36,8 +36,9 @@ class RecepieController extends Controller
         $timeYMD = carbon::now()->toDateString();
         $timeHMS = carbon::now()->toTimeString();
         $imageName = Auth::user()->name . '_' . $timeYMD . '_' . $timeHMS . '.png';
-        $pathToFile = public_path('images') . '/' . $imageName;
-        $request->image->move($pathToFile);
+        $pathToFile = public_path('images') . '/';
+        // dd($pathToFile, $imageName);
+        $request->image->move($pathToFile, $imageName);
 
         $Recepie = Recepie::create([
             'user_id' => Auth::id(),
