@@ -15,7 +15,7 @@ class RecepieController extends Controller
 {
     public function index()
     {
-        $Recepies = Recepie::whereColumn('id', 'primary')->get();
+        $Recepies = Recepie::whereColumn('id', 'primary')->paginate(5);
         return view('recepies', compact('Recepies'));
     }
 
@@ -53,7 +53,6 @@ class RecepieController extends Controller
         } else {
             $Recepie->primary = $Recepie->id;
         }
-        // dd($Recepie, $slug);
         $Recepie->save();
 
         return redirect()->route('Recepie.show', [$Recepie]);
@@ -78,11 +77,11 @@ class RecepieController extends Controller
     {
         $order = $request->input();
         if (($order == 'ASC') | ($order == 'DESC')) {
-            $Recepie = Recepie::orderBy('created_at', $order)->get();
+            $Recepie = Recepie::orderBy('created_at', $order)->paginate(5);
         } elseif (($order == 'price') | ($order == 'taste') | ($order == 'speed')) {
-            $Recepie = Recepie::orderBy($order, 'ASC')->get();
+            $Recepie = Recepie::orderBy($order, 'ASC')->paginate(5);
         } else {
-            $Recepie = Recepie::get();
+            $Recepie = Recepie::paginate(5);
         }
 
         return redirect()
@@ -111,13 +110,21 @@ class RecepieController extends Controller
     {
         return view('CreateSubRecepie', ['id' => $slug]);
     }
-    // public function edit(Recepie $recepie)
-    // {
-    //     return "not Ready";
-    // }
 
-    // public function update(Request $request, Recepie $recepie)
-    // {
-    //     return "not Ready";
-    // }
+    function opinion(Request $request, $slug)
+    {
+        $recepies = Recepie::where('id','=',$slug )->first();
+
+        $newTaste = ($recepies->taste + $request->input('taste'))/2;
+        $newSpeed = ($recepies->speed + $request->input('speed'))/2;
+        $newPrice = ($recepies->price + $request->input('price'))/2;
+
+        $recepies->update([
+            'taste'=> $newTaste,
+            'speed'=> $newSpeed,
+            'price'=> $newPrice
+        ]);   
+
+        return back();
+    }
 }

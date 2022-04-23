@@ -32,7 +32,6 @@
                 Więcej ...
               </button>
             </a>
-
       </div>
 
       <div class="col-md-3 text-center bg-light">
@@ -82,7 +81,7 @@
 @endsection
 
 {{--  SCRIPT SECTION  --}}
-<script> 
+<script type="text/javascript" > 
   i=0;
   var Recepie = <?php  echo json_encode($Recepie); ?>;
  
@@ -105,7 +104,7 @@
      document.getElementById("recepieBody").innerHTML = Recepie[i]['body'].substr(0,150); 
      document.getElementById("created_at").innerHTML = adDate.toDateString();
      document.getElementById("ingredients_list").innerHTML = Recepie[i]['ingredients'].split(',');
-     document.getElementById("moreButton").href = "/Recepies/Wiew/"+Recepie[i]['id'];
+     document.getElementById("moreButton").href =  "{{ route('Recepie.show',['Recepie'=>$Recepie[0]]) }}" ;
      document.getElementById("recepieImage").src= "http://localhost:8000/images/"+Recepie[i]['image'];
    }
  </script>

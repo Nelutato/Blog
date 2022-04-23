@@ -11,7 +11,7 @@
                         Edytuj
                     </button>
                 </a>
-                <a href="{{ route('list', $Recepie['id']) }}" class="linkFont">
+                <a href="{{ route('Recepie.list', $Recepie['id']) }}" class="linkFont">
                     <button class="btn border bg-own-yellow ">
                         przeglądaj inne wersje
                     </button>
@@ -19,7 +19,7 @@
             </div>
 
             <div class="w-25">
-                <form action="/Recepies/Wiew/AddOpinion/{{ $Recepie['id'] }}" method="POST">
+                <form action="{{ route( 'Recepie.opinion', ['slug'=> $Recepie['id']] ) }}" method="POST">
                     @method('PUT')
                     @csrf
                     <input type="text" name="id" value="{{ $Recepie['id'] }}" hidden>
@@ -75,57 +75,66 @@
                     style="max-height: 300px">
             </div>
 
-            <div class="col-md-6 p-2 m-1">
-                {{ $Recepie['body'] }}
-                Lorem ipsum dolor,sit amet consectetur adipisicing elit. Necessitatibus, exercitationem! Pariatur, minima?
+            <div class="col-md-6  border-top p-2 m-1">
+                {{ $Recepie['body'] }} <br>
+                <i>Lorem ipsum dolor,sit amet consectetur adipisicing elit. Necessitatibus, exercitationem! Pariatur, minima?
                 Natus itaque facilis quisquam ipsum officia maiores quas voluptatibus qui quis. Sequi tempora corporis
                 provident reprehenderit voluptates. Facere fugiat esse dolorem consequuntur doloribus quod ducimus obcaecati
                 quis aut libero. Ducimus molestiae quasi dignissimos ad officia explicabo quae, asperiores ipsam et magni
-                quia aliquam exercitationem rem dolorum nemo aperiam!
+                quia aliquam exercitationem rem dolorum nemo aperiam!</i>
             </div>
         </div>
 
         {{-- coment Section --}}
 
         <div class="row m-3 p-2 border-top justify-content-center">
-            @Auth
+            
                 <div class="col-md-4 border p-2">
-                    <form action={{ url('/Recepies/addComent/' . $Recepie['id']) }} method="post">
-                        @csrf
-                        <img src="{{ URL('images/honeycomb.ico') }}" width="6%" class=" border rounded-circle m-1">
-                        {{ Auth::user()->name }} :
-                        <textarea name="comment" id="comment" class="form-control" rows="2"> </textarea>
-                        <div class="my-1">
-                            <button type="submit" class="btn btn-success float-end m-1">
-                                skomętuj
-                            </button>
-                        </div>
-                    </form>
-                    @if ($errors->any())
-                        @foreach ($errors->all() as $error)
-                            <br> {{ $error }}
-                        @endforeach
-                    @endif
+                    @Auth
+                        <form action={{ url('/Recepies/addComent/' . $Recepie['id']) }} method="post">
+                            @csrf
+                            <img src="{{ URL('images/honeycomb.ico') }}" width="6%" class=" border rounded-circle m-1">
+                            {{ Auth::user()->name }} :
+                            <textarea name="comment" id="comment" class="form-control" rows="2"> </textarea>
+                            <div class="my-1">
+                                <button type="submit" class="btn btn-success float-end m-1">
+                                    skomętuj
+                                </button>
+                            </div>
+                        </form>
+                        @if ($errors->any())
+                            @foreach ($errors->all() as $error)
+                                <br> {{ $error }}
+                            @endforeach
+                        @endif
+                    @endauth
+                    @guest
+                       <b class="m-2"> Need to log in to add coment </b>
+                    @endguest
                 </div>
-            @endauth
+            
         </div>
         <!-- prettier-ignore Oh why that dosn't work :( ) -->
 
-        @foreach ($coments as $coment)
+        @forelse ($coments as $coment)
             @if ($loop->iteration == 10 || $coment['user'] == 'empty')
-            @break
-        @endif
-        <div class="row m-2 p-2 justify-content-center ">
-            <div class="col-md-4 mx-auto border p-2">
-                <small class="float-end"> {{ $coment['created_at'] }} </small> <br>
-                <img src="{{ URL('images/honeycomb.ico') }}" width="6%" class=" border rounded-circle">
-                <b> {{ $coment['user']['name'] }} : </b>
-                <div class="border my-2">
-                    {{ $coment['comment'] }}
+                @break
+            @endif
+            <div class="row m-2 p-2 justify-content-center ">
+                <div class="col-md-4 mx-auto border p-2">
+                    <small class="float-end"> {{ $coment['created_at'] }} </small> <br>
+                    <img src="{{ URL('images/honeycomb.ico') }}" width="6%" class=" border rounded-circle">
+                    <b> {{ $coment['user']['name'] }} : </b>
+                    <div class="border my-2">
+                        {{ $coment['comment'] }}
+                    </div>
                 </div>
             </div>
-        </div>
-    @endforeach
+            @empty
+            <div class="row m-2 p-2 text-center ">
+                <h4> no coments avilable ..</h4>
+            </div>
+        @endforelse
 
 </div>
 @endsection

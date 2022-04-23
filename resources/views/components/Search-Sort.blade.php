@@ -1,7 +1,7 @@
 <div class="container border">
     <div class="row d-flex justify-content-between m-3 p-1">
         <div class="col-md-3">
-            <form action={{ route('sort') }} method="POST">
+            <form action={{ route('Recepie.sort') }} method="POST">
                 @csrf
                 <select name="sort" id="sort">
                     <option value="ASC" selected> older_to_ealier </option>

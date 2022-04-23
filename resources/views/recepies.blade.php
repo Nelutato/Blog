@@ -43,8 +43,14 @@
                 <img src="{{ asset('images/' . $recepie['image']) }}" alt="IMG" class="img-fluid "
                     style="height: 250px ;width: 300px">
             </div>
-
         </div>
     @endforeach
+
+    <div class="row justify-content-center">
+        <div class="col-md-3 p-2 ">
+            {{ $Recepies->links() }}
+        </div>
+    </div>
+    
 </div>
 @endsection
