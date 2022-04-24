@@ -36,7 +36,7 @@ class RouteServiceProvider extends ServiceProvider
     public function boot()
     {
         Route::pattern('slug','[0-9]+');
-        Route::pattern('subpage','[A-Za-a]+');
+        Route::pattern('Recepie','[0-9]+');
         $this->configureRateLimiting();
 
         $this->routes(function () {
