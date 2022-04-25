@@ -22,13 +22,13 @@ class UserRegisterTest extends TestCase
     {
         $password="12345678";
 
-        $response = $this->post('user/register', [
+        $response = $this->post('user/register', $array = [
             'name' => $this->faker()->name(),
             'email' => $this->faker()->email(),
             'password' => $password,
             'password_confirmation' => $password,
         ]); 
-
+        
         $response->assertRedirect('user');
         $this->assertAuthenticated();
     }
