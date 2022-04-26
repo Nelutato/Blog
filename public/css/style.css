@@ -103,3 +103,7 @@ select:hover
 {
     color:rgb(74, 74, 248);
 }
+#ingredients input
+{
+    margin: 3px;
+}

@@ -9,20 +9,24 @@
                 @endforeach
             </div>
         @endif
+        <div class="col-md-3">
+            <form action="{{ route('Recepie.store') }}" method="POST" enctype="multipart/form-data">
+                @csrf
+                Title: <br>
+                <input type="text" name="title" id=""> <br>
+                Img: <br>
+                <input type="file" name="image" class="from-control"> <br>
+                ingredients: <br>
+                <div id="ingredients">
+                    <input type="text" name="ingredients[0]" id=""> 
+                    <div class="btn border" onclick="addIngredient()"> + </div> <br>
+                </div>
+                body: <br>
+                <textarea name="body" id="body" cols="30" rows="10">
+                </textarea><br>
+                <button type="submit" class="btn btn-primary m-1"> post </button>
 
-        <form action="{{ route('Recepie.store') }}" method="POST" enctype="multipart/form-data">
-            @csrf
-            Title: <br>
-            <input type="text" name="title" id=""> <br>
-            Img: <br>
-            <input type="file" name="image" class="from-control"> <br>
-            ingredients: <br>
-            <input type="text" name="ingredients" id=""> <br>
-            body: <br>
-            <textarea name="body" id="body" cols="30" rows="10">
-            </textarea><br>
-            <button type="submit" class="btn btn-primary m-1"> post </button>
-
-        </form>
+            </form>
+        </div>
     </div>
 @endsection

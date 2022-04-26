@@ -6,7 +6,7 @@
 
             <div class="my-1 float-start w-75">
                 <h1>{{ $Recepie['title'] }}</h1> <br>
-                <a href="/create/sub/{{ $Recepie['id'] }}" class="linkFont">
+                <a href="{{ route('subCreateForm', $Recepie['id']) }}" class="linkFont">
                     <button class="btn border bg-own-yellow ">
                         Edytuj
                     </button>

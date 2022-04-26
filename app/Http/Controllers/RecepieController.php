@@ -32,19 +32,24 @@ class RecepieController extends Controller
             'image' => 'required',
             'ingredients' => 'required',
         ]);
-
+        $listIngredients= "";
+        foreach ($request->input('ingredients') as $ingredient)
+        {
+            $listIngredients .= $ingredient." , ";
+        }
+        
         $timeYMD = carbon::now()->toDateString();
         $timeHMS = carbon::now()->toTimeString();
         $imageName = Auth::user()->name . '_' . $timeYMD . '_' . $timeHMS . '.png';
         $pathToFile = public_path('images') . '/';
         $request->image->move($pathToFile, $imageName);
-
+        
         $Recepie = Recepie::create([
             'user_id' => Auth::id(),
             'title' => $request->input('title'),
             'body' => $request->input('body'),
             'image' => $imageName,
-            'ingredients' => $request->input('ingredients'),
+            'ingredients' => substr($listIngredients,0,-2),
             'primary' => 0,
         ]);
 

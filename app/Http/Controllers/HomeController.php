@@ -17,6 +17,7 @@ class HomeController extends Controller
     public function userView()
     {
         $logedUser = auth::user();
-        return view('auth.userAcountView', ['LogedUserInfo' => $logedUser]);
+        $userRecepies = Recepie::where('user_id', '=', $logedUser['id'])->take(3)->get();
+        return view('auth.userAcountView', ['LogedUserInfo' => $logedUser, 'ownRecepies'=>$userRecepies]);
     }
 }
