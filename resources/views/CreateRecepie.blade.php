@@ -9,13 +9,16 @@
                 @endforeach
             </div>
         @endif
-        <div class="col-md-3">
+        <div class="col-md-3 text-center">
             <form action="{{ route('Recepie.store') }}" method="POST" enctype="multipart/form-data">
                 @csrf
                 Title: <br>
                 <input type="text" name="title" id=""> <br>
                 Img: <br>
-                <input type="file" name="image" class="from-control"> <br>
+                <label for="image">
+                    <input type="file" name="image" id="image" class="from-control" hidden>
+                    <span class="img-thumbnail " id="addImage">+</span>
+                </label> <br>
                 ingredients: <br>
                 <div id="ingredients">
                     <input type="text" name="ingredients[0]" id=""> 

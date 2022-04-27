@@ -2,7 +2,7 @@
 @section('content')
 
     <div class="row d-flex justify-content-center">
-        <div class="col-md-8 text-center">
+        <div class="col-md-3 text-center">
             <form action={{ route('subCreate', ['slug' => $id]) }} method="POST" enctype="multipart/form-data">
                 @csrf
                 <b> Title : </b><br>
@@ -14,7 +14,10 @@
                 </label>
                 <br>
                 <b> ingredients : </b> <br>
-                <input type="text" name="ingredients" class="input-own"> <br>
+                <div id="ingredients">
+                    <input type="text" name="ingredients[0]" id=""> 
+                    <div class="btn border" onclick="addIngredient()"> + </div> <br>
+                </div>
                 <b> body : </b> <br>
                 <textarea name="body" id="body" class="input-own" cols="30" rows="10">
                     </textarea><br>

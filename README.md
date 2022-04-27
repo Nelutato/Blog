@@ -14,7 +14,7 @@ name: Test <br/>
 email: Test@gmail.com <br/>
 password: password  <br/>
 <br/>
-<p>Tests </p> <br/>
+<p>Tests: </p> <br/>
 <b> Unit</b> <br/>
 UserLoginTest <br/>
 UserRegisterTest <br/>
