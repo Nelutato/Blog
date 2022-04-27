@@ -5,11 +5,13 @@ namespace App\Http\Controllers;
 use App\Models\Recepie;
 use App\Models\Coment;
 use App\Models\User;
-use Auth;
-use Carbon\Carbon;
 use App\Http\Resources\UserResource;
 use App\Http\Resources\RecepiesResources;
 use Illuminate\Http\Request;
+use Auth;
+use File;
+use Image;
+use Carbon\Carbon;
 
 class RecepieController extends Controller
 {
@@ -32,18 +34,17 @@ class RecepieController extends Controller
             'image' => 'required',
             'ingredients' => 'required',
         ]);
+
         $listIngredients= "";
         foreach ($request->input('ingredients') as $ingredient)
         {
             $listIngredients .= $ingredient." , ";
         }
         
-        $timeYMD = carbon::now()->toDateString();
-        $timeHMS = carbon::now()->toTimeString();
-        $imageName = Auth::user()->name . '_' . $timeYMD . '_' . $timeHMS . '.png';
-        $pathToFile = public_path('images') . '/';
-        $request->image->move($pathToFile, $imageName);
-        
+        $image = $this->ResizeImage($request->image);
+        $imageName = Auth::user()->name . '_' . carbon::now()->toDateString() . '_' . carbon::now()->toTimeString(). '.png';
+        $image->save(public_path( 'images/'.$imageName));
+
         $Recepie = Recepie::create([
             'user_id' => Auth::id(),
             'title' => $request->input('title'),
@@ -53,13 +54,14 @@ class RecepieController extends Controller
             'primary' => 0,
         ]);
 
+        // Nev version or new recepie
         if (isset($slug)) {
             $Recepie->primary = $slug;
         } else {
             $Recepie->primary = $Recepie->id;
         }
-        $Recepie->save();
 
+        $Recepie->save();
         return redirect()->route('Recepie.show', [$Recepie]);
     }
 
@@ -131,5 +133,15 @@ class RecepieController extends Controller
         ]);   
 
         return back();
+    }
+
+    public function ResizeImage($image)
+    {
+        $ImageResize = Image::make($image->getRealPath());
+        $ImageResize->resize(500,NULL,function($constrain){
+            $constrain->aspectRatio();
+        });
+
+        return $ImageResize;
     }
 }
