@@ -86,6 +86,20 @@
                 Użytkownik od : <br>
                 <i> {{ $LogedUserInfo['created_at'] }} </i>
                 <div class="w-100 border my-1"></div>
+
+                Usuń konto <br>
+                <form action="{{ route('uesr.delete') }}" method="post"
+                    id="changeUserEmail">
+                    @method('delete')
+                    @csrf
+                    <input type="checkbox" name="sure" id="sure" required> 
+                    <i> Jestem pewny że chce usunąć konto </i> <br>
+                    <button type="submit" class="btn border">
+                        usuń
+                    </button>
+                </form>
+
+                <div class="w-100 border my-1"></div>
             </div>
         </div>
 

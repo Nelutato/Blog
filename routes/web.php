@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Auth\UserDeleteController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\UserUpdate;
 use Illuminate\Support\Facades\Auth;
@@ -15,6 +16,7 @@ Route::group(['prefix' => 'user'], function () {
     Route::get('/', [HomeController::class, 'userView'])->name('userView')->middleware('auth');
     Route::put('/updateName', [UserUpdate::class, 'updateName'])->name('update.name');
     Route::put('/updateEmail', [UserUpdate::class, 'updateEmail'])->name('update.email');
+    Route::delete('/deleteUser', [UserDeleteController::class, 'deleteUser'])->name('uesr.delete');
     Auth::routes();
 });
 
