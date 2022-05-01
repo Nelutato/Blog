@@ -58,20 +58,20 @@
 
                 Username : <br>
                 <i id="UserName"> {{ $logedAdminInfo['name'] }} </i>
-                {{-- <form action="{{ route('admin.update', ['admin' => $logedAdminInfo['id']]) }}" method="POST" id="changeUserName" style="display: none">
+                <form action="{{ route('admin.update', ['admin' => $logedAdminInfo['id']]) }}" method="POST" id="changeUserName" style="display: none">
                     @method('PUT')
                     @csrf
                     <input type="text" name="name" id="name" required>
                     <button type="submit" class="btn border">
                         Zmień
                     </button>
-                </form> --}}
+                </form>
                 <i class="bi bi-gear m-1" onclick="Change('UserName')">c</i> <br>
                 <div class="w-100 border my-1"></div>
 
                 e-mail : <br>
                 <i id="UserEmail"> {{ $logedAdminInfo['email'] }} </i>
-                {{-- <form action="{{ route('admin.update', ['admin' => $logedAdminInfo['id']]) }}" method="post"
+                <form action="{{ route('admin.update', ['admin' => $logedAdminInfo['id']]) }}" method="post"
                     id="changeUserEmail" style="display: none">
                     @method('PUT')
                     @csrf
@@ -79,7 +79,7 @@
                     <button type="submit" class="btn border">
                         Zmień
                     </button>
-                </form> --}}
+                </form>
                 <i class="bi bi-gear m-1" onclick="Change('UserEmail')">C</i> <br>
                 <div class="w-100 border my-1"></div>
 

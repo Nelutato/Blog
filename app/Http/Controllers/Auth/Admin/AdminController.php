@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Recepie;
+use Illuminate\Support\Facades\Validator;
 use Auth;
 
 class AdminController extends Controller
@@ -74,6 +75,18 @@ class AdminController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $validated = Validator::make($request->all(), [
+            'email'=> ['filled', 'min:8'],
+            'name' => ['filled', 'min:8'],
+        ]);
+        
+        if(isset($validated->safe()->name)){
+            $user = User::where( 'id','=', $id)->update(['name'=>$validated->safe()->name]);
+        }elseif(isset($validated->safe()->email)){
+            $user = User::where( 'id','=', $id)->update(['email'=>$validated->safe()->email]);
+        }
+        
+         return redirect()->back();
 
     }
 
