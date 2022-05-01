@@ -5,18 +5,24 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\UserUpdate;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\RecepieController;
-// use App\Http\Controllers\recepieOpinion;
 use App\Http\Controllers\HomeController;
-use App\Models\Recepie;
 
 Route::redirect('/', '/home');
 Route::get('/home', [HomeController::class, 'index'])->name('home');
 
-Route::group(['prefix' => 'user'], function () {
-    Route::get('/', [HomeController::class, 'userView'])->name('userView')->middleware('auth');
-    Route::put('/updateName', [UserUpdate::class, 'updateName'])->name('update.name');
-    Route::put('/updateEmail', [UserUpdate::class, 'updateEmail'])->name('update.email');
-    Route::delete('/deleteUser', [UserDeleteController::class, 'deleteUser'])->name('uesr.delete');
+Route::group(['prefix' => 'Auth'], function () {
+
+    Route::group(['prefix'=>'user', 'middleware'=>'auth'],function(){
+        Route::get('/', [HomeController::class, 'userView'])->name('userView')->middleware('auth');
+        Route::put('/updateName', [UserUpdate::class, 'updateName'])->name('update.name');
+        Route::put('/updateEmail', [UserUpdate::class, 'updateEmail'])->name('update.email');
+        Route::delete('/deleteUser', [UserDeleteController::class, 'deleteUser'])->name('uesr.delete');
+    });
+
+    Route::group(['prefix' => 'admin'],function(){
+        Route::resource('admin','Auth\Admin\AdminController')->except(['create','store']);
+    });
+
     Auth::routes();
 });
 

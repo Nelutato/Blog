@@ -16,8 +16,13 @@ class HomeController extends Controller
 
     public function userView()
     {
-        $logedUser = auth::user();
-        $userRecepies = Recepie::where('user_id', '=', $logedUser['id'])->take(3)->get();
-        return view('auth.userAcountView', ['LogedUserInfo' => $logedUser, 'ownRecepies'=>$userRecepies]);
+        if(Auth::user()->is_admin ==0 )
+        {
+            $logedUser = auth::user();
+            $userRecepies = Recepie::where('user_id', '=', $logedUser['id'])->take(3)->get();
+            return view('auth.userAcountView', ['LogedUserInfo' => $logedUser, 'ownRecepies'=>$userRecepies]);
+        }else {
+            return redirect()->route('admin.index');
+        }
     }
 }
