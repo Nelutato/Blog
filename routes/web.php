@@ -19,7 +19,7 @@ Route::group(['prefix' => 'Auth'], function () {
         Route::delete('/deleteUser', [UserDeleteController::class, 'deleteUser'])->name('uesr.delete');
     });
 
-    Route::group(['prefix' => 'admin'],function(){
+    Route::group(['prefix' => 'admin' , 'middleware'=>'auth'],function(){
         Route::resource('admin','Auth\Admin\AdminController')->except(['create','store']);
     });
 

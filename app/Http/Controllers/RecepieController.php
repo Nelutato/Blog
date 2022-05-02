@@ -72,7 +72,6 @@ class RecepieController extends Controller
         $coments = Coment::whereBelongsTo($recepie)
             ->with('user')
             ->get();
-
         return view('recepieWiew', [
             'Recepie' => $recepie,
             'creatorName' => $creatorName['name'],
