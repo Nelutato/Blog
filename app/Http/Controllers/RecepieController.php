@@ -81,18 +81,14 @@ class RecepieController extends Controller
 
     function sortRecepie(Request $request)
     {
-        $order = $request->input();
-        if (($order == 'ASC') | ($order == 'DESC')) {
-            $Recepie = Recepie::orderBy('created_at', $order)->paginate(5);
-        } elseif (($order == 'price') | ($order == 'taste') | ($order == 'speed')) {
-            $Recepie = Recepie::orderBy($order, 'ASC')->paginate(5);
-        } else {
-            $Recepie = Recepie::paginate(5);
-        }
-
-        return redirect()
-            ->back()
-            ->with(['Recepie' => $Recepie]);
+        $order = $request->input('sort');
+        if (($order == 'ASC') || ($order == 'DESC')) {
+            $Recepie = Recepie::whereColumn('id', 'primary')->orderBy('id', $order)->paginate(5);
+        } else{
+            $Recepie = Recepie::whereColumn('id', 'primary')->orderBy($order, 'ASC')->paginate(5);
+        } 
+        
+        return view('recepies')->with(['Recepies' => $Recepie]);
     }
 
     function addComment(Request $req, $slug)

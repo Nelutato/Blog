@@ -10,7 +10,7 @@ class HomeController extends Controller
 {
     public function index()
     {
-        $Recepie = Recepie::all();
+        $Recepie = Recepie::whereColumn('id', 'primary')->take(3)->get();
         return view('home', ['Recepie' => $Recepie]);
     }
 

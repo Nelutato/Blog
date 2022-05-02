@@ -1,6 +1,5 @@
 @extends('layouts.app')
 @section('content')
-    {{-- {{ dd($Recepie[0]['primary']) }} --}}
     <div class="row text-center">
         <h1>{{ $Recepie[0]['title'] }}</h1>
     </div>

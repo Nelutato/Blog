@@ -12,7 +12,7 @@
     <div class="row justify-content-center bg-light border m-2 border-2">
       <div class="float-end col-md-1 my-auto bg-light" onclick='changeSlide("UP")'>
         <h1 class="bg-light text-center "> 
-          <i class="bi bi-chevron-left bg-light"></i>
+          <i class="bi bi-chevron-left bg-light"><</i>
         </h1>
       </div> 
 
@@ -42,7 +42,7 @@
 
       <div class="float-end col-md-1 my-auto bg-light " onclick='changeSlide("DOWN")'>
         <h1 class="bg-light text-center "> 
-          <i class="bi bi-chevron-right bg-light"></i>
+          <i class="bi bi-chevron-right bg-light">></i>
         </h1>
       </div> 
     </div>
@@ -82,7 +82,7 @@
 
 {{--  SCRIPT SECTION  --}}
 <script type="text/javascript" > 
-  i=0;
+  var i=0;
   var Recepie = <?php  echo json_encode($Recepie); ?>;
  
   function changeSlide(wich)
@@ -97,14 +97,18 @@
      }else{
        i=0;
      }      
- 
+     
      var adDate = new Date(Recepie[i]['created_at']);
- 
+
+     var Route = "{{ route('Recepie.show',[ 'Recepie'=>$Recepie['0'] ]) }}";
+     var $IdIndex = Route.lastIndexOf("/");
+     Route = Route.slice(0 ,$IdIndex+1)+Recepie[i]['id'];
+     
      document.getElementById("title").innerHTML = Recepie[i]['title']; 
      document.getElementById("recepieBody").innerHTML = Recepie[i]['body'].substr(0,150); 
      document.getElementById("created_at").innerHTML = adDate.toDateString();
      document.getElementById("ingredients_list").innerHTML = Recepie[i]['ingredients'].split(',');
-     document.getElementById("moreButton").href =  "{{ route('Recepie.show',['Recepie'=>$Recepie[0]]) }}" ;
+     document.getElementById("moreButton").href =  Route ;
      document.getElementById("recepieImage").src= "http://localhost:8000/images/"+Recepie[i]['image'];
    }
  </script>

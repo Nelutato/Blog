@@ -11,7 +11,7 @@
                         Edytuj
                     </button>
                 </a>
-                <a href="{{ route('Recepie.list', $Recepie['id']) }}" class="linkFont">
+                <a href="{{ route('Recepie.list', $Recepie['primary']) }}" class="linkFont">
                     <button class="btn border bg-own-yellow ">
                         przeglądaj inne wersje
                     </button>
