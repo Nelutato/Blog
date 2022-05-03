@@ -38,8 +38,9 @@ Route::group(['prefix' => 'Recepies/'], function () {
         Route::put('/opinion/{slug}', [RecepieController::class, 'opinion'])->name('opinion');
         Route::post('/Recepie/{slug?}', [RecepieController::class, 'store'])->name('store');
     });
+
     Route::resource('Recepie', 'RecepieController')
-        ->only(['index', 'show']);
+        ->only(['index', 'show', 'destroy']);
 
 
     Route::group(

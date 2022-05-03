@@ -11,11 +11,22 @@
                         Edytuj
                     </button>
                 </a>
-                <a href="{{ route('Recepie.list', $Recepie['primary']) }}" class="linkFont">
-                    <button class="btn border bg-own-yellow ">
-                        przeglądaj inne wersje
-                    </button>
-                </a>
+                <form action="{{ route('Recepie.list', $Recepie['primary']) }}" method="POST">
+                    @csrf
+                    @method('DELETE')
+                        <button class="btn border bg-own-yellow " type="submit">
+                            przeglądaj inne wersje
+                        </button>
+                </form>
+                @auth
+                    @if(Auth::id() == $Recepie['user_id'])
+                        <a href="{{ route('Recepie.destroy ', $Recepie['id']) }}" class="linkFont">
+                            <button class="btn border bg-own-yellow ">
+                                Usuń przepis
+                            </button>
+                        </a>
+                    @endif
+                @endauth
             </div>
 
             <div class="w-25">

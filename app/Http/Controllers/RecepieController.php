@@ -139,4 +139,9 @@ class RecepieController extends Controller
 
         return $ImageResize;
     }
+    public function destroy($id)
+    {
+        Recepie::where('id' ,'=', $id)->delete();
+        return redirect()->route('Recepie.index');
+    }
 }
