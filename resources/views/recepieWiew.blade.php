@@ -4,7 +4,7 @@
         <div class=" row d-flex text-center m-2  ">
 
 
-            <div class="my-1 float-start w-75">
+            <div class="my-1 float-start w-75 justify-content-inline">
                 <h1>{{ $Recepie['title'] }}</h1> <br>
                 <a href="{{ route('subCreateForm', $Recepie['id']) }}" class="linkFont">
                     <button class="btn border bg-own-yellow ">
@@ -20,7 +20,7 @@
                 </form>
                 @auth
                     @if(Auth::id() == $Recepie['user_id'])
-                        <a href="{{ route('Recepie.destroy ', $Recepie['id']) }}" class="linkFont">
+                        <a href="{{ route('Recepie.destroy', $Recepie['id']) }}" class="linkFont">
                             <button class="btn border bg-own-yellow ">
                                 Usuń przepis
                             </button>
