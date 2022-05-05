@@ -100,4 +100,8 @@ class AdminController extends Controller
     {
         //
     }
+    public function dashboard()
+    {
+        return view('auth.admin.dashboard');
+    }
 }
