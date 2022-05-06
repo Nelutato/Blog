@@ -8,6 +8,8 @@ use App\Http\Controllers\RecepieController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\Auth\Admin\AdminController;
 
+// mysql stop worgink idk why :(
+
 Route::redirect('/', '/home');
 Route::get('/home', [HomeController::class, 'index'])->name('home');
 
