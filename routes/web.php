@@ -8,8 +8,6 @@ use App\Http\Controllers\RecepieController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\Auth\Admin\AdminController;
 
-// mysql stop worgink idk why :(
-
 Route::redirect('/', '/home');
 Route::get('/home', [HomeController::class, 'index'])->name('home');
 
@@ -23,8 +21,10 @@ Route::group(['prefix' => 'Auth'], function () {
     });
 
     Route::group(['prefix' => 'admin' , 'middleware'=>'auth'],function(){
-        Route::get('dashboard', [AdminController::class, 'dashboard'])->name('dashboard');
-        Route::resource('admin','AdminController')->except(['create','store']);
+        Route::group(['as'=>'admin.'],function(){
+            Route::get('dashboard', [AdminController::class, 'dashboard'])->name('dashboard');
+        });
+        Route::resource('admin','Auth\Admin\AdminController')->except(['create','store']);
     });
 
     Auth::routes();

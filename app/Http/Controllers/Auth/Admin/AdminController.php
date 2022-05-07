@@ -16,7 +16,7 @@ class AdminController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+     public function index()
     {
         $databaseCount['users'] = User::all()->count();
         $databaseCount['recepies'] = Recepie::all()->count();
@@ -102,6 +102,10 @@ class AdminController extends Controller
     }
     public function dashboard()
     {
-        return view('auth.admin.dashboard');
+        $users = User::all();
+        return view('auth.admin.dashboard',[
+            'users'=>$users,
+        ]);
     }
+
 }
