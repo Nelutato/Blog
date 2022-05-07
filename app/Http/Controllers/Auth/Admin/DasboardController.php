@@ -17,7 +17,7 @@ class DasboardController extends Controller
     }
     public function deleteUser($id)
     {
-        User::where('id','=',$id)->delere();
+        User::where('id','=',$id)->delete();
         return redirect()->back();
     }
 }

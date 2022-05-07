@@ -26,7 +26,7 @@
                             @endif
                         </td>
                         <td>
-                            <form action="{{ route( 'admin.deleteUser', ['id' => $user['id']] ) }}" method="POST">
+                            <form action="{{ route( 'admin.deleteUser', [ 'id' => $user['id'] ] ) }}" method="POST">
                                 @csrf
                                 @method('DELETE')
                                <button type="submit" class="btn border"> 

@@ -24,7 +24,7 @@ Route::group(['prefix' => 'Auth'], function () {
     Route::group(['prefix' => 'admin' , 'middleware'=>'auth'],function(){
         Route::group([ 'as' => 'admin.' , 'prefix' => 'dashboard' ],function(){
             Route::get('/', [DasboardController::class, 'dashboard'])->name('dashboard');
-            Route::get('deleteUser', [DasboardController::class, 'dashboard'])->name('deleteUser');
+            Route::delete('deleteUser/{id}', [DasboardController::class, 'deleteUser'])->name('deleteUser');
         });
         Route::resource('admin','Auth\Admin\AdminController')->except(['create','store']);
     });
