@@ -6,7 +6,8 @@ use App\Http\Controllers\Auth\UserUpdate;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\RecepieController;
 use App\Http\Controllers\HomeController;
-use App\Http\Controllers\Auth\Admin\AdminController;
+use App\Http\Controllers\Auth\Admin\DasboardController;
+
 
 Route::redirect('/', '/home');
 Route::get('/home', [HomeController::class, 'index'])->name('home');
@@ -21,8 +22,9 @@ Route::group(['prefix' => 'Auth'], function () {
     });
 
     Route::group(['prefix' => 'admin' , 'middleware'=>'auth'],function(){
-        Route::group(['as'=>'admin.'],function(){
-            Route::get('dashboard', [AdminController::class, 'dashboard'])->name('dashboard');
+        Route::group([ 'as' => 'admin.' , 'prefix' => 'dashboard' ],function(){
+            Route::get('/', [DasboardController::class, 'dashboard'])->name('dashboard');
+            Route::get('deleteUser', [DasboardController::class, 'dashboard'])->name('deleteUser');
         });
         Route::resource('admin','Auth\Admin\AdminController')->except(['create','store']);
     });

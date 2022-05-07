@@ -100,12 +100,6 @@ class AdminController extends Controller
     {
         //
     }
-    public function dashboard()
-    {
-        $users = User::all();
-        return view('auth.admin.dashboard',[
-            'users'=>$users,
-        ]);
-    }
+
 
 }
