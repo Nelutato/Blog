@@ -12,7 +12,8 @@ class DasboardController extends Controller
     public function dashboard()
     {
         $users = User::all();
-        $recepies = Recepie::all();
+        $recepies = Recepie::with('user')->get();
+        // dd($recepies);
         return view('auth.admin.dashboard',[
             'users' => $users,
             'recepies' => $recepies,
