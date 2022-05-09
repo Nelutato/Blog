@@ -14,19 +14,20 @@ Route::get('/home', [HomeController::class, 'index'])->name('home');
 
 Route::group(['prefix' => 'Auth'], function () {
 
-    Route::group(['prefix'=>'user', 'middleware'=>'auth'],function(){
+    Route::group(['prefix' => 'user', 'middleware' => 'auth'], function () {
         Route::get('/', [HomeController::class, 'userView'])->name('userView')->middleware('auth');
         Route::put('/updateName', [UserUpdate::class, 'updateName'])->name('update.name');
         Route::put('/updateEmail', [UserUpdate::class, 'updateEmail'])->name('update.email');
         Route::delete('/deleteUser', [UserDeleteController::class, 'deleteUser'])->name('uesr.delete');
     });
 
-    Route::group(['prefix' => 'admin' , 'middleware'=>'auth'],function(){
-        Route::group([ 'as' => 'admin.' , 'prefix' => 'dashboard' ],function(){
-            Route::get('/', [DasboardController::class, 'dashboard'])->name('dashboard');
+    Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
+        Route::group(['as' => 'admin.', 'prefix' => 'dashboard'], function () {
+            Route::get('/user', [DasboardController::class, 'dashboardUsers'])->name('dashboardUser');
+            Route::get('/Recepies', [DasboardController::class, 'dashboardRecepies'])->name('dashboardRecepies');
             Route::delete('deleteUser/{id}', [DasboardController::class, 'deleteUser'])->name('deleteUser');
         });
-        Route::resource('admin','Auth\Admin\AdminController')->except(['create','store']);
+        Route::resource('admin', 'Auth\Admin\AdminController')->except(['create', 'store']);
     });
 
     Auth::routes();

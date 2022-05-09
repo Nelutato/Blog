@@ -9,13 +9,17 @@ use Illuminate\Http\Request;
 
 class DasboardController extends Controller
 {
-    public function dashboard()
+    public function dashboardUsers()
     {
         $users = User::all();
+        return view('auth.admin.adminDashboard.dashboardUsers',[
+            'users' => $users
+        ]);
+    }
+    public function dashboardRecepies()
+    {
         $recepies = Recepie::with('user')->get();
-        // dd($recepies);
-        return view('auth.admin.dashboard',[
-            'users' => $users,
+        return view('auth.admin.adminDashboard.dashboardRecepies',[
             'recepies' => $recepies,
         ]);
     }
