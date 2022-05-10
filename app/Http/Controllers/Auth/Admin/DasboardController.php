@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Auth\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\User;
 use App\Models\Recepie;
+use App\Models\Coment;
 use Illuminate\Http\Request;
 
 class DasboardController extends Controller
@@ -23,9 +24,33 @@ class DasboardController extends Controller
             'recepies' => $recepies,
         ]);
     }
-    public function deleteUser($id)
+    public function dashboardComents()
     {
-        User::where('id','=',$id)->delete();
+        $coments = Coment::with('user','recepie')->get();
+        return view('auth.admin.adminDashboard.dashboardComents',[
+            'coments' => $coments,
+        ]);
+    }
+
+    public function dashboardDelete($who, $id)
+    {
+        if($who == 'user')
+            {User::where('id','=',$id)->delete();}
+        elseif($who == 'Recepie')
+            { Recepie::where('id','=',$id)->delete(); }
+        elseif($who == 'Coment')
+            { Coment::where('id','=',$id)->delete(); }
+
         return redirect()->back();
     }
+    // public function deleteRecepie($id)
+    // {
+    //     Recepie::where('id','=',$id)->delete();
+    //     return redirect()->back();
+    // }
+    // public function deleteComent($id)
+    // {
+    //     Coment::where('id','=',$id)->delete();
+    //     return redirect()->back();
+    // }
 }

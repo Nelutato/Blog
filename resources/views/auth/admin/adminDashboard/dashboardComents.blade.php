@@ -4,22 +4,20 @@
         <div class="col-md-8 d-flex justify-content-center mx-auto my-2">
             <table>    
                 <tr>
-                    <th> id</th>
-                    <th> tytuł </th>
+                    <th> Przepis</th>
                     <th> Stwożone przez: </th>
+                    <th> Komętarz</th>
                     <th> Utworzony </th>
-                    <th> Opinia </th>
                     <th> Usuń </th>
                 </tr>
-                @forelse ($recepies as $recepie)
+                @forelse ($coments as $coment)
                     <tr>
-                        <td>{{ $recepie['id'] }}</td>
-                        <td>{{ $recepie['title'] }}</td>
-                        <td>{{ $recepie->user->name }}</td>
-                        <td>{{ $recepie['created_at'] }}</td>
-                        <td>{{ round(($recepie['taste']+$recepie['speed']+$recepie['speed'])/3, 2) }}</td>
+                        <td>{{ $coment->recepie->id }}</td>
+                        <td>{{ $coment->user->name }}</td>
+                        <td>{{ $coment['comment'] }}</td>
+                        <td>{{ $coment['created_at'] }}</td>
                         <td>
-                            <form action="{{ route( 'admin.delete', [ 'id' => $recepie['id'], 'who' => 'Recepie' ] ) }}" method="POST">
+                            <form action="{{ route( 'admin.delete', [ 'id' => $coment['id'], 'who'=> 'Coment' ] ) }}" method="POST">
                                 @csrf
                                 @method('DELETE')
                             <button type="submit" class="btn border"> 
@@ -27,11 +25,11 @@
                                 </button>
                             </form>
                         </td>
-                    </tr> 
+                    </tr>  
                     @empty
                     <tr>
                        <td colspan="5" class="text-center "> <b> Empty </b> </td>
-                    </tr>     
+                    </tr>  
                 @endforelse
             </table>
         </div>

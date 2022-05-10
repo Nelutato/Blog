@@ -18,12 +18,12 @@
         </a>
     </li>
     <li class="nav-item mx-1" role="presentation">
-        <a href="{{ route('admin.dashboardUser') }}" class="nav-link active
+        <a href="{{ route('admin.dashboardComents') }}" class="nav-link active
             @if(!Request::is('*/dashboard'))
                 border
             @endif
         ">
-            somthing
+            coments
         </a>
     </li>
 </ul>

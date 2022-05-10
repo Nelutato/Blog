@@ -6,14 +6,15 @@
             <div class="col-md-8  m-auto d-flex justify-content-center">
                 <table>    
                     <tr>
-                        <th>Nazwa Użytkownika </th>
+                        <th>id </th>
                         <th>Email </th>
                         <th>Utworzony </th>
                         <th>Admin</th>
                         <th> Usuń </th>
                     </tr>
-                    @foreach ($users as $user)
+                    @forelse ($users as $user)
                         <tr>
+                            <td>{{ $user['id'] }}</td>
                             <td>{{ $user['name'] }}</td>
                             <td>{{ $user['email'] }}</td>
                             <td>{{ $user['created_at'] }}</td>
@@ -25,7 +26,7 @@
                                 @endif
                             </td>
                             <td>
-                                <form action="{{ route( 'admin.deleteUser', [ 'id' => $user['id'] ] ) }}" method="POST">
+                                <form action="{{ route( 'admin.delete', [ 'id' => $user['id'], 'who' => 'User' ] ) }}" method="POST">
                                     @csrf
                                     @method('DELETE')
                                 <button type="submit" class="btn border"> 
@@ -33,8 +34,12 @@
                                     </button>
                                 </form>
                             </td>
-                        </tr>    
-                    @endforeach
+                        </tr>
+                        @empty
+                            <tr>
+                                <td colspan="5" class="text-center "> <b> Empty </b> </td>
+                            </tr>   
+                    @endforelse
                 </table>
             </div>
         </div>

@@ -22,12 +22,14 @@ Route::group(['prefix' => 'Auth'], function () {
     });
 
     Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
+        Route::resource('admin', 'Auth\Admin\AdminController')->except(['create', 'store']);
+
         Route::group(['as' => 'admin.', 'prefix' => 'dashboard'], function () {
             Route::get('/user', [DasboardController::class, 'dashboardUsers'])->name('dashboardUser');
-            Route::get('/Recepies', [DasboardController::class, 'dashboardRecepies'])->name('dashboardRecepies');
-            Route::delete('deleteUser/{id}', [DasboardController::class, 'deleteUser'])->name('deleteUser');
+            Route::get('/recepies', [DasboardController::class, 'dashboardRecepies'])->name('dashboardRecepies');
+            Route::get('/coments', [DasboardController::class, 'dashboardComents'])->name('dashboardComents');
+            Route::delete('delete/{who}/{id}', [DasboardController::class, 'dashboardDelete'])->name('delete');
         });
-        Route::resource('admin', 'Auth\Admin\AdminController')->except(['create', 'store']);
     });
 
     Auth::routes();
