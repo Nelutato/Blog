@@ -43,14 +43,30 @@ class DasboardController extends Controller
 
         return redirect()->back();
     }
-    // public function deleteRecepie($id)
-    // {
-    //     Recepie::where('id','=',$id)->delete();
-    //     return redirect()->back();
-    // }
-    // public function deleteComent($id)
-    // {
-    //     Coment::where('id','=',$id)->delete();
-    //     return redirect()->back();
-    // }
+
+    public function search($where, Request $req)
+    {
+        $what = $req->input('id');
+        // dd($what ,$where);
+        if($where == 'user')
+        {
+            return view( 'auth.admin.adminDashboard.dashboardUsers', [
+                'users'=> User::where('id','=',$what)->first()->get(),
+            ]);
+        }
+        elseif($where == 'Recepie')
+        {
+            return view( 'auth.admin.adminDashboard.dashboardRecepies', [
+                'recepies'=> Recepie::where('id','=',$what)->first()->get(),
+            ]);
+        }
+        elseif($where == 'Coment')
+        {
+            return view( 'auth.admin.adminDashboard.dashboardComent', [
+                'users'=> Coment::where('id','=',$what)->first()->get(),
+            ]);
+        }
+         
+    }
+
 }

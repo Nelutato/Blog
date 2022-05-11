@@ -28,6 +28,7 @@ Route::group(['prefix' => 'Auth'], function () {
             Route::get('/user', [DasboardController::class, 'dashboardUsers'])->name('dashboardUser');
             Route::get('/recepies', [DasboardController::class, 'dashboardRecepies'])->name('dashboardRecepies');
             Route::get('/coments', [DasboardController::class, 'dashboardComents'])->name('dashboardComents');
+            Route::get('/{where}', [DasboardController::class, 'search'])->name('search');
             Route::delete('delete/{who}/{id}', [DasboardController::class, 'dashboardDelete'])->name('delete');
         });
     });

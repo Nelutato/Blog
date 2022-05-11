@@ -1,6 +1,16 @@
 @extends('layouts.dashboard')
 @section('content')
     <div class="row m-1">
+        <form action="{{ route('admin.search', ['where'=> 'Recepie']) }}">
+        @csrf
+            <input type="number" name="id" id="">
+            <button type="submit" class="btn border">
+                Szukaj 
+            </button>
+        </form>
+    </div>
+    
+    <div class="row m-1">
         <div class="col-md-8 d-flex justify-content-center mx-auto my-2">
             <table>    
                 <tr>
@@ -13,6 +23,7 @@
                 </tr>
                 @forelse ($recepies as $recepie)
                     <tr>
+                        {{-- {{ dd($recepie) }} --}}
                         <td>{{ $recepie['id'] }}</td>
                         <td>{{ $recepie['title'] }}</td>
                         <td>{{ $recepie->user->name }}</td>
