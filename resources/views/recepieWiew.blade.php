@@ -11,9 +11,8 @@
                         Edytuj
                     </button>
                 </a>
-                <form action="{{ route('Recepie.list', $Recepie['primary']) }}" method="POST">
+                <form action="{{ route('Recepie.list', $Recepie['primary']) }}" method="GET">
                     @csrf
-                    @method('DELETE')
                         <button class="btn border bg-own-yellow " type="submit">
                             przeglądaj inne wersje
                         </button>

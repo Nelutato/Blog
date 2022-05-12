@@ -1,7 +1,7 @@
 @extends('layouts.dashboard')
 @section('content')
     <div class="row m-1">
-        <form action="{{ route('admin.search', ['where'=> 'User']) }}">
+        <form action="{{ route('admin.search', ['where'=> 'User']) }}" method="get">
         @csrf
             <input type="number" name="id" id="">
             <button type="submit" class="btn border">

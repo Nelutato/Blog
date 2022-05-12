@@ -47,8 +47,8 @@ class DasboardController extends Controller
     public function search($where, Request $req)
     {
         $what = $req->input('id');
-
-        if($where == 'user')
+        
+        if($where == 'User')
         {
             $users[0] = User::where('id',$what)->firstOrFail();
             return view( 'auth.admin.adminDashboard.dashboardUsers', [
@@ -57,14 +57,14 @@ class DasboardController extends Controller
         }
         elseif($where == 'Recepie')
         {
-            $Recepie[0] = Recepie::where('id','=',$what)->firstOrFail();
+            $Recepie[0] = Recepie::where('id',$what)->firstOrFail();
             return view( 'auth.admin.adminDashboard.dashboardRecepies', [
                 'recepies'=> $Recepie ,
             ]);
         }
         elseif($where == 'Coment')
         {
-            $coments[0] = Coment::where('id','=',$what)->firstOrFail();
+            $coments[0] = Coment::where('id',$what)->firstOrFail();
             return view( 'auth.admin.adminDashboard.dashboardComent', [
                 'coments'=> $coments,
             ]);
