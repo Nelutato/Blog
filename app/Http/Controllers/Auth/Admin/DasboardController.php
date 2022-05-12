@@ -47,23 +47,26 @@ class DasboardController extends Controller
     public function search($where, Request $req)
     {
         $what = $req->input('id');
-        // dd($what ,$where);
+
         if($where == 'user')
         {
+            $users[0] = User::where('id',$what)->firstOrFail();
             return view( 'auth.admin.adminDashboard.dashboardUsers', [
-                'users'=> User::where('id','=',$what)->first()->get(),
+                'users'=> $users
             ]);
         }
         elseif($where == 'Recepie')
         {
+            $Recepie[0] = Recepie::where('id','=',$what)->firstOrFail();
             return view( 'auth.admin.adminDashboard.dashboardRecepies', [
-                'recepies'=> Recepie::where('id','=',$what)->first()->get(),
+                'recepies'=> $Recepie ,
             ]);
         }
         elseif($where == 'Coment')
         {
+            $coments[0] = Coment::where('id','=',$what)->firstOrFail();
             return view( 'auth.admin.adminDashboard.dashboardComent', [
-                'users'=> Coment::where('id','=',$what)->first()->get(),
+                'coments'=> $coments,
             ]);
         }
          

@@ -21,9 +21,9 @@
                     <th> Opinia </th>
                     <th> Usuń </th>
                 </tr>
+
                 @forelse ($recepies as $recepie)
                     <tr>
-                        {{-- {{ dd($recepie) }} --}}
                         <td>{{ $recepie['id'] }}</td>
                         <td>{{ $recepie['title'] }}</td>
                         <td>{{ $recepie->user->name }}</td>
