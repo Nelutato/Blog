@@ -2,7 +2,6 @@
 @section('content')
     <div class="row m-1">
         <form action="{{ route('admin.search', ['where'=> 'Coment']) }}" method="get">
-        @csrf
             <input type="number" name="id" id="">
             <button type="submit" class="btn border">
                 Szukaj 
