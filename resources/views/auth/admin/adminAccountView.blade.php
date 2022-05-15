@@ -123,5 +123,23 @@
                 </a>
             </div>
         </div>
+
+        <div class="row m-2 p-1 justify-content-center border border-2 d-flex">
+            <h4> Twoje przepisy:</h4>
+            @foreach ($ownRecepies as $Recepie)
+                <div class="col-md-3 m-2 p-2 admin-recepies-image text-center">
+                    <a href="{{ url( 'Recepie.show',['slug'=> $Recepie['id']] ) }}" class="text-decoration-none">
+                        <img src="{{ asset('images/'. $Recepie['image']) }}" alt="Img" class="img-fluid rounded w-50"> <br>
+                        <b>{{ $Recepie['title'] }}</b>
+                    </a>
+                </div>
+            @endforeach
+
+            <div class="col-md-1 my-auto d-flex justify-content-center text-center p-3 ">
+                <a href="{{ route('Recepie.create') }}" class="m-3 p-2">
+                    <i class="bi bi-plus-lg p-3 m-2 border">+</i>
+                </a>
+            </div>
+        </div>
     </div>
 @endsection

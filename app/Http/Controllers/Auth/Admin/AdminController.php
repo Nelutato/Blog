@@ -20,7 +20,12 @@ class AdminController extends Controller
     {
         $databaseCount['users'] = User::all()->count();
         $databaseCount['recepies'] = Recepie::all()->count();
-        return view('auth.admin.adminAccountView',['logedAdminInfo'=>Auth::user() ,'databaseCount'=>$databaseCount]);
+
+        return view('auth.admin.adminAccountView',[
+            'logedAdminInfo'=> Auth::user() ,
+            'databaseCount'=> $databaseCount,
+            'ownRecepies'=> Recepie::where('user_id', '=', Auth::id())->take(3)->get(),
+        ]);
     }
 
     /**
