@@ -26,6 +26,7 @@ Route::group(['prefix' => 'Auth'], function () {
 
         Route::group(['as' => 'admin.', 'prefix' => 'dashboard'], function () {
             Route::get('/user', [DasboardController::class, 'dashboardUsers'])->name('dashboardUser');
+            Route::post('/make/{id}', [DasboardController::class, 'makeAdmin'])->name('makeAdmin');
             Route::get('/recepies', [DasboardController::class, 'dashboardRecepies'])->name('dashboardRecepies');
             Route::get('/coments', [DasboardController::class, 'dashboardComents'])->name('dashboardComents');
             Route::get('/{where}', [DasboardController::class, 'search'])->name('search');

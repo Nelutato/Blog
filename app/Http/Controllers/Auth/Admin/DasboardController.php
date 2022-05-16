@@ -17,6 +17,13 @@ class DasboardController extends Controller
             'users' => $users
         ]);
     }
+
+    public function makeAdmin($id)
+    {
+        User::where('id', $id)->update(['is_admin' => 1]);
+        return redirect()->back();
+    }
+
     public function dashboardRecepies()
     {
         $recepies = Recepie::with('user')->get();
@@ -24,6 +31,7 @@ class DasboardController extends Controller
             'recepies' => $recepies,
         ]);
     }
+
     public function dashboardComents()
     {
         $coments = Coment::with('user','recepie')->get();
@@ -69,7 +77,6 @@ class DasboardController extends Controller
                 'coments'=> $coments,
             ]);
         }
-         
     }
 
 }
