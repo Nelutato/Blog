@@ -20,8 +20,8 @@
                             <th>Email </th>
                             <th>Utworzony </th>
                             <th>Admin</th>
-                            <th> Usuń </th>
                             <th> nadaj prawa administratora </th>
+                            <th> Usuń </th>
                         </tr>
                         @forelse ($users as $user)
                             <tr>
@@ -37,21 +37,21 @@
                                     @endif
                                 </td>
                                 <td>
-                                    <form action="{{ route( 'admin.delete', [ 'id' => $user['id'], 'who' => 'User' ] ) }}" method="POST">
-                                        @csrf
-                                        @method('DELETE')
-                                        <button type="submit" class="btn border"> 
-                                            Usuń
-                                        </button>
-                                    </form>
-                                </td>
-                                <td>
                                     <form action="{{ route( 'admin.makeAdmin', [ 'id' => $user['id'] ] ) }}" method="POST">
                                         @csrf
                                         <button type="submit" class="btn border mx-3"> 
                                             Mianuj
                                         </button>
                                         <input type="checkbox" name="makeAdmin" id="MakeAdmin" required> Na pewno ?
+                                    </form>
+                                </td>
+                                <td>
+                                    <form action="{{ route( 'admin.delete', [ 'id' => $user['id'], 'who' => 'User' ] ) }}" method="POST">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit" class="btn border m-1"> 
+                                            Usuń
+                                        </button>
                                     </form>
                                 </td>
                             </tr>

@@ -43,11 +43,11 @@ class DasboardController extends Controller
     public function dashboardDelete($who, $id)
     {
         if($who == 'user')
-            {User::where('id','=',$id)->delete();}
+            {User::where('id', $id)->delete();}
         elseif($who == 'Recepie')
-            { Recepie::where('id','=',$id)->delete(); }
+            { Recepie::where('id', $id)->delete(); }
         elseif($who == 'Coment')
-            { Coment::where('id','=',$id)->delete(); }
+            { Coment::where('id',$id)->delete(); }
 
         return redirect()->back();
     }
