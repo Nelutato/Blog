@@ -13,24 +13,27 @@
 
             <div class="row justify-content-center  bg-light m-2 own-hover-border">
                 <div class="col-md-6 text-center p-1 mx-2 bg-light text-md-start">
+                    <div class="container">
+                        <h1 class="d-inline bg-light m-1">
+                            {{ $recepie['title'] }}
+                        </h1>
 
-                    <h1 class="d-inline bg-light m-1">
-                        {{ $recepie['title'] }}
-                    </h1>
+                        <small class="float-end"> {{ $recepie['created_at'] }} </small> <br>
+                        {{ $recepieBody }} <br>
 
-                    <small class="float-end"> {{ $recepie['created_at'] }} </small> <br>
-                    {{ $recepieBody }} <br>
-
-                    <b id="ingredients"> Składniki : </b> <br>
-                    <ul class=" bg-light">
-                        @for ($i = 0; $i < $lenght; $i++)
-                            @if ($i == 2)
-                            @break
-                        @endif
-                        <li> {{ $ingredient[$i] }} </li>
-                    @endfor
-                </ul>
-
+                        <b id="ingredients"> Składniki : </b> <br>
+                        <ul class=" bg-light">
+                            @for ($i = 0; $i < $lenght; $i++)
+                                @if ($i == 2)
+                                @break
+                            @endif
+                            <li> {{ $ingredient[$i] }} </li>
+                        @endfor
+                    </ul>
+                    <div>
+                        <i class="bi bi-star-fill"></i> {{ round(($recepie['taste']+$recepie['speed']+$recepie['price'])/3,1) }}
+                    </div>
+                </div>
                 <a class="bg-light" href="{{ route('Recepie.show', $recepie) }}">
                     <button type="button" class="btn bg-own-green float-end">
                         Więcej ...
