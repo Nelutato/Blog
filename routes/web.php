@@ -42,7 +42,7 @@ Route::group(['prefix' => 'Recepies/'], function () {
 
     Route::group(['as' => 'Recepie.'], function () {
         Route::get('/Recepie/create', [RecepieController::class, 'create'])->middleware('auth')->name('create');
-        Route::post('/addComent', [RecepieController::class, 'addComment'])->name('coment');
+        Route::post('/addComent/{slug}', [RecepieController::class, 'addComment'])->name('coment');
         Route::get('/list/{slug}', [RecepieController::class, 'listSubRecepies'])->name('list');
         Route::post('/sort', [RecepieController::class, 'sortRecepie'])->name('sort');
         Route::post('/Recepie/{slug}', [RecepieController::class, 'store'])->name('store');

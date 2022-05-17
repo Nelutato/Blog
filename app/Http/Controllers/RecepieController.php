@@ -93,6 +93,7 @@ class RecepieController extends Controller
 
     function addComment(Request $req, $slug)
     {
+        // dd($req->input('comment'),$slug);
         Coment::create([
             'user_id' => Auth::id(),
             'recepie_id' => $slug,
