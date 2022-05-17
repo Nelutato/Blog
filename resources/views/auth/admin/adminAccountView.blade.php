@@ -116,8 +116,9 @@
                     {{ $databaseCount['recepies'] }}
                 </div>
                 <div class="w-100 border my-1"></div>
-                <a href="{{ route('admin.dashboardUser') }}">
-                    <button type="submit" class="btn border">
+
+                <a href="{{ route('admin.dashboardUser') }}" class="m-1 w-100">
+                    <button type="submit" class="btn border-color-yellow w-100">
                         przejdź do panelu
                     </button>
                 </a>
