@@ -27,7 +27,7 @@
 
               <li class="nav-item active mx-1 ">
                   <a href="{{ route('userView') }}" class="nav-link ">
-                      <i class="bi bi-person " style="font-size:1.6em">L</i>
+                      <i class="bi bi-person " style="font-size:1.6em"></i>
                   </a>
               </li>
           </ul>

@@ -12,7 +12,7 @@
     <div class="row justify-content-center bg-light border m-2 border-2">
       <div class="float-end col-md-1 my-auto bg-light" onclick='changeSlide("UP")'>
         <h1 class="bg-light text-center "> 
-          <i class="bi bi-chevron-left bg-light"><</i>
+          <i class="bi bi-chevron-left bg-light"></i>
         </h1>
       </div> 
 
@@ -42,7 +42,7 @@
 
       <div class="float-end col-md-1 my-auto bg-light " onclick='changeSlide("DOWN")'>
         <h1 class="bg-light text-center "> 
-          <i class="bi bi-chevron-right bg-light">></i>
+          <i class="bi bi-chevron-right bg-light"></i>
         </h1>
       </div> 
     </div>
