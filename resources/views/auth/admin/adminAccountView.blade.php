@@ -66,7 +66,7 @@
                         Zmień
                     </button>
                 </form>
-                <i class="bi bi-gear m-1" onclick="Change('UserName')">c</i> <br>
+                <i class="bi bi-gear m-1" onclick="Change('UserName')"></i> <br>
                 <div class="w-100 border my-1"></div>
 
                 e-mail : <br>
@@ -80,7 +80,7 @@
                         Zmień
                     </button>
                 </form>
-                <i class="bi bi-gear m-1" onclick="Change('UserEmail')">C</i> <br>
+                <i class="bi bi-gear m-1" onclick="Change('UserEmail')"></i> <br>
                 <div class="w-100 border my-1"></div>
 
                 Użytkownik od : <br>
