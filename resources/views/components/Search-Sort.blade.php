@@ -3,7 +3,7 @@
         <div class="col-md-3">
             <form action={{ route('Recepie.sort') }} method="POST">
                 @csrf
-                <select name="sort" id="sort">
+                <select name="sort" id="sortRecepies">
                     <option value="ASC" selected> older_to_ealier </option>
                     <option value="DESC"> newest </option>
                     <option value="price"> price </option>

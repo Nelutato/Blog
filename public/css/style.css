@@ -111,3 +111,18 @@ table, th, td
     padding: 3px;
     border-collapse: collapse;
 }
+#sortRecepies
+{
+    appearance: none;
+    outline: 0;
+    box-shadow: none;
+    border: 0, !important;
+    background: #f8fff5;
+    background-image: none;
+    width: 9em;
+    height: 2.5em;
+    line-height: 2;
+    overflow: hidden;
+    border-radius: .25rem;
+    padding-left: 4px;
+}
