@@ -85,7 +85,7 @@ class RecepieController extends Controller
         if (($order == 'ASC') || ($order == 'DESC')) {
             $Recepie = Recepie::whereColumn('id', 'primary')->orderBy('id', $order)->paginate(5);
         } else{
-            $Recepie = Recepie::whereColumn('id', 'primary')->orderBy($order, 'ASC')->paginate(5);
+            $Recepie = Recepie::whereColumn('id', 'primary')->orderBy($order, 'DESC')->paginate(5);
         } 
         
         return view('recepies')->with(['Recepies' => $Recepie]);
