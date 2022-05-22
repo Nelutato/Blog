@@ -138,7 +138,7 @@
 
             <div class="col-md-1 my-auto d-flex justify-content-center text-center p-3 ">
                 <a href="{{ route('Recepie.create') }}" class="m-3 p-2">
-                    <i class="bi bi-plus-lg p-3 m-2 border">+</i>
+                    <i class="bi bi-plus-lg p-3 m-2 border"></i>
                 </a>
             </div>
         </div>
