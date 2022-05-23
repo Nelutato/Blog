@@ -4,11 +4,11 @@
             <form action={{ route('Recepie.sort') }} method="POST">
                 @csrf
                 <select name="sort" id="sortRecepies">
-                    <option value="ASC" selected> older_to_ealier </option>
-                    <option value="DESC"> newest </option>
-                    <option value="price"> price </option>
-                    <option value="taste"> taste </option>
-                    <option value="speed"> speed </option>
+                    <option value="ASC" selected> Najstarsze </option>
+                    <option value="DESC"> najnowsze </option>
+                    <option value="price"> Najtańsze </option>
+                    <option value="taste"> Najsmaczniejsze </option>
+                    <option value="speed"> Najszybsze </option>
                 </select>
                 <button type="submit" class="btn border">
                     OK

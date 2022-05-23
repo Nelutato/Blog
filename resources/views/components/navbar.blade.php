@@ -9,7 +9,7 @@
           <ul class="navbar-nav m-2 mt-lg-0">
               <li class="nav-button nav-item active border p-1 border-light mx-1">
                   <a href="{{ route('Recepie.index') }}" class="nav-link active">
-                      Recepies
+                      Przepisy
                   </a>
               </li>
 
@@ -21,7 +21,7 @@
 
               <li class="nav-button nav-item active border p-1 border-light mx-1">
                   <a href="/Community" class="nav-link " style="pointer-events: none">
-                      Community
+                      społeczność
                   </a>
               </li>
 

@@ -14,7 +14,7 @@
                         @csrf
 
                         <div class="row mb-3">
-                            <label for="email" class="col-md-12 col-form-label text-center">{{ __('Email Address') }}</label>
+                            <label for="email" class="col-md-12 col-form-label text-center">{{ __('Adres e-mail ') }}</label>
 
                             <div class="col-md-12">
                                 <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
@@ -28,7 +28,7 @@
                         </div>
 
                         <div class="row mb-3">
-                            <label for="password" class="col-md-12 col-form-label text-center">{{ __('Password') }}</label>
+                            <label for="password" class="col-md-12 col-form-label text-center">{{ __('Hasło') }}</label>
 
                             <div class="col-md-12">
                                 <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password">
@@ -47,7 +47,7 @@
                                     <input class="form-check-input" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
 
                                     <label class="form-check-label" for="remember">
-                                        {{ __('Remember Me') }}
+                                        {{ __('pamiętaj mnie') }}
                                     </label>
                                 </div>
                             </div>

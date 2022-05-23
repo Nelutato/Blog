@@ -56,7 +56,7 @@
                 </div>
                 <div class="w-100 border"></div>
 
-                Username : <br>
+                Nazwa użytkownika : <br>
                 <i id="UserName"> {{ $logedAdminInfo['name'] }} </i>
                 <form action="{{ route('admin.update', ['admin' => $logedAdminInfo['id']]) }}" method="POST" id="changeUserName" style="display: none">
                     @method('PUT')
