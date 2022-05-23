@@ -53,25 +53,25 @@
     </div>
 
       <div class="row justify-content-center bg-light border border-2 my-3">
-        <div class="float-start col-md-1 my-auto bg-light ">
+        {{-- <div class="float-start col-md-1 my-auto bg-light ">
             <h1 class="bg-light text-center "> 
               <i class="bi bi-chevron-left bg-light"></i>  
             </h1>
-        </div>
+        </div> --}}
         <div class="col-md-5 text-center p-1 bg-light text-md-start">
-          <h1 class="bg-light m-1">Last Post :</h1>
-          Lorem, ipsum dolor sit amet consectetur adipisicing elit. Asperiores eligendi consequatur dolorum ipsum architecto aut illum consectetur sint optio nisi corporis deserunt, iste possimus animi earum, fugiat, modi nesciunt.Animi consequatur quae modi! Cupiditate illum laudantium magnam facilis natus? Neque!
-          <a href="#" class=" bg-light"> Read More . . . </a>
+          <h1 class="bg-light m-1">Blog w trakcie produkcji </h1>
+          <img src="{{ URL('images/site-in-build.jpg') }}" alt="Img" class="img-fluid h-75">
+          {{-- <a href="#" class=" bg-light"> . . . </a> --}}
         </div>
-        <div class="float-end col-md-1 my-auto bg-light ">
+        {{-- <div class="float-end col-md-1 my-auto bg-light ">
             <h1 class="bg-light text-center "> 
               <i class="bi bi-chevron-right bg-light"></i>
             </h1>
-        </div>
+        </div> --}}
 
-        <div class="col-md-3 bg-light">
+        {{-- <div class="col-md-3 bg-light">
           <img src="{{URL('images/Test-Blog.jpeg')}}" alt="" class="img-fluid ">
-        </div>
+        </div> --}}
 
       </div>
 
