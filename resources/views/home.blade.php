@@ -49,7 +49,7 @@
 
             {{-- blog  --}}
     <div class="row m-2 text-center">
-      <h1>Ostatnio dodane wpisy : </h1>
+      <h1>Ostatnio dodane wpisy na blog: </h1>
     </div>
 
       <div class="row justify-content-center bg-light border border-2 my-3">
