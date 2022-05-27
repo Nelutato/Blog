@@ -18,6 +18,7 @@
                             {{ $recepie['title'] }}
                         </h1>
 
+                        <img src="{{ asset('images/polyphagism-icon.svg') }}" alt="a">
                         <small class="float-end"> {{ $recepie['created_at'] }} </small> <br>
                         {{ $recepieBody }} <br>
 
