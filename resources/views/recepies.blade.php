@@ -14,14 +14,19 @@
             <div class="row justify-content-center  bg-light m-2 own-hover-border">
                 <div class="col-md-6 text-center p-1 mx-2 bg-light text-md-start">
                     <div class="container">
-                        <h1 class="d-inline bg-light m-1">
-                            {{ $recepie['title'] }}
-                        </h1>
+                        <div id="header" class="d-flex d-inline">
+                            <h1 class="d-inline bg-light m-1">
+                                {{ $recepie['title'] }}
+                            </h1>
 
-                        <img src="{{ asset('images/polyphagism-icon.svg') }}" alt="a">
-                        <small class="float-end"> {{ $recepie['created_at'] }} </small> <br>
+                            <div class="w-25">
+                                <img src="{{ asset('images/polyphagism-icon.svg') }}" alt="a" class="w-25"> 
+                            </div>
+
+                            <small class="float-end"> {{ $recepie['created_at'] }} </small> <br>
+                        </div>
+
                         {{ $recepieBody }} <br>
-
                         <b id="ingredients"> Składniki : </b> <br>
                         <ul class=" bg-light">
                             @for ($i = 0; $i < $lenght; $i++)
