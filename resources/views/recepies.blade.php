@@ -18,9 +18,9 @@
                             <h1 class="d-inline bg-light m-1">
                                 {{ $recepie['title'] }}
                             </h1>
-
+                            
                             <div class="w-25">
-                                <img src="{{ asset('images/polyphagism-icon.svg') }}" alt="a" class="w-25"> 
+                                <img src="{{ asset('images/'.$recepie['diet'].'-icon.svg') }}" alt="a" class="w-25 opacity-75"> 
                             </div>
 
                             <small class="float-end"> {{ $recepie['created_at'] }} </small> <br>

@@ -15,5 +15,13 @@
                 </button>
             </form>
         </div>
+        <div class="col-md-3">
+            <form action="#" method="get" class="d-inline">
+                <input type="search" name="" id="">
+            </form>
+            <button type="submit" class="btn border">
+                <i class="bi bi-search"></i>
+            </button>
+        </div>
     </div>
 </div>
