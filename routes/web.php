@@ -44,10 +44,11 @@ Route::group(['prefix' => 'Recepies/'], function () {
         Route::get('/Recepie/create', [RecepieController::class, 'create'])->middleware('auth')->name('create');
         Route::post('/addComent/{slug}', [RecepieController::class, 'addComment'])->name('coment');
         Route::get('/list/{slug}', [RecepieController::class, 'listSubRecepies'])->name('list');
-        Route::post('/sort', [RecepieController::class, 'sortRecepie'])->name('sort');
         Route::post('/Recepie/{slug}', [RecepieController::class, 'store'])->name('store');
         Route::put('/opinion/{slug}', [RecepieController::class, 'opinion'])->name('opinion');
         Route::post('/Recepie/{slug?}', [RecepieController::class, 'store'])->name('store');
+        Route::post('/sort', [RecepieController::class, 'sortRecepie'])->name('sort');
+        Route::get('/search/{slug?}', [RecepieController::class, 'search'])->name('search');
     });
 
     Route::resource('Recepie', 'RecepieController')

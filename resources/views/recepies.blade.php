@@ -54,12 +54,5 @@
             </div>
         </div>
     @endforeach
-
-    <div class="row justify-content-center">
-        <div class="col-md-3 p-2 ">
-            {{ $Recepies->links() }}
-        </div>
-    </div>
-    
 </div>
 @endsection

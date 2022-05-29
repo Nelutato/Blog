@@ -144,4 +144,11 @@ class RecepieController extends Controller
         Recepie::where('id' ,'=', $id)->delete();
         return redirect()->route('Recepie.index');
     }
+    public function search(Request $req)
+    {
+
+        return view('recepies', [
+            'Recepies'=> Recepie::where('title','LIKE', '%'.$req->input('search').'%')->get()
+        ]);
+    }
 }
