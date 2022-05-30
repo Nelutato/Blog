@@ -14,6 +14,12 @@
                 @csrf
                 Title: <br>
                 <input type="text" name="title" id=""> <br>
+                Dieta: <br>
+                <select name="diet" id="diet">
+                    <option value="polyphagism" selected>polifagiczna</option>
+                    <option value="vegetarianism">vegetariańska</option>
+                    <option value="veganism">vegańska</option>
+                </select> <br>
                 Img: <br>
                 <label for="image">
                     <input type="file" name="image" id="image" class="from-control" hidden>
